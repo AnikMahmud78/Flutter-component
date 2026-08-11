@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'models/onboarding_step.dart';
-import 'widgets/operator_walkthrough_overlay.dart';
+import 'models/sla_breach_item.dart';
+import 'widgets/sla_breach_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,74 +13,68 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Contextual Onboarding Framework',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
-      home: const OnboardingScreen(),
+      title: '15-Minute Chat SLA Dashboard',
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.red),
+      home: const SlaDashboardScreen(),
     );
   }
 }
 
-class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+class SlaDashboardScreen extends StatefulWidget {
+  const SlaDashboardScreen({super.key});
 
   @override
-  State<OnboardingScreen> createState() => _OnboardingScreenState();
+  State<SlaDashboardScreen> createState() => _SlaDashboardScreenState();
 }
 
-class _OnboardingScreenState extends State<OnboardingScreen> {
-  // Target Keys for Onboarding Spotlight
-  final GlobalKey _cardKey = GlobalKey();
-  final GlobalKey _amountKey = GlobalKey();
-  final GlobalKey _submitKey = GlobalKey();
+class _SlaDashboardScreenState extends State<SlaDashboardScreen> {
+  late Stopwatch _stopwatch;
+  double _loadTimeSeconds = 0.0;
+  bool _isLoading = true;
 
-  bool _isWalkthroughActive = false;
-  Map<String, String>? _auditLog;
-
-  List<OnboardingStep> get _walkthroughSteps => [
-    OnboardingStep(
-      title: '1. Card Input Verification',
-      description:
-          'Enter a valid 16-digit payment card number. Non-numeric characters will be dropped automatically.',
-      targetKey: _cardKey,
-      cardAlignment: Alignment.center,
+  final List<SlaBreachItem> _sampleBreaches = [
+    SlaBreachItem(
+      id: 'SLA-101',
+      customerName: 'Sarah Jenkins',
+      channel: 'Mobile Chat',
+      missedMessage:
+          'I requested a refund 20 minutes ago and have not received a confirmation.',
+      waitTimeMinutes: 22,
+      timestamp: '2026-08-11 08:52:10 UTC',
     ),
-    OnboardingStep(
-      title: '2. Payment Amount Input',
-      description:
-          'Specify the transaction amount in numerical format (e.g. 150.00).',
-      targetKey: _amountKey,
-      cardAlignment: Alignment.center,
+    SlaBreachItem(
+      id: 'SLA-102',
+      customerName: 'Ahmad Al-Mansoor',
+      channel: 'In-App Support',
+      missedMessage:
+          'Payment failed at step 2, can someone verify my account status?',
+      waitTimeMinutes: 18,
+      timestamp: '2026-08-11 08:56:45 UTC',
     ),
-    OnboardingStep(
-      title: '3. Transaction Submission',
-      description:
-          'Click to execute transaction. Locked until all fields satisfy schema validation.',
-      targetKey: _submitKey,
-      cardAlignment: Alignment.topCenter,
+    SlaBreachItem(
+      id: 'SLA-103',
+      customerName: 'Elena Rostova',
+      channel: 'Web Checkout',
+      missedMessage: 'Where do I enter the promo code on mobile checkout?',
+      waitTimeMinutes: 16,
+      timestamp: '2026-08-11 08:58:30 UTC',
     ),
   ];
 
-  void _triggerTestWalkthrough() {
-    setState(() {
-      _auditLog = null;
-      _isWalkthroughActive = true;
-    });
-  }
+  @override
+  void initState() {
+    super.initState();
+    _stopwatch = Stopwatch()..start();
 
-  void _completeWalkthrough({required bool skipped}) {
-    final now = DateTime.now().toUtc().toIso8601String();
-    setState(() {
-      _isWalkthroughActive = false;
-      _auditLog = {
-        'testType': 'New Operator Interactive Guidance Walkthrough',
-        'testResult': skipped ? 'SKIPPED_BY_USER' : 'PASS',
-        'testCoverage': '100.0% (3/3 Key Interaction Nodes)',
-        'processExecutionQuality': '100.0%',
-        'testTimestamp': now,
-        'testLogPath': 'gs://telemetry-audit-bucket/logs/walkthrough_024.log',
-        'authProvider': 'Workload Identity Federation (Zero static .json keys)',
-        'sessionId': 'SESS-2026-OPERATOR-ANIK',
-      };
+    // Simulate W3C Optimized Dashboard Fetch (<1.5s Optimal Target)
+    Future.delayed(const Duration(milliseconds: 320), () {
+      _stopwatch.stop();
+      if (mounted) {
+        setState(() {
+          _loadTimeSeconds = _stopwatch.elapsedMilliseconds / 1000.0;
+          _isLoading = false;
+        });
+      }
     });
   }
 
@@ -88,123 +82,58 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Operator Onboarding Framework'),
-        backgroundColor: Colors.blue.shade50,
+        title: const Text('Management Dashboard'),
+        backgroundColor: Colors.red.shade50,
       ),
-      body: Stack(
-        children: [
-          // Main Workstation Screen
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // --- PERFORMANCE METRIC CARD ---
+            Card(
+              color: Colors.blueGrey.shade900,
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      'Operator Workstation',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                      ),
+                      'W3C Dashboard Load Time:',
+                      style: TextStyle(color: Colors.white, fontSize: 13),
                     ),
-                    ElevatedButton.icon(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.indigo.shade700,
-                        foregroundColor: Colors.white,
+                    Text(
+                      '${_loadTimeSeconds.toStringAsFixed(3)}s (Good)',
+                      style: const TextStyle(
+                        color: Colors.greenAccent,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 13,
                       ),
-                      onPressed: _triggerTestWalkthrough,
-                      icon: const Icon(Icons.play_circle_fill, size: 18),
-                      label: const Text('Trigger Test Walkthrough'),
                     ),
                   ],
                 ),
-                const SizedBox(height: 20),
-
-                // Step 1 Widget
-                Card(
-                  key: _cardKey,
-                  child: const ListTile(
-                    leading: Icon(Icons.credit_card, color: Colors.blue),
-                    title: Text('Card Number Field'),
-                    subtitle: Text('Strict 16-Digit Masked Input Target'),
-                  ),
-                ),
-                const SizedBox(height: 12),
-
-                // Step 2 Widget
-                Card(
-                  key: _amountKey,
-                  child: const ListTile(
-                    leading: Icon(Icons.attach_money, color: Colors.green),
-                    title: Text('Payment Amount Field'),
-                    subtitle: Text('Numeric Keypad Routed Slot'),
-                  ),
-                ),
-                const SizedBox(height: 12),
-
-                // Step 3 Widget
-                SizedBox(
-                  key: _submitKey,
-                  width: double.infinity,
-                  height: 48,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.blue.shade800,
-                      foregroundColor: Colors.white,
-                    ),
-                    child: const Text('Submit Transaction'),
-                  ),
-                ),
-
-                const SizedBox(height: 32),
-
-                // Audit Log Panel
-                if (_auditLog != null) ...[
-                  const Text(
-                    'Walkthrough Execution Audit Log',
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: Colors.grey.shade900,
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: _auditLog!.entries.map((entry) {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 4.0),
-                          child: Text(
-                            '${entry.key}: ${entry.value}',
-                            style: const TextStyle(
-                              color: Colors.greenAccent,
-                              fontFamily: 'monospace',
-                              fontSize: 12,
-                            ),
-                          ),
-                        );
-                      }).toList(),
-                    ),
-                  ),
-                ],
-              ],
+              ),
             ),
-          ),
 
-          // Walkthrough Overlay Layer
-          if (_isWalkthroughActive)
-            OperatorWalkthroughOverlay(
-              steps: _walkthroughSteps,
-              onCompleted: () => _completeWalkthrough(skipped: false),
-              onSkipped: () => _completeWalkthrough(skipped: true),
+            const SizedBox(height: 20),
+
+            const Text(
+              'Real-Time Communication SLA Status',
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-        ],
+            const SizedBox(height: 12),
+
+            if (_isLoading)
+              const Center(
+                child: Padding(
+                  padding: EdgeInsets.all(32.0),
+                  child: CircularProgressIndicator(),
+                ),
+              )
+            else
+              SlaBreachWidget(initialBreaches: _sampleBreaches),
+          ],
+        ),
       ),
     );
   }
