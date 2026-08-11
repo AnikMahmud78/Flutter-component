@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'models/sla_breach_item.dart';
-import 'widgets/sla_breach_widget.dart';
+import 'models/aggregated_benchmark.dart';
+import 'widgets/aggregated_chart_block.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,98 +13,87 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '15-Minute Chat SLA Dashboard',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.red),
-      home: const SlaDashboardScreen(),
+      title: 'Global Command Panel',
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
+      home: const CommandPanelScreen(),
     );
   }
 }
 
-class SlaDashboardScreen extends StatefulWidget {
-  const SlaDashboardScreen({super.key});
+class CommandPanelScreen extends StatelessWidget {
+  const CommandPanelScreen({super.key});
 
-  @override
-  State<SlaDashboardScreen> createState() => _SlaDashboardScreenState();
-}
-
-class _SlaDashboardScreenState extends State<SlaDashboardScreen> {
-  late Stopwatch _stopwatch;
-  double _loadTimeSeconds = 0.0;
-  bool _isLoading = true;
-
-  final List<SlaBreachItem> _sampleBreaches = [
-    SlaBreachItem(
-      id: 'SLA-101',
-      customerName: 'Sarah Jenkins',
-      channel: 'Mobile Chat',
-      missedMessage:
-          'I requested a refund 20 minutes ago and have not received a confirmation.',
-      waitTimeMinutes: 22,
-      timestamp: '2026-08-11 08:52:10 UTC',
+  List<AggregatedBenchmark> get _sampleBenchmarks => [
+    AggregatedBenchmark(
+      id: 'BM-01',
+      metricName: 'Checkout Throughput',
+      currentValue: 98.5,
+      targetValue: 100.0,
+      unit: 'req/s',
+      statusColor: Colors.green.shade700,
     ),
-    SlaBreachItem(
-      id: 'SLA-102',
-      customerName: 'Ahmad Al-Mansoor',
-      channel: 'In-App Support',
-      missedMessage:
-          'Payment failed at step 2, can someone verify my account status?',
-      waitTimeMinutes: 18,
-      timestamp: '2026-08-11 08:56:45 UTC',
+    AggregatedBenchmark(
+      id: 'BM-02',
+      metricName: 'Payload Drop Rate',
+      currentValue: 0.2,
+      targetValue: 0.5,
+      unit: '%',
+      statusColor: Colors.blue.shade700,
     ),
-    SlaBreachItem(
-      id: 'SLA-103',
-      customerName: 'Elena Rostova',
-      channel: 'Web Checkout',
-      missedMessage: 'Where do I enter the promo code on mobile checkout?',
-      waitTimeMinutes: 16,
-      timestamp: '2026-08-11 08:58:30 UTC',
+    AggregatedBenchmark(
+      id: 'BM-03',
+      metricName: 'SLA Response Time',
+      currentValue: 14.2,
+      targetValue: 15.0,
+      unit: 'mins',
+      statusColor: Colors.orange.shade800,
     ),
   ];
-
-  @override
-  void initState() {
-    super.initState();
-    _stopwatch = Stopwatch()..start();
-
-    // Simulate W3C Optimized Dashboard Fetch (<1.5s Optimal Target)
-    Future.delayed(const Duration(milliseconds: 320), () {
-      _stopwatch.stop();
-      if (mounted) {
-        setState(() {
-          _loadTimeSeconds = _stopwatch.elapsedMilliseconds / 1000.0;
-          _isLoading = false;
-        });
-      }
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Management Dashboard'),
-        backgroundColor: Colors.red.shade50,
+        title: const Text('Global Command Panel'),
+        backgroundColor: Colors.blue.shade50,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // --- PERFORMANCE METRIC CARD ---
+            const Text(
+              'Command Center Overview',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(height: 6),
+            Text(
+              'Real-time analytical ingestion views powered by Kimball Star-Schema Data Model.',
+              style: TextStyle(color: Colors.grey.shade600, fontSize: 13),
+            ),
+            const SizedBox(height: 20),
+
+            // --- AGGREGATED CHART SLOT BLOCK ---
+            AggregatedChartBlock(benchmarks: _sampleBenchmarks),
+
+            const SizedBox(height: 24),
+
+            // DATA MODEL SPECIFICATION CARD
             Card(
               color: Colors.blueGrey.shade900,
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: const Padding(
+                padding: EdgeInsets.all(14.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Text(
-                      'W3C Dashboard Load Time:',
-                      style: TextStyle(color: Colors.white, fontSize: 13),
-                    ),
                     Text(
-                      '${_loadTimeSeconds.toStringAsFixed(3)}s (Good)',
-                      style: const TextStyle(
+                      'Analytics Data Model Design Standard:',
+                      style: TextStyle(color: Colors.white70, fontSize: 12),
+                    ),
+                    SizedBox(height: 4),
+                    Text(
+                      'Dimensional Model + Materialized + Indexed (Kimball Group)',
+                      style: TextStyle(
                         color: Colors.greenAccent,
                         fontWeight: FontWeight.bold,
                         fontSize: 13,
@@ -114,24 +103,6 @@ class _SlaDashboardScreenState extends State<SlaDashboardScreen> {
                 ),
               ),
             ),
-
-            const SizedBox(height: 20),
-
-            const Text(
-              'Real-Time Communication SLA Status',
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            const SizedBox(height: 12),
-
-            if (_isLoading)
-              const Center(
-                child: Padding(
-                  padding: EdgeInsets.all(32.0),
-                  child: CircularProgressIndicator(),
-                ),
-              )
-            else
-              SlaBreachWidget(initialBreaches: _sampleBreaches),
           ],
         ),
       ),
