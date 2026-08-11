@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/circuit_breaker_demo.dart';
+import 'widgets/ocr_enrollment_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,15 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Circuit Breaker Pattern',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Istio Circuit Breaker Guard'),
-          backgroundColor: Colors.blue.shade50,
-        ),
-        body: const CircuitBreakerDemo(),
-      ),
+      title: 'Invoice OCR & Enrollment Gate',
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
+      home: const OcrEnrollmentScreen(),
     );
   }
 }
