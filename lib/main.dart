@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/leave_request_form.dart';
+import 'widgets/circuit_breaker_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,14 +12,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Leave Request Validation',
+      title: 'Circuit Breaker Pattern',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blue),
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('HR Leave Portal'),
+          title: const Text('Istio Circuit Breaker Guard'),
           backgroundColor: Colors.blue.shade50,
         ),
-        body: const LeaveRequestForm(),
+        body: const CircuitBreakerDemo(),
       ),
     );
   }
