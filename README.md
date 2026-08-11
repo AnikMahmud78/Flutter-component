@@ -1,6 +1,6 @@
 # flutter_masked_input
 
-A new Flutter project.
+A new Flutter project..
 
 ## Getting Started
 
