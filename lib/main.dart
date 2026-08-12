@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'models/dynamic_drawer_tokens.dart';
-import 'widgets/dynamic_contextual_drawer.dart';
+import 'models/required_field_tokens.dart';
+import 'widgets/required_form_field_builder.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,17 +13,58 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Dynamic Contextual Drawer',
+      title: 'Required Field Indicator Engine',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const SharedLibraryDirectoryScreen(),
+      home: const RequiredFieldDemoScreen(),
     );
   }
 }
 
-class SharedLibraryDirectoryScreen extends StatelessWidget {
-  const SharedLibraryDirectoryScreen({super.key});
+class RequiredFieldDemoScreen extends StatefulWidget {
+  const RequiredFieldDemoScreen({super.key});
 
-  DynamicDrawerTokens get _tokens => DynamicDrawerTokens();
+  @override
+  State<RequiredFieldDemoScreen> createState() =>
+      _RequiredFieldDemoScreenState();
+}
+
+class _RequiredFieldDemoScreenState extends State<RequiredFieldDemoScreen> {
+  final _formKey = GlobalKey<FormState>();
+  final RequiredFieldTokens _tokens = RequiredFieldTokens();
+
+  final TextEditingController _vendorNameController = TextEditingController(
+    text: 'Acme Global Logistics',
+  );
+  final TextEditingController _billDateController = TextEditingController();
+  final TextEditingController _taxIdController = TextEditingController();
+
+  @override
+  void dispose() {
+    _vendorNameController.dispose();
+    _billDateController.dispose();
+    _taxIdController.dispose();
+    super.dispose();
+  }
+
+  void _submitForm() {
+    if (_formKey.currentState!.validate()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Form Validation Passed! 100% Required Fields Valid.'),
+          backgroundColor: Colors.green,
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Form Validation Failed: Fill all mandatory fields (*).',
+          ),
+          backgroundColor: RequiredFieldTokens.m3SemanticRed,
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,15 +72,15 @@ class SharedLibraryDirectoryScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Shared UI System Library'),
+        title: const Text('Mandatory Input Indicator System'),
         backgroundColor: Colors.indigo.shade50,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0), // 16px Grid Margins
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Directory Readiness Header
+            // DISCOVERY COVERAGE BANNER
             Card.filled(
               color: Colors.green.shade50,
               shape: RoundedRectangleBorder(
@@ -51,9 +92,9 @@ class SharedLibraryDirectoryScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     Icon(
-                      Icons.folder_special,
+                      Icons.check_circle_rounded,
                       color: Colors.green.shade800,
-                      size: 30,
+                      size: 28,
                     ),
                     const SizedBox(width: 12),
                     Expanded(
@@ -61,7 +102,7 @@ class SharedLibraryDirectoryScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Environment / Asset Access Readiness: Complete',
+                            'Discovery & Audit Coverage: 100% (Complete)',
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 13,
@@ -70,7 +111,7 @@ class SharedLibraryDirectoryScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 2),
                           const Text(
-                            'Module version-controlled & discoverable in repository.',
+                            'All mandatory fields enforce M3 red asterisk (*) token rules.',
                             style: TextStyle(
                               fontSize: 11,
                               color: Colors.black87,
@@ -87,68 +128,114 @@ class SharedLibraryDirectoryScreen extends StatelessWidget {
             const SizedBox(height: 20),
 
             Text(
-              'Shared Library Directory Details',
+              'Supplier Ingestion Data Form',
+              style: theme.textTheme.titleMedium?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Fields marked with a red asterisk (*) are strictly required.',
+              style: TextStyle(fontSize: 12, color: Colors.grey.shade600),
+            ),
+            const SizedBox(height: 16),
+
+            // FORM CONTAINER
+            Form(
+              key: _formKey,
+              child: Column(
+                children: [
+                  RequiredFormFieldBuilder(
+                    label: 'Vendor Name',
+                    hintText: 'Enter legal vendor name',
+                    helperText: 'Mandatory for billing classification.',
+                    isMandatory: true,
+                    controller: _vendorNameController,
+                  ),
+                  RequiredFormFieldBuilder(
+                    label: 'Bill Date',
+                    hintText: 'YYYY-MM-DD',
+                    helperText: 'Select or type invoice date.',
+                    isMandatory: true,
+                    controller: _billDateController,
+                  ),
+                  RequiredFormFieldBuilder(
+                    label: 'Tax Identification Number (Tax ID)',
+                    hintText: 'TAX-0000000-X',
+                    helperText: 'Required for tax compliance gate.',
+                    isMandatory: true,
+                    controller: _taxIdController,
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  // SUBMIT BUTTON (>=48px TOUCH TARGET)
+                  SizedBox(
+                    width: double.infinity,
+                    height: 48.0,
+                    child: ElevatedButton.icon(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.indigo.shade800,
+                        foregroundColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      onPressed: _submitForm,
+                      icon: const Icon(Icons.send_rounded),
+                      label: const Text(
+                        'Validate & Submit Ingestion',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const SizedBox(height: 24),
+
+            // DESIGN SYSTEM TOKEN METADATA CARD
+            Text(
+              'Form Design System Metadata',
               style: theme.textTheme.titleMedium?.copyWith(
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 8),
 
-            // Metadata Attributes Card
             Card.outlined(
               child: Padding(
                 padding: const EdgeInsets.all(14.0),
                 child: Column(
                   children: [
-                    _buildDataRow('Directory Path', _tokens.directoryPath),
+                    _buildMetaRow('System Name', _tokens.systemName),
                     const Divider(),
-                    _buildDataRow(
-                      'Directory Contents',
-                      _tokens.directoryContents,
+                    _buildMetaRow('System Version', _tokens.systemVersion),
+                    const Divider(),
+                    _buildMetaRow(
+                      'Component List',
+                      _tokens.componentList.join(', '),
                     ),
                     const Divider(),
-                    _buildDataRow(
-                      'Access Permissions',
-                      _tokens.accessPermissions,
+                    _buildMetaRow(
+                      'Asterisk Symbol Token',
+                      _tokens.tokenValues['asteriskSymbol'].toString(),
                     ),
                     const Divider(),
-                    _buildDataRow(
-                      'Last Modified Date',
-                      _tokens.lastModifiedDate,
+                    _buildMetaRow(
+                      'Asterisk Color Token',
+                      _tokens.tokenValues['asteriskColorHex'].toString(),
                     ),
                     const Divider(),
-                    _buildDataRow('System Name', _tokens.systemName),
-                    const Divider(),
-                    _buildDataRow('System Version', _tokens.systemVersion),
-                    const Divider(),
-                    _buildDataRow(
+                    _buildMetaRow(
                       'Documentation Links',
                       _tokens.documentationLinks,
                     ),
                   ],
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 24),
-
-            // TRIGGER DRAWER BUTTON (>=48px Touch Target Height)
-            SizedBox(
-              width: double.infinity,
-              height: 48, // Minimum 48dp Touch Target
-              child: ElevatedButton.icon(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.indigo.shade800,
-                  foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () => DynamicContextualDrawer.show(context),
-                icon: const Icon(Icons.vertical_align_top_rounded),
-                label: const Text(
-                  'Launch Contextual Drawer',
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                 ),
               ),
             ),
@@ -158,7 +245,7 @@ class SharedLibraryDirectoryScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildDataRow(String label, String value) {
+  Widget _buildMetaRow(String label, String value) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 3.0),
       child: Row(
