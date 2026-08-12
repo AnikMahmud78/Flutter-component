@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/performance_scorecard_widget.dart';
+import 'widgets/liveness_handshake_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Infrastructure Performance Scorecard',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const PerformanceScorecardWidget(),
+      title: 'Infrastructure Liveness Handshake',
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
+      home: const LivenessHandshakeScreen(),
     );
   }
 }
