@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/friction_listener_wrapper.dart';
+import 'widgets/session_grouping_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Friction & Hesitation Listener',
+      title: 'App Session Grouping IDs',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const FrictionListenerWrapper(child: FrictionDemoForm()),
+      home: const SessionGroupingScreen(),
     );
   }
 }
