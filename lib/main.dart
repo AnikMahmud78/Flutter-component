@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/automated_task_expiration_clock.dart';
+import 'widgets/end_document_cde_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Automated Task Expiration Lock',
+      title: 'End Document (ED) Schema CDE Mapper',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const AutomatedTaskExpirationClock(),
+      home: const EndDocumentCdeScreen(),
     );
   }
 }
