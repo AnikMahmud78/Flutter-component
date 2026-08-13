@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/machine_verb_cta_screen.dart';
+import 'widgets/ha_dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'EC Machine-Action Verbs on Mobile CTAs',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const MachineVerbCtaScreen(),
+      title: 'HA Database Multi-Zone Policies',
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
+      home: const HaDashboardScreen(),
     );
   }
 }
