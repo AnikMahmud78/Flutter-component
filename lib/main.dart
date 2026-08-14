@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/floating_video_training_widget.dart';
+import 'widgets/atomic_variable_normalizer_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: '60s Floating Video Micro-Training',
+      title: 'Atomic Variable Normalizer',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const FloatingVideoTrainingWidget(),
+      home: const AtomicVariableNormalizerWidget(),
     );
   }
 }
