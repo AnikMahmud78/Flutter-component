@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/balance_state_button_widget.dart';
+import 'widgets/system_verb_cta_auditor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Disabled Button A-B=0 Logic',
+      title: 'System-Verb CTA Character Limit Auditor',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const BalanceStateButtonWidget(),
+      home: const SystemVerbCtaAuditorWidget(),
     );
   }
 }
