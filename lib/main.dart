@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/ledger_reconciliation_screen.dart';
+import 'widgets/responsive_grid_layout_builder.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Ledger Reconciliation & Balancing',
+      title: 'Responsive Layout Grid Matrix',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const LedgerReconciliationScreen(),
+      home: const ResponsiveGridLayoutBuilder(),
     );
   }
 }
