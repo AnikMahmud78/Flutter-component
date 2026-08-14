@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/atomic_variable_normalizer_widget.dart';
+import 'widgets/fluid_resolution_adaptor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Atomic Variable Normalizer',
+      title: 'Fluid Resolution Adaptor Dashboard',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const AtomicVariableNormalizerWidget(),
+      home: const FluidResolutionAdaptor(),
     );
   }
 }
