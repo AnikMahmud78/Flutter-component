@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/vocabulary_choice_sheet.dart';
+import 'widgets/responsive_viewport_listener.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Interactive Vocabulary Choice Menu',
+      title: 'Viewport Aspect Listener Engine',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const VocabularyChoiceSheetScreen(),
+      home: const ResponsiveViewportListenerWidget(),
     );
   }
 }
