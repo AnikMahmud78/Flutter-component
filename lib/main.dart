@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/responsive_grid_layout_builder.dart';
+import 'widgets/vocabulary_choice_sheet.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Responsive Layout Grid Matrix',
+      title: 'Interactive Vocabulary Choice Menu',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const ResponsiveGridLayoutBuilder(),
+      home: const VocabularyChoiceSheetScreen(),
     );
   }
 }
