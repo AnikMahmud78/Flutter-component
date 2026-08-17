@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/mtoi_embedded_video_card.dart';
+import 'widgets/atomic_cde_wizard_screen.dart';
 
 void main() {
-  runApp(const MtoiTrainingApp());
+  runApp(const MyApp());
 }
 
-class MtoiTrainingApp extends StatelessWidget {
-  const MtoiTrainingApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MTOI Embedded Video Training',
+      title: 'Deconstruct CDEs into Bytes Wizard',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const MtoiEmbeddedVideoCard(),
+      home: const AtomicCdeWizardScreen(),
     );
   }
 }
