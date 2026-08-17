@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/dcyn_hard_lock_screen.dart';
+import 'widgets/mtoi_embedded_video_card.dart';
 
 void main() {
-  runApp(const DcynHardLockApp());
+  runApp(const MtoiTrainingApp());
 }
 
-class DcynHardLockApp extends StatelessWidget {
-  const DcynHardLockApp({super.key});
+class MtoiTrainingApp extends StatelessWidget {
+  const MtoiTrainingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'DCYN Hard-Lock Policy',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.red),
-      home: const DcynHardLockScreen(),
+      title: 'MTOI Embedded Video Training',
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
+      home: const MtoiEmbeddedVideoCard(),
     );
   }
 }
