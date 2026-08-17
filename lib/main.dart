@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/system_verb_fab_screen_2.dart';
+import 'widgets/dynamic_layout_renderer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'FAB Objective System-Verb Inventory',
+      title: 'Programmatic Layout Mapping Engine',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const SystemVerbFabScreen(),
+      home: const DynamicLayoutRendererScreen(),
     );
   }
 }
