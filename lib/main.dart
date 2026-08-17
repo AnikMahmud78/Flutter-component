@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/triangular_check_widget.dart';
+import 'widgets/master_document_stepper_widget.dart';
 
 void main() {
-  runApp(const TriangularReconciliationApp());
+  runApp(const MasterDocumentSealApp());
 }
 
-class TriangularReconciliationApp extends StatelessWidget {
-  const TriangularReconciliationApp({super.key});
+class MasterDocumentSealApp extends StatelessWidget {
+  const MasterDocumentSealApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Real-Time Reconciliation Engine',
+      title: 'Seal Master EC Document (ED 4)',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const TriangularCheckWidget(),
+      home: const MasterDocumentStepperWidget(),
     );
   }
 }
