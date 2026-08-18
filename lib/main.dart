@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/transient_snackbar_screen.dart';
+import 'widgets/footprint_verification_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Transient Notification Hierarchy',
+      title: 'Corporate Footprint Verification Engine',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const TransientSnackbarScreen(),
+      home: const FootprintVerificationWidget(),
     );
   }
 }
