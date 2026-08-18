@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/master_document_stepper_widget.dart';
+import 'widgets/single_line_action_screen.dart';
 
 void main() {
-  runApp(const MasterDocumentSealApp());
+  runApp(const MyApp());
 }
 
-class MasterDocumentSealApp extends StatelessWidget {
-  const MasterDocumentSealApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Seal Master EC Document (ED 4)',
+      title: 'Single-Line Actions Typography Engine',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const MasterDocumentStepperWidget(),
+      home: const SingleLineActionScreen(),
     );
   }
 }
