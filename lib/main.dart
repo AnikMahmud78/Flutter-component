@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/hesitation_tracker_widget.dart';
+import 'widgets/transient_snackbar_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Hesitation Telemetry Instrumentation Engine',
+      title: 'Transient Notification Hierarchy',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const HesitationTrackerWidget(),
+      home: const TransientSnackbarScreen(),
     );
   }
 }
