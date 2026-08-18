@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/single_line_action_screen.dart';
+import 'widgets/state_aware_button_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +12,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Single-Line Actions Typography Engine',
+      title: 'State-Aware Disabled Button A-B=0',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const SingleLineActionScreen(),
+      home: const StateAwareButtonWidget(),
     );
   }
 }
