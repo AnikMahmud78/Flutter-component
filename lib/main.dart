@@ -1,6 +1,6 @@
 // Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/sparkline_dashboard_screen.dart';
+import 'widgets/micro_task_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'HABOT Mini Sparklines',
+      title: 'Micro-Task Execution Timer',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const SparklineDashboardScreen(),
+      home: const MicroTaskScreen(),
     );
   }
 }
