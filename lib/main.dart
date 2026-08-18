@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/footprint_verification_widget.dart';
+import 'widgets/universal_ui_audit_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const UniversalUiAuditApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class UniversalUiAuditApp extends StatelessWidget {
+  const UniversalUiAuditApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Corporate Footprint Verification Engine',
+      title: 'Universal UI Integration Audit',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const FootprintVerificationWidget(),
+      home: const UniversalUiAuditScreen(),
     );
   }
 }
