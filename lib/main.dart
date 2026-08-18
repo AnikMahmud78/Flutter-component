@@ -1,6 +1,6 @@
 // Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/adaptive_layout_grid_widget.dart';
+import 'widgets/gesture_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'M3 Adaptive Layout Grid Engine',
+      title: 'Gesture-Driven List Component',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const AdaptiveLayoutGridWidget(),
+      home: const GestureListScreen(),
     );
   }
 }
