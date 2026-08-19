@@ -1,6 +1,6 @@
 // Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/bulk_action_guardrail_modal.dart';
+import 'widgets/fault_tolerant_dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Bulk Action Deletion Guardrail Engine',
+      title: 'Mobile Viewport Error Boundary',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const BulkActionGuardrailScreen(),
+      home: const FaultTolerantDashboardScreen(),
     );
   }
 }
