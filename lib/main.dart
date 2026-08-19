@@ -1,6 +1,6 @@
 // Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/source_input_diff_comparator_widget.dart';
+import 'widgets/nullable_fallback_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Source vs Input Diff Comparator',
+      title: 'Nullable Field Rendering Fallbacks',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const SourceInputDiffComparatorWidget(),
+      home: const NullableFallbackScreen(),
     );
   }
 }
