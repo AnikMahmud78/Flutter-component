@@ -1,6 +1,6 @@
 // Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/micro_task_screen.dart';
+import 'widgets/master_shell_scaffolding.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Micro-Task Execution Timer',
+      title: 'Global Release Dashboard Master Shell',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const MicroTaskScreen(),
+      home: const MasterShellScaffolding(),
     );
   }
 }
