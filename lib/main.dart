@@ -1,6 +1,6 @@
 // Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/mto_data_isolation_widget.dart';
+import 'widgets/global_touch_target_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +13,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MTO Data Block Visual Isolation Engine',
+      title: 'Global Touch-Target Baseline Engine',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const MtoDataIsolationWidget(),
+      home: const GlobalTouchTargetScreen(),
     );
   }
 }
