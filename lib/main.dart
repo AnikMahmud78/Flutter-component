@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/print_preview_canvas_widget.dart';
+import 'widgets/print_header_report_widget.dart';
 
 void main() {
-  runApp(const PrintPreviewApp());
+  runApp(const PrintHeaderApp());
 }
 
-class PrintPreviewApp extends StatelessWidget {
-  const PrintPreviewApp({super.key});
+class PrintHeaderApp extends StatelessWidget {
+  const PrintHeaderApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Print Stylesheet Compiler',
+      title: 'Report Matrix Compiler',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const PrintPreviewCanvasWidget(),
+      home: const PrintHeaderReportWidget(),
     );
   }
 }

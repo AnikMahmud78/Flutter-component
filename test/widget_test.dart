@@ -11,19 +11,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_masked_input/main.dart';
 
 void main() {
-  testWidgets('toggles print mode and strips non-essential controls', (
+  testWidgets('renders print header metadata and UTC timestamp', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const PrintPreviewApp());
+    await tester.pumpWidget(const PrintHeaderApp());
 
-    expect(find.byType(FloatingActionButton), findsOneWidget);
+    expect(find.text('HABOT'), findsOneWidget);
+    expect(find.text('Executive Audit Report'), findsOneWidget);
+    expect(find.textContaining('Generated: '), findsOneWidget);
+    expect(find.textContaining('UTC'), findsOneWidget);
+    expect(find.textContaining('TOP_100_HIGH_PRIORITY_RECORDS'), findsOneWidget);
     expect(find.byType(AppBar), findsOneWidget);
-
-    await tester.tap(find.byType(FloatingActionButton));
-    await tester.pump();
-
-    expect(find.byType(FloatingActionButton), findsNothing);
-    expect(find.byType(AppBar), findsNothing);
-    expect(find.text('Print Preview Canvas'), findsOneWidget);
   });
 }
