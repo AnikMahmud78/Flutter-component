@@ -1,21 +1,20 @@
-// Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/master_view_layout_widget.dart';
+import 'widgets/agentic_handoff_animation_widget.dart';
 
 void main() {
-  runApp(const MasterViewLayoutApp());
+  runApp(const MyApp());
 }
 
-class MasterViewLayoutApp extends StatelessWidget {
-  const MasterViewLayoutApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Master View Component Layout Shell',
+      title: 'Agentic Task Handoff Micro-Animations',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const MasterViewLayoutWidget(),
+      home: const AgenticHandoffAnimationWidget(),
     );
   }
 }
