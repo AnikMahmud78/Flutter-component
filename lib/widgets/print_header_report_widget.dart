@@ -22,8 +22,10 @@ class _PrintHeaderReportWidgetState extends State<PrintHeaderReportWidget> {
     userSessionId: 'SESS-2026-ANIK-6441',
   );
 
-  late final String _formattedTimestamp =
-      DateTime.now().toUtc().toIso8601String().substring(0, 19);
+  late final String _formattedTimestamp = DateTime.now()
+      .toUtc()
+      .toIso8601String()
+      .substring(0, 19);
 
   @override
   Widget build(BuildContext context) {

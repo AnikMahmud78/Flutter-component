@@ -20,7 +20,10 @@ void main() {
     expect(find.text('Executive Audit Report'), findsOneWidget);
     expect(find.textContaining('Generated: '), findsOneWidget);
     expect(find.textContaining('UTC'), findsOneWidget);
-    expect(find.textContaining('TOP_100_HIGH_PRIORITY_RECORDS'), findsOneWidget);
+    expect(
+      find.textContaining('TOP_100_HIGH_PRIORITY_RECORDS'),
+      findsOneWidget,
+    );
     expect(find.byType(AppBar), findsOneWidget);
   });
 }
