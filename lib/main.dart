@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/human_processing_template_widget.dart';
+import 'widgets/persistent_bottom_nav_widget.dart';
 
 void main() {
-  runApp(const HumanProcessingApp());
+  runApp(const PersistentBottomNavApp());
 }
 
-class HumanProcessingApp extends StatelessWidget {
-  const HumanProcessingApp({super.key});
+class PersistentBottomNavApp extends StatelessWidget {
+  const PersistentBottomNavApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Human Processing Step Template',
+      title: 'Persistent Bottom Navigation Container',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const HumanProcessingTemplateWidget(),
+      home: const PersistentBottomNavWidget(),
     );
   }
 }
