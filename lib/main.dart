@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/cypress_pipeline_dashboard_screen.dart';
+import 'widgets/human_processing_template_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const HumanProcessingApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class HumanProcessingApp extends StatelessWidget {
+  const HumanProcessingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Cypress E2E Validation Runner',
+      title: 'Human Processing Step Template',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const CypressPipelineDashboardScreen(),
+      home: const HumanProcessingTemplateWidget(),
     );
   }
 }
