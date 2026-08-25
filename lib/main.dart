@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/persistent_bottom_nav_widget.dart';
+import 'widgets/bottom_inset_navigation_widget.dart';
 
 void main() {
-  runApp(const PersistentBottomNavApp());
+  runApp(const BottomInsetApp());
 }
 
-class PersistentBottomNavApp extends StatelessWidget {
-  const PersistentBottomNavApp({super.key});
+class BottomInsetApp extends StatelessWidget {
+  const BottomInsetApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Persistent Bottom Navigation Container',
+      title: 'M3 Bottom Inset Navigation',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const PersistentBottomNavWidget(),
+      home: const BottomInsetNavigationWidget(),
     );
   }
 }
