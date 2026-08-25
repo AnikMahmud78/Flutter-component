@@ -2,6 +2,7 @@
 
 **Component ID**: `GMRD-ATOM-BTN-001`  
 **File Location**: `docs/components/atoms/button.md`  
+**Review Status**: Step 19.0 Final Quality Review Passed  
 **Governance Sign-off**: Design System Maintainer & Structural Documentation Writer (Anik)  
 
 ---
@@ -42,54 +43,10 @@ The Primary Filled Button is the core call-to-action primitive across all HABOT 
 5. **Loading**: Label replaced with 18dp centered `CircularProgressIndicator`.
 
 ## 7. Usage Guidelines & Scenario Rules
+- **DO**: Use a single filled button per action region.
+- **DO**: Enforce a minimum $48\times 48\text{dp}$ touch bounding box on mobile viewports.
+- **DON'T**: Place two primary filled buttons in the same container.
+- **DON'T**: Hardcode pixel dimensions omitted from token specs.
 
-### 7.1 Optimal Application Context
-- **Primary Page Action**: Use the filled button exclusively for the single primary action on a screen (e.g., "Save & Continue", "Submit Entry", "Finalize Offboarding").
-- **Modal Dialog Confirmation**: Serves as the affirmative primary trigger in alert and confirmation dialogs.
-- **Form Submissions**: Placed at the bottom of data entry forms, locked until all required fields pass validation.
-
-### 7.2 Do's and Don'ts Matrix
-| Rule Type | Guidance | Rationale |
-| :--- | :--- | :--- |
-| **DO** | Use a single filled button per action region. | Prevents visual hierarchy confusion for the user. |
-| **DO** | Enforce a minimum $48\times 48\text{dp}$ touch bounding box on mobile viewports. | Guarantees WCAG 2.1 AA/AAA accessibility compliance. |
-| **DO** | Display a centered loading indicator during background async requests. | Prevents duplicate form submissions and indicates active processing. |
-| **DON'T** | Place two primary filled buttons in the same container. | Pair a primary filled button with an outlined or text button instead. |
-| **DON'T** | Hardcode pixel widths or margins (e.g., `width: 320px`). | Hardcoded pixel values cause layout breaking across varying screen sizes. |
-| **DON'T** | Use ambiguous labels like "OK" or "Click Here". | Use action-oriented verbs (e.g., "Approve Request", "Save Changes"). |
-
-### 7.3 Viewport Layout Mapping & Responsive Scaling
-```
-[Mobile < 600dp]       --> Full-width container (width: double.infinity, minHeight: 48dp)
-[Tablet 600dp - 839dp] --> Auto-sized width with 24dp horizontal padding (minHeight: 48dp)
-[Desktop >= 840dp]     --> Auto-sized width with hover elevation overlay and keyboard focus ring
-```
-
-### 7.4 Accessibility & Hit Target Regulations
-- **Touch Boundary Target**: Must never shrink below $48\times 48\text{dp}$ on mobile viewports.
-- **Contrast Ratio**: Minimum 4.5:1 ratio between text (`md.sys.color.on-primary`) and container (`md.sys.color.primary`).
-- **Screen Reader Labeling**: Include explicit `semanticsLabel` attributes for screen reader announcement.
-
-## 8. Code Snippet & Usage Rules
-```dart
-ConstrainedBox(
-  constraints: const BoxConstraints(minWidth: 48.0, minHeight: 48.0),
-  child: SizedBox(
-    width: double.infinity,
-    height: 48.0,
-    child: FilledButton.icon(
-      style: FilledButton.styleFrom(
-        backgroundColor: Theme.of(context).colorScheme.primary,
-        foregroundColor: Theme.of(context).colorScheme.onPrimary,
-      ),
-      onPressed: isLoading ? null : () {},
-      icon: const Icon(Icons.check_circle_rounded, size: 18),
-      label: const Text('SUBMIT_ENTRY'),
-    ),
-  ),
-);
-```
-
-## 9. Governance & Poka-Yoke Rules
-
-- **Poka-Yoke Linter Rule**: CI/CD build pipelines reject front-end updates instantly if hardcoded dimensions (e.g., `height: 32px`) override tokenized specification bounds.
+## 8. Governance & Poka-Yoke Linter Rules
+- **Poka-Yoke Linter Rule**: CI/CD build pipelines reject front-end updates instantly if hardcoded dimensions override tokenized specification bounds.

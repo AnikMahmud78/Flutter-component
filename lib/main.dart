@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/spec_review_dashboard_screen.dart';
+import 'widgets/spec_quality_review_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'GMRD Spec Technical Review Dashboard',
+      title: 'GMRD Spec Uniformity Inspector',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const SpecReviewDashboardScreen(),
+      home: const SpecQualityReviewScreen(),
     );
   }
 }
