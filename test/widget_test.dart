@@ -11,17 +11,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_masked_input/main.dart';
 
 void main() {
-  testWidgets('mounts four inset-aware navigation destinations', (
+  testWidgets('toggles print mode and strips non-essential controls', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const BottomInsetApp());
+    await tester.pumpWidget(const PrintPreviewApp());
 
-    expect(find.byType(NavigationDestination), findsNWidgets(4));
-    expect(find.text('Detected Gesture Bar Inset: 0.0 dp'), findsOneWidget);
+    expect(find.byType(FloatingActionButton), findsOneWidget);
+    expect(find.byType(AppBar), findsOneWidget);
 
-    await tester.tap(find.text('Tasks'));
+    await tester.tap(find.byType(FloatingActionButton));
     await tester.pump();
 
-    expect(find.byType(NavigationBar), findsOneWidget);
+    expect(find.byType(FloatingActionButton), findsNothing);
+    expect(find.byType(AppBar), findsNothing);
+    expect(find.text('Print Preview Canvas'), findsOneWidget);
   });
 }

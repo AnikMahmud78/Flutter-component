@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/bottom_inset_navigation_widget.dart';
+import 'widgets/print_preview_canvas_widget.dart';
 
 void main() {
-  runApp(const BottomInsetApp());
+  runApp(const PrintPreviewApp());
 }
 
-class BottomInsetApp extends StatelessWidget {
-  const BottomInsetApp({super.key});
+class PrintPreviewApp extends StatelessWidget {
+  const PrintPreviewApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'M3 Bottom Inset Navigation',
+      title: 'Print Stylesheet Compiler',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const BottomInsetNavigationWidget(),
+      home: const PrintPreviewCanvasWidget(),
     );
   }
 }
