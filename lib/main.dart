@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'widgets/spec_quality_review_screen.dart';
+import 'widgets/cypress_pipeline_dashboard_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,12 +12,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'GMRD Spec Uniformity Inspector',
+      title: 'Cypress E2E Validation Runner',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const SpecQualityReviewScreen(),
+      home: const CypressPipelineDashboardScreen(),
     );
   }
 }
