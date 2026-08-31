@@ -1,24 +1,24 @@
 // Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/visual_layout_verification_widget.dart';
+import 'widgets/schema_collator_widget.dart';
 
 void main() {
-  runApp(const VisualLayoutApp());
+  runApp(const SchemaCollatorApp());
 }
 
-class VisualLayoutApp extends StatelessWidget {
-  const VisualLayoutApp({super.key});
+class SchemaCollatorApp extends StatelessWidget {
+  const SchemaCollatorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Dynamic Visual Layout Verification',
+      title: 'Dependency Chain Schema Collator',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const VisualLayoutVerificationWidget(),
+      home: const SchemaCollatorWidget(),
     );
   }
 }
