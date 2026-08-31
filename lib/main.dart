@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/contrast_action_header_widget.dart';
+import 'widgets/contextual_header_analytics_widget.dart';
 
 void main() {
-  runApp(const ContrastHeaderApp());
+  runApp(const ContextualHeaderAnalyticsApp());
 }
 
-class ContrastHeaderApp extends StatelessWidget {
-  const ContrastHeaderApp({super.key});
+class ContextualHeaderAnalyticsApp extends StatelessWidget {
+  const ContextualHeaderAnalyticsApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Contrast Action Header',
+      title: 'Contextual Header Analytics Engine',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const ContrastActionHeaderWidget(),
+      home: const ContextualHeaderAnalyticsWidget(),
     );
   }
 }
