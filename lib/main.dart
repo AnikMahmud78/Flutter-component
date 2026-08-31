@@ -1,24 +1,23 @@
-// Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/schema_collator_widget.dart';
+import 'widgets/global_app_shell_widget.dart';
 
 void main() {
-  runApp(const SchemaCollatorApp());
+  runApp(const AppShellApplication());
 }
 
-class SchemaCollatorApp extends StatelessWidget {
-  const SchemaCollatorApp({super.key});
+class AppShellApplication extends StatelessWidget {
+  const AppShellApplication({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Dependency Chain Schema Collator',
+      title: 'Global Corporate App Shell',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const SchemaCollatorWidget(),
+      home: const GlobalAppShellWidget(),
     );
   }
 }
