@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/global_app_shell_widget.dart';
+import 'widgets/marketplace_search_console_widget.dart';
 
 void main() {
-  runApp(const AppShellApplication());
+  runApp(const MarketplaceSearchApp());
 }
 
-class AppShellApplication extends StatelessWidget {
-  const AppShellApplication({super.key});
+class MarketplaceSearchApp extends StatelessWidget {
+  const MarketplaceSearchApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Global Corporate App Shell',
+      title: 'Marketplace Search Console',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const GlobalAppShellWidget(),
+      home: const MarketplaceSearchConsoleWidget(),
     );
   }
 }
