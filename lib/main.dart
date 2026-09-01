@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/persistent_header_scroll_widget.dart';
+import 'widgets/medium_side_rail_scaffold_widget.dart';
 
 void main() {
-  runApp(const PersistentHeaderScrollApp());
+  runApp(const MediumSideRailApp());
 }
 
-class PersistentHeaderScrollApp extends StatelessWidget {
-  const PersistentHeaderScrollApp({super.key});
+class MediumSideRailApp extends StatelessWidget {
+  const MediumSideRailApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Persistent Header Scroll Visibility',
+      title: 'Medium Screen Navigation Rail Shell',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const PersistentHeaderScrollWidget(),
+      home: const MediumSideRailScaffoldWidget(),
     );
   }
 }
