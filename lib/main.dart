@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
-import 'widgets/persistent_header_status_widget.dart';
+import 'widgets/persistent_header_scroll_widget.dart';
 
 void main() {
-  runApp(const PersistentHeaderStatusApp());
+  runApp(const PersistentHeaderScrollApp());
 }
 
-class PersistentHeaderStatusApp extends StatelessWidget {
-  const PersistentHeaderStatusApp({super.key});
+class PersistentHeaderScrollApp extends StatelessWidget {
+  const PersistentHeaderScrollApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Persistent Header Status Anchors',
+      title: 'Persistent Header Scroll Visibility',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const PersistentHeaderStatusWidget(),
+      home: const PersistentHeaderScrollWidget(),
     );
   }
 }
