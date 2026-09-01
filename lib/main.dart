@@ -1,23 +1,24 @@
+// Location: lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/medium_side_rail_scaffold_widget.dart';
+import 'widgets/master_shell_doc_screen.dart';
 
 void main() {
-  runApp(const MediumSideRailApp());
+  runApp(const MasterShellDocApp());
 }
 
-class MediumSideRailApp extends StatelessWidget {
-  const MediumSideRailApp({super.key});
+class MasterShellDocApp extends StatelessWidget {
+  const MasterShellDocApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Medium Screen Navigation Rail Shell',
+      title: 'Master Shell Architecture Spec',
       theme: ThemeData(
         useMaterial3: true,
         colorSchemeSeed: Colors.indigo,
       ),
-      home: const MediumSideRailScaffoldWidget(),
+      home: const MasterShellDocScreen(),
     );
   }
 }
