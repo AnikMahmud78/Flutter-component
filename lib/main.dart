@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/inverted_pyramid_dashboard_widget.dart';
+import 'widgets/atomic_button_widget.dart';
 
 void main() {
-  runApp(const InvertedPyramidDashboardApp());
+  runApp(const AtomicButtonApp());
 }
 
-class InvertedPyramidDashboardApp extends StatelessWidget {
-  const InvertedPyramidDashboardApp({super.key});
+class AtomicButtonApp extends StatelessWidget {
+  const AtomicButtonApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Inverted Pyramid Dashboard App',
+      title: 'Atomic Byt Micro-Interactions App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const InvertedPyramidDashboardWidget(),
+      home: const AtomicButtonInspectorWidget(),
     );
   }
 }
