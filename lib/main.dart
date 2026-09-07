@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/lead_conversion_listener_widget.dart';
+import 'widgets/lead_conversion_audit_widget.dart';
 
 void main() {
-  runApp(const LeadConversionListenerApp());
+  runApp(const LeadConversionAuditApp());
 }
 
-class LeadConversionListenerApp extends StatelessWidget {
-  const LeadConversionListenerApp({super.key});
+class LeadConversionAuditApp extends StatelessWidget {
+  const LeadConversionAuditApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Lead Conversion Listener App',
+      title: 'M3 Layout Compliance Audit App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const LeadConversionListenerWidget(),
+      home: const LeadConversionAuditWidget(),
     );
   }
 }
