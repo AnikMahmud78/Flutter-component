@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/f_pattern_dashboard_widget.dart';
+import 'widgets/inverted_pyramid_dashboard_widget.dart';
 
 void main() {
-  runApp(const FPatternDashboardApp());
+  runApp(const InvertedPyramidDashboardApp());
 }
 
-class FPatternDashboardApp extends StatelessWidget {
-  const FPatternDashboardApp({super.key});
+class InvertedPyramidDashboardApp extends StatelessWidget {
+  const InvertedPyramidDashboardApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'F-Pattern Executive Dashboard',
+      title: 'Inverted Pyramid Dashboard App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const FPatternDashboardWidget(),
+      home: const InvertedPyramidDashboardWidget(),
     );
   }
 }
