@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/lineage_render_optimization_widget.dart';
+import 'widgets/tree_element_sizing_widget.dart';
 
 void main() {
-  runApp(const LineageRenderApp());
+  runApp(const TreeSizingApp());
 }
 
-class LineageRenderApp extends StatelessWidget {
-  const LineageRenderApp({super.key});
+class TreeSizingApp extends StatelessWidget {
+  const TreeSizingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Lineage Diagram Render Optimization',
+      title: 'Tree Element Sizing App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const LineageRenderOptimizationWidget(),
+      home: const TreeElementSizingWidget(),
     );
   }
 }
