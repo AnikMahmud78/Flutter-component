@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'widgets/biometric_fallback_prompt_widget.dart';
+import 'widgets/sms_ingress_input_widget.dart';
 
 void main() {
-  runApp(const BiometricFallbackApp());
+  runApp(const SmsIngressApp());
 }
 
-class BiometricFallbackApp extends StatelessWidget {
-  const BiometricFallbackApp({super.key});
+class SmsIngressApp extends StatelessWidget {
+  const SmsIngressApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'WebAuthn Biometric Fallback App',
+      title: 'SMS Ingress Gateway App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const BiometricFallbackPromptWidget(),
+      restorationScopeId: 'root_sms_app',
+      home: const SmsIngressInputWidget(),
     );
   }
 }
