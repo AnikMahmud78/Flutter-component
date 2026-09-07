@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/paginated_table_limit_widget.dart';
+import 'widgets/table_slicing_widget.dart';
 
 void main() {
-  runApp(const PaginatedTableLimitApp());
+  runApp(const TableSlicingApp());
 }
 
-class PaginatedTableLimitApp extends StatelessWidget {
-  const PaginatedTableLimitApp({super.key});
+class TableSlicingApp extends StatelessWidget {
+  const TableSlicingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Paginated Table Limit App',
+      title: 'Table Slicing App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const PaginatedTableLimitWidget(),
+      home: const TableSlicingWidget(),
     );
   }
 }
