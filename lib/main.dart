@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/lineage_status_panel_widget.dart';
+import 'widgets/lineage_render_optimization_widget.dart';
 
 void main() {
-  runApp(const LineagePanelApp());
+  runApp(const LineageRenderApp());
 }
 
-class LineagePanelApp extends StatelessWidget {
-  const LineagePanelApp({super.key});
+class LineageRenderApp extends StatelessWidget {
+  const LineageRenderApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Lineage Panel App',
+      title: 'Lineage Diagram Render Optimization',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const LineageStatusPanelWidget(),
+      home: const LineageRenderOptimizationWidget(),
     );
   }
 }
