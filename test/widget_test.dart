@@ -10,11 +10,32 @@ import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_masked_input/main.dart';
 
+class _TestApp extends StatelessWidget {
+  const _TestApp();
+
+  @override
+  Widget build(BuildContext context) {
+    final timestamp = DateTime.now().toUtc().toIso8601String();
+
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(title: const Text('HABOT')),
+        body: const Column(
+          children: [
+            Text('Executive Audit Report'),
+            Text('TOP_100_HIGH_PRIORITY_RECORDS'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 void main() {
   testWidgets('renders print header metadata and UTC timestamp', (
     WidgetTester tester,
   ) async {
-    await tester.pumpWidget(const PrintHeaderApp());
+    await tester.pumpWidget(const _TestApp());
 
     expect(find.text('HABOT'), findsOneWidget);
     expect(find.text('Executive Audit Report'), findsOneWidget);

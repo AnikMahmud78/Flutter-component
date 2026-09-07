@@ -1,5 +1,6 @@
 // Location: lib/widgets/velocity_tracking_scroller_widget.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 import '../models/velocity_tracking_telemetry_model.dart';
 
 class VelocityTrackingScrollerWidget extends StatefulWidget {
@@ -14,13 +15,14 @@ class _VelocityTrackingScrollerWidgetState
     extends State<VelocityTrackingScrollerWidget> {
   final ScrollController _scrollController = ScrollController();
   final VelocityTracker _velocityTracker = VelocityTracker.withKind(
-      PointerDeviceKind.touch);
+    PointerDeviceKind.touch,
+  );
 
   double _currentVelocityPxPerSec = 0.0;
   bool _isDragging = false;
 
-  final VelocityTrackingTelemetryRecord _telemetry =
-      VelocityTrackingTelemetryRecord(
+  final VelocityTrackingTelemetryRecord
+  _telemetry = VelocityTrackingTelemetryRecord(
     stepExecutionId: 'EXEC-3955ANSA-2026',
     executionStatus: 'PASS',
     executionTimestamp: DateTime.now().toUtc().toIso8601String(),
@@ -89,8 +91,11 @@ class _VelocityTrackingScrollerWidgetState
                   padding: EdgeInsets.all(14.0),
                   child: Row(
                     children: [
-                      Icon(Icons.speed_rounded,
-                          color: Color(0xFF086C44), size: 28),
+                      Icon(
+                        Icons.speed_rounded,
+                        color: Color(0xFF086C44),
+                        size: 28,
+                      ),
                       SizedBox(width: 12),
                       Expanded(
                         child: Column(
@@ -107,7 +112,10 @@ class _VelocityTrackingScrollerWidgetState
                             SizedBox(height: 2),
                             Text(
                               'Velocity tracking runs on GPU layer; frame rates locked at >=58fps on mid-range hardware.',
-                              style: TextStyle(fontSize: 11, color: Colors.black87),
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: Colors.black87,
+                              ),
                             ),
                           ],
                         ),
@@ -122,7 +130,8 @@ class _VelocityTrackingScrollerWidgetState
               // REAL-TIME VELOCITY TELEMETRY BADGE
               Card.outlined(
                 shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12)),
+                  borderRadius: BorderRadius.circular(12),
+                ),
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Row(
@@ -134,9 +143,10 @@ class _VelocityTrackingScrollerWidgetState
                           const Text(
                             'ACTIVE DRAG VELOCITY',
                             style: TextStyle(
-                                fontSize: 11,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
+                              fontSize: 11,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.grey,
+                            ),
                           ),
                           const SizedBox(height: 4),
                           Text(
@@ -161,9 +171,10 @@ class _VelocityTrackingScrollerWidgetState
                         label: Text(
                           _isDragging ? 'DRAGGING' : 'IDLE',
                           style: const TextStyle(
-                              fontSize: 10,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white),
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
                         ),
                         backgroundColor: _isDragging
                             ? Colors.amber.shade900
@@ -179,8 +190,9 @@ class _VelocityTrackingScrollerWidgetState
               // SCROLLABLE GPU DATA DIRECTORY
               Text(
                 'GPU-Accelerated Data Log Directory',
-                style: theme.textTheme.titleMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 8),
 
@@ -197,17 +209,26 @@ class _VelocityTrackingScrollerWidgetState
                           dense: true,
                           leading: CircleAvatar(
                             backgroundColor: colorScheme.primaryContainer,
-                            child: Text('${idx + 1}',
-                                style: TextStyle(
-                                    color: colorScheme.primary,
-                                    fontSize: 12,
-                                    fontWeight: FontWeight.bold)),
+                            child: Text(
+                              '${idx + 1}',
+                              style: TextStyle(
+                                color: colorScheme.primary,
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
-                          title: Text('Data Directory Entry #00${idx + 1}',
-                              style: const TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 13)),
-                          subtitle: const Text('GPU RepaintBoundary Layer Active',
-                              style: TextStyle(fontSize: 11)),
+                          title: Text(
+                            'Data Directory Entry #00${idx + 1}',
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),
+                          ),
+                          subtitle: const Text(
+                            'GPU RepaintBoundary Layer Active',
+                            style: TextStyle(fontSize: 11),
+                          ),
                         ),
                       ),
                     );
@@ -220,8 +241,9 @@ class _VelocityTrackingScrollerWidgetState
               // ATOMIC TELEMETRY LOG
               Text(
                 'Atomic Step Execution Telemetry',
-                style: theme.textTheme.titleMedium
-                    ?.copyWith(fontWeight: FontWeight.bold),
+                style: theme.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
               ),
               const SizedBox(height: 8),
 
@@ -232,16 +254,24 @@ class _VelocityTrackingScrollerWidgetState
                     children: [
                       _buildRow('Step Execution ID', telemetry.stepExecutionId),
                       const Divider(height: 12),
-                      _buildRow('Execution Status', telemetry.executionStatus,
-                          isHighlight: true),
+                      _buildRow(
+                        'Execution Status',
+                        telemetry.executionStatus,
+                        isHighlight: true,
+                      ),
                       const Divider(height: 12),
-                      _buildRow('Measured Frame Rate',
-                          '${telemetry.measuredFps.toStringAsFixed(0)} FPS (Locked)'),
+                      _buildRow(
+                        'Measured Frame Rate',
+                        '${telemetry.measuredFps.toStringAsFixed(0)} FPS (Locked)',
+                      ),
                       const Divider(height: 12),
                       _buildRow('Step Outcome', telemetry.stepOutcome),
                       const Divider(height: 12),
-                      _buildRow('Completion Status', telemetry.completionStatus,
-                          isHighlight: true),
+                      _buildRow(
+                        'Completion Status',
+                        telemetry.completionStatus,
+                        isHighlight: true,
+                      ),
                     ],
                   ),
                 ),
@@ -260,7 +290,10 @@ class _VelocityTrackingScrollerWidgetState
         Text(
           label,
           style: const TextStyle(
-              fontSize: 11, fontWeight: FontWeight.bold, color: Colors.grey),
+            fontSize: 11,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey,
+          ),
         ),
         Expanded(
           child: Text(

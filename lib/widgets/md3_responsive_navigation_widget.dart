@@ -20,30 +20,33 @@ class _Md3ResponsiveNavigationWidgetState
     BddInputFieldData(fieldKey: 'username', label: 'User Name / Alias'),
     BddInputFieldData(fieldKey: 'email', label: 'Enterprise Email'),
     BddInputFieldData(
-        fieldKey: 'boundary_test_payload',
-        label: 'Edge Test String (Emoji/Paste)'),
+      fieldKey: 'boundary_test_payload',
+      label: 'Edge Test String (Emoji/Paste)',
+    ),
   ];
 
   final Map<String, TextEditingController> _controllers = {};
 
-  final Md3NavigationTelemetryRecord _telemetry = const Md3NavigationTelemetryRecord(
-    layoutType: 'MD3_ADAPTIVE_SIZE_CLASS_NAVIGATION',
-    layoutGridDimensions:
-        'Compact (<600dp) / Medium (600-839dp) / Expanded (>=840dp)',
-    spacingRules: 'M3 Tokens (16dp Margin, 8dp/16dp/24dp Gutters)',
-    alignmentSettings: 'CENTER_STRETCH_RESPONSIVE_NAV_GATE',
-    layoutValidationStatus: 'PASSED_ZERO_LINT_WARNINGS',
-    completionStatus: 'Complete',
-    actionEventTimestamp: '2026-08-25T10:05:00Z',
-    userSessionId: 'SESS-2026-ANIK-5341',
-  );
+  final Md3NavigationTelemetryRecord _telemetry =
+      const Md3NavigationTelemetryRecord(
+        layoutType: 'MD3_ADAPTIVE_SIZE_CLASS_NAVIGATION',
+        layoutGridDimensions:
+            'Compact (<600dp) / Medium (600-839dp) / Expanded (>=840dp)',
+        spacingRules: 'M3 Tokens (16dp Margin, 8dp/16dp/24dp Gutters)',
+        alignmentSettings: 'CENTER_STRETCH_RESPONSIVE_NAV_GATE',
+        layoutValidationStatus: 'PASSED_ZERO_LINT_WARNINGS',
+        completionStatus: 'Complete',
+        actionEventTimestamp: '2026-08-25T10:05:00Z',
+        userSessionId: 'SESS-2026-ANIK-5341',
+      );
 
   @override
   void initState() {
     super.initState();
     for (var field in _inputFieldSchema) {
-      _controllers[field.fieldKey] =
-          TextEditingController(text: field.initialValue);
+      _controllers[field.fieldKey] = TextEditingController(
+        text: field.initialValue,
+      );
     }
   }
 
@@ -91,7 +94,7 @@ class _Md3ResponsiveNavigationWidgetState
                       label: Text('Dashboard'),
                     ),
                     NavigationRailDestination(
-                      icon: Icon(Icons.verified_input_outlined),
+                      icon: Icon(Icons.fact_check_outlined),
                       selectedIcon: Icon(Icons.fact_check),
                       label: Text('BDD Inputs'),
                     ),
@@ -123,7 +126,7 @@ class _Md3ResponsiveNavigationWidgetState
                       label: Text('Dashboard'),
                     ),
                     NavigationDrawerDestination(
-                      icon: Icon(Icons.verified_input_outlined),
+                      icon: Icon(Icons.fact_check_outlined),
                       selectedIcon: Icon(Icons.fact_check),
                       label: Text('BDD Input Matrix'),
                     ),
@@ -153,8 +156,11 @@ class _Md3ResponsiveNavigationWidgetState
                           padding: EdgeInsets.all(14.0),
                           child: Row(
                             children: [
-                              Icon(Icons.verified_rounded,
-                                  color: Color(0xFF086C44), size: 28),
+                              Icon(
+                                Icons.verified_rounded,
+                                color: Color(0xFF086C44),
+                                size: 28,
+                              ),
                               SizedBox(width: 12),
                               Expanded(
                                 child: Column(
@@ -172,7 +178,9 @@ class _Md3ResponsiveNavigationWidgetState
                                     Text(
                                       'Feature complete, zero lint/static-analysis warnings, peer-validated against architecture.',
                                       style: TextStyle(
-                                          fontSize: 11, color: Colors.black87),
+                                        fontSize: 11,
+                                        color: Colors.black87,
+                                      ),
                                     ),
                                   ],
                                 ),
@@ -189,8 +197,7 @@ class _Md3ResponsiveNavigationWidgetState
                         child: Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Row(
-                            mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
                                 'Viewport Width: ${constraints.maxWidth.toStringAsFixed(1)} dp',
@@ -211,10 +218,10 @@ class _Md3ResponsiveNavigationWidgetState
                                 ),
                                 backgroundColor:
                                     sizeClass == Md3WindowSizeClass.compact
-                                        ? Colors.indigo.shade800
-                                        : (sizeClass == Md3WindowSizeClass.medium
-                                            ? Colors.teal.shade800
-                                            : Colors.purple.shade800),
+                                    ? Colors.indigo.shade800
+                                    : (sizeClass == Md3WindowSizeClass.medium
+                                          ? Colors.teal.shade800
+                                          : Colors.purple.shade800),
                               ),
                             ],
                           ),
@@ -226,14 +233,17 @@ class _Md3ResponsiveNavigationWidgetState
                       // BDD DATA TABLE & ITERATIVE FIELD TARGETING SECTION
                       Text(
                         'BDD Iterative Input Matrix (Scenario Outline Targets)',
-                        style: theme.textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.bold),
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 4),
                       Text(
                         'Targets assigned keys matching testID="input_{variable}" for automated DRY testing.',
                         style: TextStyle(
-                            fontSize: 12, color: Colors.grey.shade600),
+                          fontSize: 12,
+                          color: Colors.grey.shade600,
+                        ),
                       ),
                       const SizedBox(height: 12),
 
@@ -263,8 +273,9 @@ class _Md3ResponsiveNavigationWidgetState
                       // ATOMIC TELEMETRY LOG
                       Text(
                         'Atomic Step Execution Telemetry',
-                        style: theme.textTheme.titleMedium
-                            ?.copyWith(fontWeight: FontWeight.bold),
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                       const SizedBox(height: 8),
 
@@ -275,20 +286,31 @@ class _Md3ResponsiveNavigationWidgetState
                             children: [
                               _buildRow('Layout Type', _telemetry.layoutType),
                               const Divider(height: 12),
-                              _buildRow('Grid Dimensions',
-                                  _telemetry.layoutGridDimensions),
+                              _buildRow(
+                                'Grid Dimensions',
+                                _telemetry.layoutGridDimensions,
+                              ),
                               const Divider(height: 12),
-                              _buildRow('Spacing Rules', _telemetry.spacingRules),
+                              _buildRow(
+                                'Spacing Rules',
+                                _telemetry.spacingRules,
+                              ),
                               const Divider(height: 12),
-                              _buildRow('Alignment Settings',
-                                  _telemetry.alignmentSettings),
+                              _buildRow(
+                                'Alignment Settings',
+                                _telemetry.alignmentSettings,
+                              ),
                               const Divider(height: 12),
-                              _buildRow('Validation Status',
-                                  _telemetry.layoutValidationStatus),
+                              _buildRow(
+                                'Validation Status',
+                                _telemetry.layoutValidationStatus,
+                              ),
                               const Divider(height: 12),
-                              _buildRow('Completion Status',
-                                  _telemetry.completionStatus,
-                                  isHighlight: true),
+                              _buildRow(
+                                'Completion Status',
+                                _telemetry.completionStatus,
+                                isHighlight: true,
+                              ),
                             ],
                           ),
                         ),
@@ -315,7 +337,7 @@ class _Md3ResponsiveNavigationWidgetState
                   label: 'Dashboard',
                 ),
                 NavigationDestination(
-                  icon: Icon(Icons.verified_input_outlined),
+                  icon: Icon(Icons.fact_check_outlined),
                   selectedIcon: Icon(Icons.fact_check),
                   label: 'BDD Inputs',
                 ),
@@ -334,11 +356,14 @@ class _Md3ResponsiveNavigationWidgetState
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(label,
-            style: const TextStyle(
-                fontSize: 11,
-                fontWeight: FontWeight.bold,
-                color: Colors.grey)),
+        Text(
+          label,
+          style: const TextStyle(
+            fontSize: 11,
+            fontWeight: FontWeight.bold,
+            color: Colors.grey,
+          ),
+        ),
         Expanded(
           child: Text(
             value,
