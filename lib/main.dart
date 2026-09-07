@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/biometric_enrollment_definition_widget.dart';
+import 'widgets/lineage_status_panel_widget.dart';
 
 void main() {
-  runApp(const BiometricEnrollmentApp());
+  runApp(const LineagePanelApp());
 }
 
-class BiometricEnrollmentApp extends StatelessWidget {
-  const BiometricEnrollmentApp({super.key});
+class LineagePanelApp extends StatelessWidget {
+  const LineagePanelApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Biometric Enrollment App',
+      title: 'Lineage Panel App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const BiometricEnrollmentDefinitionWidget(),
+      home: const LineageStatusPanelWidget(),
     );
   }
 }
