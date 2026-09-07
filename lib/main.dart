@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/lead_conversion_audit_widget.dart';
+import 'widgets/typography_engine_widget.dart';
 
 void main() {
-  runApp(const LeadConversionAuditApp());
+  runApp(const TypographyEngineApp());
 }
 
-class LeadConversionAuditApp extends StatelessWidget {
-  const LeadConversionAuditApp({super.key});
+class TypographyEngineApp extends StatelessWidget {
+  const TypographyEngineApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'M3 Layout Compliance Audit App',
+      title: 'Typography Engine App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const LeadConversionAuditWidget(),
+      home: const TypographyEngineInspectorWidget(),
     );
   }
 }

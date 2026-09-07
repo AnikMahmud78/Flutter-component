@@ -1,0 +1,13 @@
+@font-face {
+  font-family: 'MaterialVariableRoboto';
+  src: url('../assets/fonts/MaterialVariableRoboto-Subset.woff2') format('woff2-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC;
+}
+
+body {
+  font-family: 'MaterialVariableRoboto', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
