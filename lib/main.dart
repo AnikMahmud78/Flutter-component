@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/sms_ingress_input_widget.dart';
+import 'widgets/biometric_enrollment_definition_widget.dart';
 
 void main() {
-  runApp(const SmsIngressApp());
+  runApp(const BiometricEnrollmentApp());
 }
 
-class SmsIngressApp extends StatelessWidget {
-  const SmsIngressApp({super.key});
+class BiometricEnrollmentApp extends StatelessWidget {
+  const BiometricEnrollmentApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'SMS Ingress Gateway App',
+      title: 'Biometric Enrollment App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      restorationScopeId: 'root_sms_app',
-      home: const SmsIngressInputWidget(),
+      home: const BiometricEnrollmentDefinitionWidget(),
     );
   }
 }
