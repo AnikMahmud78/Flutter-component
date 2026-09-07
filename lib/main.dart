@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/table_slicing_widget.dart';
+import 'widgets/pagination_wiring_widget.dart';
 
 void main() {
-  runApp(const TableSlicingApp());
+  runApp(const PaginationWiringApp());
 }
 
-class TableSlicingApp extends StatelessWidget {
-  const TableSlicingApp({super.key});
+class PaginationWiringApp extends StatelessWidget {
+  const PaginationWiringApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Table Slicing App',
+      title: 'Pagination Wiring App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const TableSlicingWidget(),
+      home: const PaginationWiringWidget(),
     );
   }
 }
