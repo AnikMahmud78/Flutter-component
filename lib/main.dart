@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/pagination_wiring_widget.dart';
+import 'widgets/f_pattern_dashboard_widget.dart';
 
 void main() {
-  runApp(const PaginationWiringApp());
+  runApp(const FPatternDashboardApp());
 }
 
-class PaginationWiringApp extends StatelessWidget {
-  const PaginationWiringApp({super.key});
+class FPatternDashboardApp extends StatelessWidget {
+  const FPatternDashboardApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Pagination Wiring App',
+      title: 'F-Pattern Executive Dashboard',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const PaginationWiringWidget(),
+      home: const FPatternDashboardWidget(),
     );
   }
 }
