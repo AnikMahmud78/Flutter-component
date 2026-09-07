@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/tree_element_sizing_widget.dart';
+import 'widgets/paginated_table_limit_widget.dart';
 
 void main() {
-  runApp(const TreeSizingApp());
+  runApp(const PaginatedTableLimitApp());
 }
 
-class TreeSizingApp extends StatelessWidget {
-  const TreeSizingApp({super.key});
+class PaginatedTableLimitApp extends StatelessWidget {
+  const PaginatedTableLimitApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Tree Element Sizing App',
+      title: 'Paginated Table Limit App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const TreeElementSizingWidget(),
+      home: const PaginatedTableLimitWidget(),
     );
   }
 }
