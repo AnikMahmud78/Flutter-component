@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/lead_conversion_color_token_widget.dart';
+import 'widgets/lead_conversion_listener_widget.dart';
 
 void main() {
-  runApp(const LeadConversionTokenApp());
+  runApp(const LeadConversionListenerApp());
 }
 
-class LeadConversionTokenApp extends StatelessWidget {
-  const LeadConversionTokenApp({super.key});
+class LeadConversionListenerApp extends StatelessWidget {
+  const LeadConversionListenerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'M3 Lead Conversion Token App',
+      title: 'Lead Conversion Listener App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const LeadConversionColorTokenWidget(),
+      home: const LeadConversionListenerWidget(),
     );
   }
 }
