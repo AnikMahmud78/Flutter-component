@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/progressive_disclosure_bottom_sheet_2910BPTR0392A13.dart';
+import 'widgets/passive_failure_motion_curves_963BPTR0422A10.dart';
 
 void main() {
-  runApp(const ProgressiveDisclosureBottomSheet2910BPTR0392A13App());
+  runApp(const PassiveFailureMotionCurves963BPTR0422A10App());
 }
 
-class ProgressiveDisclosureBottomSheet2910BPTR0392A13App extends StatelessWidget {
-  const ProgressiveDisclosureBottomSheet2910BPTR0392A13App({super.key});
+class PassiveFailureMotionCurves963BPTR0422A10App extends StatelessWidget {
+  const PassiveFailureMotionCurves963BPTR0422A10App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Progressive Disclosure Bottom Sheets',
+    title: 'Passive Failure Motion Curves',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const ProgressiveDisclosureBottomSheet2910BPTR0392A13(),
+    home: const PassiveFailureMotionCurves963BPTR0422A10(),
   );
 }
