@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/offline_sync_state_765BPTR0498A07.dart';
+import 'widgets/material_tokens_1744BPTR0544A12.dart';
 
 void main() {
-  runApp(const OfflineSyncState765BPTR0498A07App());
+  runApp(const MaterialTokens1744BPTR0544A12App());
 }
 
-class OfflineSyncState765BPTR0498A07App extends StatelessWidget {
-  const OfflineSyncState765BPTR0498A07App({super.key});
+class MaterialTokens1744BPTR0544A12App extends StatelessWidget {
+  const MaterialTokens1744BPTR0544A12App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Offline Sync State',
+    title: 'Material Design Tokens',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const OfflineSyncState765BPTR0498A07(),
+    home: const MaterialTokens1744BPTR0544A12(),
   );
 }
