@@ -8,10 +8,12 @@ class LeadConversionColorTokenWidget extends StatefulWidget {
   const LeadConversionColorTokenWidget({super.key});
 
   @override
-  State<LeadConversionColorTokenWidget> createState() => _LeadConversionColorTokenWidgetState();
+  State<LeadConversionColorTokenWidget> createState() =>
+      _LeadConversionColorTokenWidgetState();
 }
 
-class _LeadConversionColorTokenWidgetState extends State<LeadConversionColorTokenWidget> {
+class _LeadConversionColorTokenWidgetState
+    extends State<LeadConversionColorTokenWidget> {
   bool _processing = false;
   Timer? _timer;
 
@@ -27,7 +29,11 @@ class _LeadConversionColorTokenWidgetState extends State<LeadConversionColorToke
     _timer = Timer(const Duration(milliseconds: 1200), () {
       if (!mounted) return;
       setState(() => _processing = false);
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Lead conversion success: token status updated.')));
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Lead conversion success: token status updated.'),
+        ),
+      );
     });
   }
 
@@ -48,28 +54,67 @@ class _LeadConversionColorTokenWidgetState extends State<LeadConversionColorToke
       appBar: AppBar(title: const Text('M3 Theme Tokens & Micro-UX States')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Card.filled(color: Colors.green.shade50, child: const ListTile(
-            leading: Icon(Icons.palette_rounded, color: Color(0xFF086C44)),
-            title: Text('WCAG Contrast Ratio: Pass (WCAG AAA 7.1:1)'),
-            subtitle: Text('Semantic Material 3 color tokens are locked for the status indicator.'),
-          )),
-          const SizedBox(height: 16),
-          Opacity(
-            opacity: _processing ? .38 : 1,
-            child: Card.outlined(child: Padding(padding: const EdgeInsets.all(16), child: Row(children: [
-              Expanded(child: Text(_processing ? 'PROCESSING (38% OPACITY)' : 'ACTIVE_CONVERTED', style: const TextStyle(fontWeight: FontWeight.bold))),
-              Icon(_processing ? Icons.sync_rounded : Icons.check_circle_rounded, color: colors.primary),
-            ]))),
-          ),
-          const SizedBox(height: 16),
-          SizedBox(width: double.infinity, height: 48, child: FilledButton.icon(
-            onPressed: _processing ? null : _simulateConversion,
-            icon: const Icon(Icons.sync_rounded), label: const Text('SIMULATE ASYNC LEAD CONVERSION'),
-          )),
-          const SizedBox(height: 24),
-          Card.outlined(child: ListTile(title: Text(telemetry.colorName), subtitle: Text('${telemetry.colorApplicationMap} • ${telemetry.completionStatus}'))),
-        ]),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Card.filled(
+              color: Colors.green.shade50,
+              child: const ListTile(
+                leading: Icon(Icons.palette_rounded, color: Color(0xFF086C44)),
+                title: Text('WCAG Contrast Ratio: Pass (WCAG AAA 7.1:1)'),
+                subtitle: Text(
+                  'Semantic Material 3 color tokens are locked for the status indicator.',
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Opacity(
+              opacity: _processing ? .38 : 1,
+              child: Card.outlined(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          _processing
+                              ? 'PROCESSING (38% OPACITY)'
+                              : 'ACTIVE_CONVERTED',
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      Icon(
+                        _processing
+                            ? Icons.sync_rounded
+                            : Icons.check_circle_rounded,
+                        color: colors.primary,
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 16),
+            SizedBox(
+              width: double.infinity,
+              height: 48,
+              child: FilledButton.icon(
+                onPressed: _processing ? null : _simulateConversion,
+                icon: const Icon(Icons.sync_rounded),
+                label: const Text('SIMULATE ASYNC LEAD CONVERSION'),
+              ),
+            ),
+            const SizedBox(height: 24),
+            Card.outlined(
+              child: ListTile(
+                title: Text(telemetry.colorName),
+                subtitle: Text(
+                  '${telemetry.colorApplicationMap} • ${telemetry.completionStatus}',
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

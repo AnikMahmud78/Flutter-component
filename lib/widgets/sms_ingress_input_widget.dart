@@ -27,15 +27,15 @@ class _SmsIngressInputWidgetState extends State<SmsIngressInputWidget>
       RegExp(r'^\d{4}$').hasMatch(_smsCodeController.value.text);
 
   SmsGatewayTelemetryRecord get _telemetry => SmsGatewayTelemetryRecord(
-        configurationParameter: 'TWILIO_SMS_INGRESS_4_DIGIT_GATE',
-        currentSetting: 'DISABLED_UNTIL_4_DIGITS_ENTERED',
-        previousSetting: 'UNGUARDED_INPUT_ENABLED',
-        changeLog: 'Numeric four-digit validation gate enforced with restoration.',
-        configurationTimestamp: DateTime.now().toUtc().toIso8601String(),
-        completionStatus: 'Good',
-        actionEventTimestamp: DateTime.now().toUtc().toIso8601String(),
-        userSessionId: 'SESS-2026-ANIK-3856',
-      );
+    configurationParameter: 'TWILIO_SMS_INGRESS_4_DIGIT_GATE',
+    currentSetting: 'DISABLED_UNTIL_4_DIGITS_ENTERED',
+    previousSetting: 'UNGUARDED_INPUT_ENABLED',
+    changeLog: 'Numeric four-digit validation gate enforced with restoration.',
+    configurationTimestamp: DateTime.now().toUtc().toIso8601String(),
+    completionStatus: 'Good',
+    actionEventTimestamp: DateTime.now().toUtc().toIso8601String(),
+    userSessionId: 'SESS-2026-ANIK-3856',
+  );
 
   @override
   void dispose() {
@@ -86,8 +86,10 @@ class _SmsIngressInputWidgetState extends State<SmsIngressInputWidget>
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                   border: OutlineInputBorder(),
                   counterText: '',
-                  contentPadding:
-                      EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+                  contentPadding: EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 16,
+                  ),
                 ),
                 onChanged: (_) => setState(() {}),
               ),
@@ -97,8 +99,7 @@ class _SmsIngressInputWidgetState extends State<SmsIngressInputWidget>
               width: double.infinity,
               height: 48,
               child: FilledButton.icon(
-                onPressed:
-                    _isContinueButtonEnabled ? _submitCode : null,
+                onPressed: _isContinueButtonEnabled ? _submitCode : null,
                 icon: const Icon(Icons.arrow_forward_rounded),
                 label: const Text('CONTINUE'),
               ),

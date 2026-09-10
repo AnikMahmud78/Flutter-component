@@ -3,7 +3,11 @@ import 'package:flutter/foundation.dart';
 class ArraySlicer {
   const ArraySlicer._();
 
-  static List<T> getPageSlice<T>(List<T> source, int pageIndex, int rowsPerPage) {
+  static List<T> getPageSlice<T>(
+    List<T> source,
+    int pageIndex,
+    int rowsPerPage,
+  ) {
     if (source.isEmpty || pageIndex < 0 || rowsPerPage <= 0) return <T>[];
     final start = pageIndex * rowsPerPage;
     if (start >= source.length) return <T>[];
