@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/touch_target_minimums_2690BPTR0319A07.dart';
+import 'widgets/narrative_ui_waste_3911BPTR0349A04.dart';
 
 void main() {
-  runApp(const TouchTargetMinimums2690BPTR0319A07App());
+  runApp(const NarrativeUiWaste3911BPTR0349A04App());
 }
 
-class TouchTargetMinimums2690BPTR0319A07App extends StatelessWidget {
-  const TouchTargetMinimums2690BPTR0319A07App({super.key});
+class NarrativeUiWaste3911BPTR0349A04App extends StatelessWidget {
+  const NarrativeUiWaste3911BPTR0349A04App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Miniature Control Sizing',
+    title: 'Structured Exception Review',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const TouchTargetMinimums2690BPTR0319A07(),
+    home: const NarrativeUiWaste3911BPTR0349A04(),
   );
 }
