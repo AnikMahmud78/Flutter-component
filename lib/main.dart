@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/mtoi_split_screen_4472BPTR0467A06.dart';
+import 'widgets/mtoi_destination_panel_4780BPTR0467A07.dart';
 
 void main() {
-  runApp(const MtoiSplitScreen4472BPTR0467A06App());
+  runApp(const MtoiDestinationPanel4780BPTR0467A07App());
 }
 
-class MtoiSplitScreen4472BPTR0467A06App extends StatelessWidget {
-  const MtoiSplitScreen4472BPTR0467A06App({super.key});
+class MtoiDestinationPanel4780BPTR0467A07App extends StatelessWidget {
+  const MtoiDestinationPanel4780BPTR0467A07App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'MTOI Exception Review',
+    title: 'MTOI Destination Template',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const MtoiSplitScreen4472BPTR0467A06(),
+    home: const MtoiDestinationPanel4780BPTR0467A07(),
   );
 }
