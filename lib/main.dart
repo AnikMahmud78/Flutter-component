@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/mtoi_row_alignment_5363BPTR0467A09.dart';
+import 'widgets/offline_sync_state_765BPTR0498A07.dart';
 
 void main() {
-  runApp(const MtoiRowAlignment5363BPTR0467A09App());
+  runApp(const OfflineSyncState765BPTR0498A07App());
 }
 
-class MtoiRowAlignment5363BPTR0467A09App extends StatelessWidget {
-  const MtoiRowAlignment5363BPTR0467A09App({super.key});
+class OfflineSyncState765BPTR0498A07App extends StatelessWidget {
+  const OfflineSyncState765BPTR0498A07App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'MTOI Row Alignment Links',
+    title: 'Offline Sync State',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const MtoiRowAlignment5363BPTR0467A09(),
+    home: const OfflineSyncState765BPTR0498A07(),
   );
 }
