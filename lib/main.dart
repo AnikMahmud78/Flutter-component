@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/numeric_input_mask_1326BPTR0618A15.dart';
+import 'widgets/bank_data_formatting_1040BPTR0633A11.dart';
 
 void main() {
-  runApp(const NumericInputMask1326BPTR0618A15App());
+  runApp(const BankDataFormatting1040BPTR0633A11App());
 }
 
-class NumericInputMask1326BPTR0618A15App extends StatelessWidget {
-  const NumericInputMask1326BPTR0618A15App({super.key});
+class BankDataFormatting1040BPTR0633A11App extends StatelessWidget {
+  const BankDataFormatting1040BPTR0633A11App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Numeric Input Masking',
+    title: 'Bank Data Entry Validation',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const NumericInputMask1326BPTR0618A15(),
+    home: const BankDataFormatting1040BPTR0633A11(),
   );
 }
