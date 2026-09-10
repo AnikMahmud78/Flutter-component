@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/narrative_ui_waste_3911BPTR0349A04.dart';
+import 'widgets/z_index_layering_scale_831BPTR0377A08.dart';
 
 void main() {
-  runApp(const NarrativeUiWaste3911BPTR0349A04App());
+  runApp(const ZIndexLayeringScale831BPTR0377A08App());
 }
 
-class NarrativeUiWaste3911BPTR0349A04App extends StatelessWidget {
-  const NarrativeUiWaste3911BPTR0349A04App({super.key});
+class ZIndexLayeringScale831BPTR0377A08App extends StatelessWidget {
+  const ZIndexLayeringScale831BPTR0377A08App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Structured Exception Review',
+    title: 'Z-Index Layering Scale',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const NarrativeUiWaste3911BPTR0349A04(),
+    home: const ZIndexLayeringScale831BPTR0377A08(),
   );
 }
