@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/material_tokens_1744BPTR0544A12.dart';
+import 'widgets/private_assets_registry_6639BPTR0588A13.dart';
 
 void main() {
-  runApp(const MaterialTokens1744BPTR0544A12App());
+  runApp(const PrivateAssetsRegistry6639BPTR0588A13App());
 }
 
-class MaterialTokens1744BPTR0544A12App extends StatelessWidget {
-  const MaterialTokens1744BPTR0544A12App({super.key});
+class PrivateAssetsRegistry6639BPTR0588A13App extends StatelessWidget {
+  const PrivateAssetsRegistry6639BPTR0588A13App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Material Design Tokens',
+    title: 'Private UI Asset Registry',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const MaterialTokens1744BPTR0544A12(),
+    home: const PrivateAssetsRegistry6639BPTR0588A13(),
   );
 }
