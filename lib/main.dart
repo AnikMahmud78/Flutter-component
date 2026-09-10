@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/private_assets_registry_6639BPTR0588A13.dart';
+import 'widgets/private_assets_compilation_7310BPTR0588A15.dart';
 
 void main() {
-  runApp(const PrivateAssetsRegistry6639BPTR0588A13App());
+  runApp(const PrivateAssetsCompilation7310BPTR0588A15App());
 }
 
-class PrivateAssetsRegistry6639BPTR0588A13App extends StatelessWidget {
-  const PrivateAssetsRegistry6639BPTR0588A13App({super.key});
+class PrivateAssetsCompilation7310BPTR0588A15App extends StatelessWidget {
+  const PrivateAssetsCompilation7310BPTR0588A15App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Private UI Asset Registry',
+    title: 'Frontend Asset Compilation',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const PrivateAssetsRegistry6639BPTR0588A13(),
+    home: const PrivateAssetsCompilation7310BPTR0588A15(),
   );
 }
