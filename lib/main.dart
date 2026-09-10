@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/mtoi_independent_scroll_5066BPTR0467A08.dart';
+import 'widgets/mtoi_row_alignment_5363BPTR0467A09.dart';
 
 void main() {
-  runApp(const MtoiIndependentScroll5066BPTR0467A08App());
+  runApp(const MtoiRowAlignment5363BPTR0467A09App());
 }
 
-class MtoiIndependentScroll5066BPTR0467A08App extends StatelessWidget {
-  const MtoiIndependentScroll5066BPTR0467A08App({super.key});
+class MtoiRowAlignment5363BPTR0467A09App extends StatelessWidget {
+  const MtoiRowAlignment5363BPTR0467A09App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'MTOI Independent Panel Scrolling',
+    title: 'MTOI Row Alignment Links',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const MtoiIndependentScroll5066BPTR0467A08(),
+    home: const MtoiRowAlignment5363BPTR0467A09(),
   );
 }
