@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/binary_checklist_continue_2833BPTR0437A11.dart';
+import 'widgets/mtoi_split_screen_4472BPTR0467A06.dart';
 
 void main() {
-  runApp(const BinaryChecklistContinue2833BPTR0437A11App());
+  runApp(const MtoiSplitScreen4472BPTR0467A06App());
 }
 
-class BinaryChecklistContinue2833BPTR0437A11App extends StatelessWidget {
-  const BinaryChecklistContinue2833BPTR0437A11App({super.key});
+class MtoiSplitScreen4472BPTR0467A06App extends StatelessWidget {
+  const MtoiSplitScreen4472BPTR0467A06App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Checklist Continue Handler',
+    title: 'MTOI Exception Review',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const BinaryChecklistContinue2833BPTR0437A11(),
+    home: const MtoiSplitScreen4472BPTR0467A06(),
   );
 }
