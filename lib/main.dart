@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'widgets/typography_engine_widget.dart';
+import 'widgets/touch_target_minimums_4186BPTR0319A05.dart';
 
 void main() {
-  runApp(const TypographyEngineApp());
+  runApp(const TouchTargetMinimums4186BPTR0319A05App());
 }
 
-class TypographyEngineApp extends StatelessWidget {
-  const TypographyEngineApp({super.key});
+class TouchTargetMinimums4186BPTR0319A05App extends StatelessWidget {
+  const TouchTargetMinimums4186BPTR0319A05App({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Typography Engine App',
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const TypographyEngineInspectorWidget(),
-    );
-  }
+  Widget build(BuildContext context) => MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Touch Target Minimums',
+        theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
+        home: const TouchTargetMinimums4186BPTR0319A05(),
+      );
 }
+
