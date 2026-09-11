@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/adaptive_network_listener_2096CPNCA019A17.dart';
+import 'widgets/compressed_json_stream_7519CPNCA023.dart';
 
 void main() {
-  runApp(const AdaptiveNetworkListener2096CPNCA019A17App());
+  runApp(const CompressedJsonStream7519CPNCA023App());
 }
 
-class AdaptiveNetworkListener2096CPNCA019A17App extends StatelessWidget {
-  const AdaptiveNetworkListener2096CPNCA019A17App({super.key});
+class CompressedJsonStream7519CPNCA023App extends StatelessWidget {
+  const CompressedJsonStream7519CPNCA023App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Adaptive Network Listener App',
+    title: 'Compressed JSON Stream App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const AdaptiveNetworkListener2096CPNCA019A17(),
+    home: const CompressedJsonStream7519CPNCA023(),
   );
 }
