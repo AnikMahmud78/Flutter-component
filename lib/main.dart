@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/constraint_boundary_7123CSIVW002A14.dart';
+import 'widgets/rating_step_increment_3790CSIVW003A03.dart';
 
 void main() {
-  runApp(const ConstraintBoundary7123CSIVW002A14App());
+  runApp(const RatingStepIncrement3790CSIVW003A03App());
 }
 
-class ConstraintBoundary7123CSIVW002A14App extends StatelessWidget {
-  const ConstraintBoundary7123CSIVW002A14App({super.key});
+class RatingStepIncrement3790CSIVW003A03App extends StatelessWidget {
+  const RatingStepIncrement3790CSIVW003A03App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Profile Constraint Boundaries App',
+    title: 'Rating Step Increment App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const ConstraintBoundary7123CSIVW002A14(),
+    home: const RatingStepIncrement3790CSIVW003A03(),
   );
 }
