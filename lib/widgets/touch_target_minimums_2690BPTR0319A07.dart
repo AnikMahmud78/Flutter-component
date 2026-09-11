@@ -13,7 +13,9 @@ class TouchTargetMinimums2690BPTR0319A07 extends StatelessWidget {
           const ListTile(
             leading: Icon(Icons.tune_rounded),
             title: Text('2690BPTR-0319-A07'),
-            subtitle: Text('Padding and tap boxes are constrained to 48dp minimums.'),
+            subtitle: Text(
+              'Padding and tap boxes are constrained to 48dp minimums.',
+            ),
           ),
           const SizedBox(height: 16),
           Wrap(

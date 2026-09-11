@@ -13,7 +13,9 @@ class TouchTargetMinimums4186BPTR0319A05 extends StatelessWidget {
           const ListTile(
             leading: Icon(Icons.accessibility_new_rounded),
             title: Text('4186BPTR-0319-A05'),
-            subtitle: Text('All actionable controls use a minimum 48dp target.'),
+            subtitle: Text(
+              'All actionable controls use a minimum 48dp target.',
+            ),
           ),
           const SizedBox(height: 16),
           SizedBox(
