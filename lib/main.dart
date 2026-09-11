@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/exception_action_grid_4593CPNCA007A06.dart';
+import 'widgets/exception_action_spacing_5187CPNCA007A08.dart';
 
 void main() {
-  runApp(const ExceptionActionGrid4593CPNCA007A06App());
+  runApp(const ExceptionActionSpacing5187CPNCA007A08App());
 }
 
-class ExceptionActionGrid4593CPNCA007A06App extends StatelessWidget {
-  const ExceptionActionGrid4593CPNCA007A06App({super.key});
+class ExceptionActionSpacing5187CPNCA007A08App extends StatelessWidget {
+  const ExceptionActionSpacing5187CPNCA007A08App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: '5x5 Exception Actions App',
+    title: 'Exception Action Spacing App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const ExceptionActionGrid4593CPNCA007A06(),
+    home: const ExceptionActionSpacing5187CPNCA007A08(),
   );
 }
