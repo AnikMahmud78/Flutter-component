@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/offline_async_ui_6562CRSSS001A12.dart';
+import 'widgets/constraint_boundary_7123CSIVW002A14.dart';
 
 void main() {
-  runApp(const OfflineAsyncUi6562CRSSS001A12App());
+  runApp(const ConstraintBoundary7123CSIVW002A14App());
 }
 
-class OfflineAsyncUi6562CRSSS001A12App extends StatelessWidget {
-  const OfflineAsyncUi6562CRSSS001A12App({super.key});
+class ConstraintBoundary7123CSIVW002A14App extends StatelessWidget {
+  const ConstraintBoundary7123CSIVW002A14App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Offline Background Sync App',
+    title: 'Profile Constraint Boundaries App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const OfflineAsyncUi6562CRSSS001A12(),
+    home: const ConstraintBoundary7123CSIVW002A14(),
   );
 }
