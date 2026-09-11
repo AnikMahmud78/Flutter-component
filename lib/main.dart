@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/virtual_table_binding_6375CPNCA006A12.dart';
+import 'widgets/scroll_heap_profiler_7035CPNCA006A14.dart';
 
 void main() {
-  runApp(const VirtualTableBinding6375CPNCA006A12App());
+  runApp(const ScrollHeapProfiler7035CPNCA006A14App());
 }
 
-class VirtualTableBinding6375CPNCA006A12App extends StatelessWidget {
-  const VirtualTableBinding6375CPNCA006A12App({super.key});
+class ScrollHeapProfiler7035CPNCA006A14App extends StatelessWidget {
+  const ScrollHeapProfiler7035CPNCA006A14App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Transaction Registry Binding App',
+    title: 'Scroll Heap Profiler App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const VirtualTableBinding6375CPNCA006A12(),
+    home: const ScrollHeapProfiler7035CPNCA006A14(),
   );
 }
