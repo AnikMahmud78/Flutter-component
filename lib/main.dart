@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/cde_audit_engine_5924CPNCA008.dart';
+import 'widgets/adaptive_network_listener_2096CPNCA019A17.dart';
 
 void main() {
-  runApp(const CdeAuditEngine5924CPNCA008App());
+  runApp(const AdaptiveNetworkListener2096CPNCA019A17App());
 }
 
-class CdeAuditEngine5924CPNCA008App extends StatelessWidget {
-  const CdeAuditEngine5924CPNCA008App({super.key});
+class AdaptiveNetworkListener2096CPNCA019A17App extends StatelessWidget {
+  const AdaptiveNetworkListener2096CPNCA019A17App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'CDE Audit Engine App',
+    title: 'Adaptive Network Listener App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const CdeAuditEngine5924CPNCA008(),
+    home: const AdaptiveNetworkListener2096CPNCA019A17(),
   );
 }
