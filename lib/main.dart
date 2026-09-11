@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/telemetry_health_sheet_4703BTPM019A06.dart';
+import 'widgets/latency_contrast_dashboard_2635BTPM031A05.dart';
 
 void main() {
-  runApp(const TelemetryHealthSheet4703BTPM019A06App());
+  runApp(const LatencyContrastDashboard2635BTPM031A05App());
 }
 
-class TelemetryHealthSheet4703BTPM019A06App extends StatelessWidget {
-  const TelemetryHealthSheet4703BTPM019A06App({super.key});
+class LatencyContrastDashboard2635BTPM031A05App extends StatelessWidget {
+  const LatencyContrastDashboard2635BTPM031A05App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Telemetry Health Sheet App',
+    title: 'Latency Contrast App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const TelemetryHealthSheet4703BTPM019A06(),
+    home: const LatencyContrastDashboard2635BTPM031A05(),
   );
 }
