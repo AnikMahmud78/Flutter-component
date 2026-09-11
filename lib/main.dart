@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/base64_catalog_tracker_4692BTPM014A06.dart';
+import 'widgets/telemetry_health_sheet_4703BTPM019A06.dart';
 
 void main() {
-  runApp(const Base64CatalogTracker4692BTPM014A06App());
+  runApp(const TelemetryHealthSheet4703BTPM019A06App());
 }
 
-class Base64CatalogTracker4692BTPM014A06App extends StatelessWidget {
-  const Base64CatalogTracker4692BTPM014A06App({super.key});
+class TelemetryHealthSheet4703BTPM019A06App extends StatelessWidget {
+  const TelemetryHealthSheet4703BTPM019A06App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'BASE64 Catalog Tracker App',
+    title: 'Telemetry Health Sheet App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const Base64CatalogTracker4692BTPM014A06(),
+    home: const TelemetryHealthSheet4703BTPM019A06(),
   );
 }
