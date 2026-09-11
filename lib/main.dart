@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/isolated_cde_form_5561BPWSO00909.dart';
+import 'widgets/trace_collector_visualization_6507BPWSO02712.dart';
 
 void main() {
-  runApp(const IsolatedCdeForm5561BPWSO00909App());
+  runApp(const TraceCollectorVisualization6507BPWSO02712App());
 }
 
-class IsolatedCdeForm5561BPWSO00909App extends StatelessWidget {
-  const IsolatedCdeForm5561BPWSO00909App({super.key});
+class TraceCollectorVisualization6507BPWSO02712App extends StatelessWidget {
+  const TraceCollectorVisualization6507BPWSO02712App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Isolated CDE Form App',
+    title: 'Trace Collector Visualization App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const IsolatedCdeForm5561BPWSO00909(),
+    home: const TraceCollectorVisualization6507BPWSO02712(),
   );
 }
