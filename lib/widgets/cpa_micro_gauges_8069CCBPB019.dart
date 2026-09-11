@@ -68,7 +68,8 @@ class CpaMicroGauges8069CCBPB019 extends StatelessWidget {
                             value: gauge.value,
                             strokeWidth: 7,
                             color: _statusColor(context, gauge.value),
-                            backgroundColor: colorScheme.surfaceContainerHighest,
+                            backgroundColor:
+                                colorScheme.surfaceContainerHighest,
                           ),
                           Text(
                             '${(gauge.value * 100).round()}%',
@@ -95,8 +96,10 @@ class CpaMicroGauges8069CCBPB019 extends StatelessWidget {
                     ),
                     Chip(
                       label: Text(_statusLabel(gauge.value)),
-                      backgroundColor: _statusColor(context, gauge.value)
-                          .withAlpha(35),
+                      backgroundColor: _statusColor(
+                        context,
+                        gauge.value,
+                      ).withAlpha(35),
                     ),
                   ],
                 ),
@@ -114,7 +117,9 @@ class CpaMicroGauges8069CCBPB019 extends StatelessWidget {
           const Card.outlined(
             child: ListTile(
               title: Text('Widget Specification: Material 3'),
-              subtitle: Text('Lightweight micro-visualizations for standard list items.'),
+              subtitle: Text(
+                'Lightweight micro-visualizations for standard list items.',
+              ),
             ),
           ),
         ],
