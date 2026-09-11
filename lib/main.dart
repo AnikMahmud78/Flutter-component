@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/compressed_json_stream_7519CPNCA023.dart';
+import 'widgets/offline_async_ui_6562CRSSS001A12.dart';
 
 void main() {
-  runApp(const CompressedJsonStream7519CPNCA023App());
+  runApp(const OfflineAsyncUi6562CRSSS001A12App());
 }
 
-class CompressedJsonStream7519CPNCA023App extends StatelessWidget {
-  const CompressedJsonStream7519CPNCA023App({super.key});
+class OfflineAsyncUi6562CRSSS001A12App extends StatelessWidget {
+  const OfflineAsyncUi6562CRSSS001A12App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Compressed JSON Stream App',
+    title: 'Offline Background Sync App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const CompressedJsonStream7519CPNCA023(),
+    home: const OfflineAsyncUi6562CRSSS001A12(),
   );
 }
