@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/signature_pad_verification_6364CKCKM022A12.dart';
+import 'widgets/signature_configuration_6683CKCKM022A13.dart';
 
 void main() {
-  runApp(const SignaturePadVerification6364CKCKM022A12App());
+  runApp(const SignatureConfiguration6683CKCKM022A13App());
 }
 
-class SignaturePadVerification6364CKCKM022A12App extends StatelessWidget {
-  const SignaturePadVerification6364CKCKM022A12App({super.key});
+class SignatureConfiguration6683CKCKM022A13App extends StatelessWidget {
+  const SignatureConfiguration6683CKCKM022A13App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Signature Pad Verification App',
+    title: 'Signature Configuration App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const SignaturePadVerification6364CKCKM022A12(),
+    home: const SignatureConfiguration6683CKCKM022A13(),
   );
 }
