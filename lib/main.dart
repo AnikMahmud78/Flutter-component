@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/equity_reconciliation_7552CBSV039.dart';
+import 'widgets/budget_alert_overlay_1150CCBPB014A12.dart';
 
 void main() {
-  runApp(const EquityReconciliation7552CBSV039App());
+  runApp(const BudgetAlertOverlay1150CCBPB014A12App());
 }
 
-class EquityReconciliation7552CBSV039App extends StatelessWidget {
-  const EquityReconciliation7552CBSV039App({super.key});
+class BudgetAlertOverlay1150CCBPB014A12App extends StatelessWidget {
+  const BudgetAlertOverlay1150CCBPB014A12App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Equity Reconciliation App',
+    title: 'Budget Alert Overlay App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const EquityReconciliation7552CBSV039(),
+    home: const BudgetAlertOverlay1150CCBPB014A12(),
   );
 }
