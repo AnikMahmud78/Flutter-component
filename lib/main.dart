@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/signature_configuration_6683CKCKM022A13.dart';
+import 'widgets/virtual_table_structure_4252CPNCA006A05.dart';
 
 void main() {
-  runApp(const SignatureConfiguration6683CKCKM022A13App());
+  runApp(const VirtualTableStructure4252CPNCA006A05App());
 }
 
-class SignatureConfiguration6683CKCKM022A13App extends StatelessWidget {
-  const SignatureConfiguration6683CKCKM022A13App({super.key});
+class VirtualTableStructure4252CPNCA006A05App extends StatelessWidget {
+  const VirtualTableStructure4252CPNCA006A05App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Signature Configuration App',
+    title: 'Virtual Data Table App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const SignatureConfiguration6683CKCKM022A13(),
+    home: const VirtualTableStructure4252CPNCA006A05(),
   );
 }
