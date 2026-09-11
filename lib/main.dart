@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/dynamic_layout_controller_6980BPTR0741A14.dart';
+import 'widgets/edge_regex_mask_5990BPTR0803A11.dart';
 
 void main() {
-  runApp(const DynamicLayoutController6980BPTR0741A14App());
+  runApp(const EdgeRegexMask5990BPTR0803A11App());
 }
 
-class DynamicLayoutController6980BPTR0741A14App extends StatelessWidget {
-  const DynamicLayoutController6980BPTR0741A14App({super.key});
+class EdgeRegexMask5990BPTR0803A11App extends StatelessWidget {
+  const EdgeRegexMask5990BPTR0803A11App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Dynamic Layout Controller App',
+    title: 'Edge RegEx Mask App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const DynamicLayoutController6980BPTR0741A14(),
+    home: const EdgeRegexMask5990BPTR0803A11(),
   );
 }
