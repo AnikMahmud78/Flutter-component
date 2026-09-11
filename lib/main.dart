@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/cpa_micro_gauges_8069CCBPB019.dart';
+import 'widgets/signature_pad_verification_6364CKCKM022A12.dart';
 
 void main() {
-  runApp(const CpaMicroGauges8069CCBPB019App());
+  runApp(const SignaturePadVerification6364CKCKM022A12App());
 }
 
-class CpaMicroGauges8069CCBPB019App extends StatelessWidget {
-  const CpaMicroGauges8069CCBPB019App({super.key});
+class SignaturePadVerification6364CKCKM022A12App extends StatelessWidget {
+  const SignaturePadVerification6364CKCKM022A12App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'CPA Micro-Gauges App',
+    title: 'Signature Pad Verification App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const CpaMicroGauges8069CCBPB019(),
+    home: const SignaturePadVerification6364CKCKM022A12(),
   );
 }
