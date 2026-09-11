@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/exception_action_spacing_5187CPNCA007A08.dart';
+import 'widgets/cde_audit_engine_5924CPNCA008.dart';
 
 void main() {
-  runApp(const ExceptionActionSpacing5187CPNCA007A08App());
+  runApp(const CdeAuditEngine5924CPNCA008App());
 }
 
-class ExceptionActionSpacing5187CPNCA007A08App extends StatelessWidget {
-  const ExceptionActionSpacing5187CPNCA007A08App({super.key});
+class CdeAuditEngine5924CPNCA008App extends StatelessWidget {
+  const CdeAuditEngine5924CPNCA008App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Exception Action Spacing App',
+    title: 'CDE Audit Engine App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const ExceptionActionSpacing5187CPNCA007A08(),
+    home: const CdeAuditEngine5924CPNCA008(),
   );
 }
