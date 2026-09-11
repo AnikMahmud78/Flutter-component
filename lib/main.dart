@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'widgets/latency_contrast_dashboard_2635BTPM031A05.dart';
+import 'widgets/equity_reconciliation_7552CBSV039.dart';
 
 void main() {
-  runApp(const LatencyContrastDashboard2635BTPM031A05App());
+  runApp(const EquityReconciliation7552CBSV039App());
 }
 
-class LatencyContrastDashboard2635BTPM031A05App extends StatelessWidget {
-  const LatencyContrastDashboard2635BTPM031A05App({super.key});
+class EquityReconciliation7552CBSV039App extends StatelessWidget {
+  const EquityReconciliation7552CBSV039App({super.key});
 
   @override
   Widget build(BuildContext context) => MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Latency Contrast App',
+    title: 'Equity Reconciliation App',
     theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const LatencyContrastDashboard2635BTPM031A05(),
+    home: const EquityReconciliation7552CBSV039(),
   );
 }
