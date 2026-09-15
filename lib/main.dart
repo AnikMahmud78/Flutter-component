@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/precommit_linter_widget_2074FEBFL005A15.dart';
+import 'widgets/adoption_metrics_logger_widget_7871FEBFL005A18.dart';
 
 void main() {
-  runApp(const PrecommitLinterApp2074FEBFL005A15());
+  runApp(const AdoptionMetricsApp7871FEBFL005A18());
 }
 
-class PrecommitLinterApp2074FEBFL005A15 extends StatelessWidget {
-  const PrecommitLinterApp2074FEBFL005A15({super.key});
+class AdoptionMetricsApp7871FEBFL005A18 extends StatelessWidget {
+  const AdoptionMetricsApp7871FEBFL005A18({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Pre-Commit Linter App',
+      title: 'Adoption Metrics Logger App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const PrecommitLinterWidget2074FEBFL005A15(),
+      home: const AdoptionMetricsLoggerWidget7871FEBFL005A18(),
     );
   }
 }
