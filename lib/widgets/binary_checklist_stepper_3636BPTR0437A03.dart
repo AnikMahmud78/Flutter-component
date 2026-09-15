@@ -43,5 +43,6 @@ class _BinaryChecklistStepper3636BPTR0437A03State extends State<BinaryChecklistS
           const SizedBox(height: 16),
           const Card.outlined(child: ListTile(title: Text('Layout Consistency: Good'), subtitle: Text('Source-to-target mapping uses an atomic binary checklist.'))),
         ],
-      );
+      ),
+    );
 }

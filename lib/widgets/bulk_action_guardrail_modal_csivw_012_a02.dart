@@ -145,7 +145,7 @@ class _BulkActionGuardrailModalState extends State<BulkActionGuardrailModal> {
       _inputController.text.trim() == widget.verificationWord;
 
   @override
-  void initState({
+  void initState() {
     super.initState();
     _inputController = TextEditingController();
     _auditConfig = BulkActionConfig(

@@ -1,5 +1,5 @@
-// Location: tests/e2e/MobileLayoutResponsiveCheck.spec.ts
 /// <reference types="cypress" />
+// Location: tests/e2e/MobileLayoutResponsiveCheck.spec.ts
 
 describe('Task 14240AEETE-021: Standardized Cypress Front-End Interface Validation', () => {
   beforeEach(() => {

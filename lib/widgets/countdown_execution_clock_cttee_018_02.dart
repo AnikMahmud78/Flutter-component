@@ -302,7 +302,7 @@ class _CountdownExecutionClockState extends State<CountdownExecutionClock> {
               ],
             ),
           ],
-         Junta),
+        ),
       ),
     );
   }

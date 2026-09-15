@@ -31,5 +31,6 @@ class _BinaryChecklistContinue2833BPTR0437A11State extends State<BinaryChecklist
           const SizedBox(height: 16),
           const Card.outlined(child: ListTile(title: Text('Implementation Completeness: Complete'), subtitle: Text('Handler delta: +1 tracking state index.'))),
         ],
-      );
+      ),
+    );
 }
