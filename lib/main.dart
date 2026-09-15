@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/error_boundary_runner_widget_7013FCSES013A14.dart';
+import 'widgets/filter_dimension_carousel_widget_3515FEBFL002A02.dart';
 
 void main() {
-  runApp(const ErrorBoundaryApp7013FCSES013A14());
+  runApp(const FilterCarouselApp3515FEBFL002A02());
 }
 
-class ErrorBoundaryApp7013FCSES013A14 extends StatelessWidget {
-  const ErrorBoundaryApp7013FCSES013A14({super.key});
+class FilterCarouselApp3515FEBFL002A02 extends StatelessWidget {
+  const FilterCarouselApp3515FEBFL002A02({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Error Boundary App',
+      title: 'Filter Dimensions App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const ErrorBoundaryRunnerWidget7013FCSES013A14(),
+      home: const FilterDimensionCarouselWidget3515FEBFL002A02(),
     );
   }
 }
