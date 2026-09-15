@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/calendar_availability_handler_widget_13899FEBFL011A11.dart';
+import 'widgets/staging_deployment_status_widget_13965FEBFL011A16.dart';
 
 void main() {
-  runApp(const CalendarAvailabilityApp13899FEBFL011A11());
+  runApp(const StagingDeploymentApp13965FEBFL011A16());
 }
 
-class CalendarAvailabilityApp13899FEBFL011A11 extends StatelessWidget {
-  const CalendarAvailabilityApp13899FEBFL011A11({super.key});
+class StagingDeploymentApp13965FEBFL011A16 extends StatelessWidget {
+  const StagingDeploymentApp13965FEBFL011A16({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Calendar Availability App',
+      title: 'Staging Deployment App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const CalendarAvailabilityHandlerWidget13899FEBFL011A11(),
+      home: const StagingDeploymentStatusWidget13965FEBFL011A16(),
     );
   }
 }
