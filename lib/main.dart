@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/defensive_parsing_shell_widget_776FEBFL013A07.dart';
+import 'widgets/telemetry_catch_hook_widget_974FEBFL013A10.dart';
 
 void main() {
-  runApp(const DefensiveParsingApp776FEBFL013A07());
+  runApp(const TelemetryCatchHookApp974FEBFL013A10());
 }
 
-class DefensiveParsingApp776FEBFL013A07 extends StatelessWidget {
-  const DefensiveParsingApp776FEBFL013A07({super.key});
+class TelemetryCatchHookApp974FEBFL013A10 extends StatelessWidget {
+  const TelemetryCatchHookApp974FEBFL013A10({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Defensive Parsing App',
+      title: 'Telemetry Catch Hook App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const DefensiveParsingShellWidget776FEBFL013A07(),
+      home: const TelemetryCatchHookWidget974FEBFL013A10(),
     );
   }
 }
