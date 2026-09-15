@@ -1,0 +1,24 @@
+import 'package:flutter/foundation.dart';
+
+@immutable
+class EmptyStateTelemetryRecord7684FEBFL002A16 {
+  final String testType;
+  final String testResult;
+  final double testCoverage;
+  final String testTimestamp;
+  final String testLogPath;
+  final String completionStatus;
+  final String actionEventTimestamp;
+  final String userSessionId;
+
+  const EmptyStateTelemetryRecord7684FEBFL002A16({
+    required this.testType,
+    required this.testResult,
+    required this.testCoverage,
+    required this.testTimestamp,
+    required this.testLogPath,
+    required this.completionStatus,
+    required this.actionEventTimestamp,
+    required this.userSessionId,
+  });
+}

@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/filter_dimension_carousel_widget_3515FEBFL002A02.dart';
+import 'widgets/empty_state_verifier_widget_7684FEBFL002A16.dart';
 
 void main() {
-  runApp(const FilterCarouselApp3515FEBFL002A02());
+  runApp(const EmptyStateApp7684FEBFL002A16());
 }
 
-class FilterCarouselApp3515FEBFL002A02 extends StatelessWidget {
-  const FilterCarouselApp3515FEBFL002A02({super.key});
+class EmptyStateApp7684FEBFL002A16 extends StatelessWidget {
+  const EmptyStateApp7684FEBFL002A16({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Filter Dimensions App',
+      title: 'Empty State Verification App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const FilterDimensionCarouselWidget3515FEBFL002A02(),
+      home: const EmptyStateVerifierWidget7684FEBFL002A16(),
     );
   }
 }
