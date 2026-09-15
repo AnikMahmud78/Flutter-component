@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/compiler_gate_widget_4164FEBFL005A05.dart';
+import 'widgets/repo_connection_verifier_widget_2052FEBFL005A07.dart';
 
 void main() {
-  runApp(const CompilerGateApp4164FEBFL005A05());
+  runApp(const RepoVerifierApp2052FEBFL005A07());
 }
 
-class CompilerGateApp4164FEBFL005A05 extends StatelessWidget {
-  const CompilerGateApp4164FEBFL005A05({super.key});
+class RepoVerifierApp2052FEBFL005A07 extends StatelessWidget {
+  const RepoVerifierApp2052FEBFL005A07({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Compiler CSS Restriction App',
+      title: 'Repo Connection Verifier App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const CompilerGateWidget4164FEBFL005A05(),
+      home: const RepoConnectionVerifierWidget2052FEBFL005A07(),
     );
   }
 }
