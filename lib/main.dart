@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/staging_deployment_status_widget_13965FEBFL011A16.dart';
+import 'widgets/defensive_parsing_shell_widget_776FEBFL013A07.dart';
 
 void main() {
-  runApp(const StagingDeploymentApp13965FEBFL011A16());
+  runApp(const DefensiveParsingApp776FEBFL013A07());
 }
 
-class StagingDeploymentApp13965FEBFL011A16 extends StatelessWidget {
-  const StagingDeploymentApp13965FEBFL011A16({super.key});
+class DefensiveParsingApp776FEBFL013A07 extends StatelessWidget {
+  const DefensiveParsingApp776FEBFL013A07({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Staging Deployment App',
+      title: 'Defensive Parsing App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const StagingDeploymentStatusWidget13965FEBFL011A16(),
+      home: const DefensiveParsingShellWidget776FEBFL013A07(),
     );
   }
 }
