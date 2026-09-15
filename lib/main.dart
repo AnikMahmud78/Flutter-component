@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/telemetry_catch_hook_widget_974FEBFL013A10.dart';
+import 'widgets/checkout_friction_listener_widget_6617FEBFL016A13.dart';
 
 void main() {
-  runApp(const TelemetryCatchHookApp974FEBFL013A10());
+  runApp(const FrictionListenerApp6617FEBFL016A13());
 }
 
-class TelemetryCatchHookApp974FEBFL013A10 extends StatelessWidget {
-  const TelemetryCatchHookApp974FEBFL013A10({super.key});
+class FrictionListenerApp6617FEBFL016A13 extends StatelessWidget {
+  const FrictionListenerApp6617FEBFL016A13({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Telemetry Catch Hook App',
+      title: 'Checkout Friction App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const TelemetryCatchHookWidget974FEBFL013A10(),
+      home: const CheckoutFrictionListenerWidget6617FEBFL016A13(),
     );
   }
 }
