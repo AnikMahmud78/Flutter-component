@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/nested_selector_control_widget_13789FEBFL011A02.dart';
+import 'widgets/calendar_availability_handler_widget_13899FEBFL011A11.dart';
 
 void main() {
-  runApp(const NestedSelectorApp13789FEBFL011A02());
+  runApp(const CalendarAvailabilityApp13899FEBFL011A11());
 }
 
-class NestedSelectorApp13789FEBFL011A02 extends StatelessWidget {
-  const NestedSelectorApp13789FEBFL011A02({super.key});
+class CalendarAvailabilityApp13899FEBFL011A11 extends StatelessWidget {
+  const CalendarAvailabilityApp13899FEBFL011A11({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Nested Multi-Select App',
+      title: 'Calendar Availability App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const NestedSelectorControlWidget13789FEBFL011A02(),
+      home: const CalendarAvailabilityHandlerWidget13899FEBFL011A11(),
     );
   }
 }
