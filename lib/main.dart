@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/rating_step_increment_3790CSIVW003A03.dart';
+import 'widgets/exception_card_display_widget_6848ETMDI02113.dart';
 
 void main() {
-  runApp(const RatingStepIncrement3790CSIVW003A03App());
+  runApp(const ExceptionCardApp6848ETMDI02113());
 }
 
-class RatingStepIncrement3790CSIVW003A03App extends StatelessWidget {
-  const RatingStepIncrement3790CSIVW003A03App({super.key});
+class ExceptionCardApp6848ETMDI02113 extends StatelessWidget {
+  const ExceptionCardApp6848ETMDI02113({super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-    debugShowCheckedModeBanner: false,
-    title: 'Rating Step Increment App',
-    theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-    home: const RatingStepIncrement3790CSIVW003A03(),
-  );
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Exception Display Cards App',
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
+      home: const ExceptionCardDisplayWidget6848ETMDI02113(),
+    );
+  }
 }
