@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/job_title_validator_widget_4175FEBFL017A05.dart';
+import 'widgets/nullable_fallback_renderer_widget_4538FEBFL021A06.dart';
 
 void main() {
-  runApp(const JobTitleApp4175FEBFL017A05());
+  runApp(const NullableFallbackApp4538FEBFL021A06());
 }
 
-class JobTitleApp4175FEBFL017A05 extends StatelessWidget {
-  const JobTitleApp4175FEBFL017A05({super.key});
+class NullableFallbackApp4538FEBFL021A06 extends StatelessWidget {
+  const NullableFallbackApp4538FEBFL021A06({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Job Title Validation App',
+      title: 'Nullable Field Fallback App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const JobTitleValidatorWidget4175FEBFL017A05(),
+      home: const NullableFallbackRendererWidget4538FEBFL021A06(),
     );
   }
 }
