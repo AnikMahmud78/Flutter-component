@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/atomic_validation_sequence_widget_3339FEBFL017A02.dart';
+import 'widgets/job_title_validator_widget_4175FEBFL017A05.dart';
 
 void main() {
-  runApp(const AtomicValidationApp3339FEBFL017A02());
+  runApp(const JobTitleApp4175FEBFL017A05());
 }
 
-class AtomicValidationApp3339FEBFL017A02 extends StatelessWidget {
-  const AtomicValidationApp3339FEBFL017A02({super.key});
+class JobTitleApp4175FEBFL017A05 extends StatelessWidget {
+  const JobTitleApp4175FEBFL017A05({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Atomic Validation Sequence App',
+      title: 'Job Title Validation App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const AtomicValidationSequenceWidget3339FEBFL017A02(),
+      home: const JobTitleValidatorWidget4175FEBFL017A05(),
     );
   }
 }
