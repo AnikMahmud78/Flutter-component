@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/exception_card_display_widget_6848ETMDI02113.dart';
+import 'widgets/linter_notification_widget_7937ETMDI02218.dart';
 
 void main() {
-  runApp(const ExceptionCardApp6848ETMDI02113());
+  runApp(const LinterNotificationApp7937ETMDI02218());
 }
 
-class ExceptionCardApp6848ETMDI02113 extends StatelessWidget {
-  const ExceptionCardApp6848ETMDI02113({super.key});
+class LinterNotificationApp7937ETMDI02218 extends StatelessWidget {
+  const LinterNotificationApp7937ETMDI02218({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Exception Display Cards App',
+      title: 'Linter Notification App',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const ExceptionCardDisplayWidget6848ETMDI02113(),
+      home: const LinterNotificationWidget7937ETMDI02218(),
     );
   }
 }
