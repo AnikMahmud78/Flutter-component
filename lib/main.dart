@@ -1,42 +1,42 @@
 // lib/main.dart
-// Task GEN-00114: Prerequisite Steps 5 and 6 Verification Gate
+// Task GEN-00125: Prerequisite Steps 9 and 10 Verification Gate
 import 'package:flutter/material.dart';
-import 'widgets/steps_5_6_gate_card.dart';
-import 'widgets/itil_prereq_banner.dart';
+import 'widgets/steps_9_10_gate_card.dart';
+import 'widgets/itil_prereq_9_10_banner.dart';
 
 void main() {
-  runApp(const Steps56GateApp());
+  runApp(const Steps910GateApp());
 }
 
-class Steps56GateApp extends StatelessWidget {
-  const Steps56GateApp({super.key});
+class Steps910GateApp extends StatelessWidget {
+  const Steps910GateApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Prerequisite Gate 5 & 6',
+      title: 'Prerequisite Gate 9 & 10',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const GateScreen(),
+      home: const Gate910Screen(),
     );
   }
 }
 
-class GateScreen extends StatelessWidget {
-  const GateScreen({super.key});
+class Gate910Screen extends StatelessWidget {
+  const Gate910Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Prerequisite Gate (GEN-00114)')),
+      appBar: AppBar(title: const Text('Prerequisite Gate (GEN-00125)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ItilPrereqBanner(status: 'Pass'),
-            Steps56GateCard(),
+            ItilPrereq910Banner(status: 'Pass'),
+            Steps910GateCard(),
           ],
         ),
       ),
