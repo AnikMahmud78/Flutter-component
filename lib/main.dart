@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/failover_test_card.dart';
-import 'widgets/iso22301_continuity_banner.dart';
+import 'widgets/post_write_ack_card.dart';
+import 'widgets/pipe_filter_status_banner.dart';
 
 void main() {
-  runApp(const FailoverApp());
+  runApp(const PubSubAckApp());
 }
 
-class FailoverApp extends StatelessWidget {
-  const FailoverApp({super.key});
+class PubSubAckApp extends StatelessWidget {
+  const PubSubAckApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cloud SQL Regional Failover Test',
+      title: 'Pub/Sub Post-Write Ack',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const FailoverScreen(),
+      home: const PubSubAckScreen(),
     );
   }
 }
 
-class FailoverScreen extends StatelessWidget {
-  const FailoverScreen({super.key});
+class PubSubAckScreen extends StatelessWidget {
+  const PubSubAckScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Regional Failover Test (GEN-00480)')),
+      appBar: AppBar(title: const Text('Post-Write Ack Protocol (GEN-00491)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Iso22301ContinuityBanner(status: 'Pass', durationSecs: 22.1),
+            PipeFilterStatusBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: FailoverTestCard(),
+                child: PostWriteAckCard(),
               ),
             ),
           ],
