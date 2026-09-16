@@ -1,42 +1,42 @@
 // lib/main.dart
-// Task GEN-00125: Prerequisite Steps 9 and 10 Verification Gate
+// Task GEN-00136: Error Payload Schema Standardization Engine
 import 'package:flutter/material.dart';
-import 'widgets/steps_9_10_gate_card.dart';
-import 'widgets/itil_prereq_9_10_banner.dart';
+import 'widgets/standardized_error_card.dart';
+import 'widgets/operational_error_banner.dart';
 
 void main() {
-  runApp(const Steps910GateApp());
+  runApp(const ErrorSchemaApp());
 }
 
-class Steps910GateApp extends StatelessWidget {
-  const Steps910GateApp({super.key});
+class ErrorSchemaApp extends StatelessWidget {
+  const ErrorSchemaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Prerequisite Gate 9 & 10',
+      title: 'Standardized Error Schema',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const Gate910Screen(),
+      home: const ErrorSchemaScreen(),
     );
   }
 }
 
-class Gate910Screen extends StatelessWidget {
-  const Gate910Screen({super.key});
+class ErrorSchemaScreen extends StatelessWidget {
+  const ErrorSchemaScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Prerequisite Gate (GEN-00125)')),
+      appBar: AppBar(title: const Text('Error Schema Standard (GEN-00136)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ItilPrereq910Banner(status: 'Pass'),
-            Steps910GateCard(),
+            OperationalErrorBanner(status: 'Complete'),
+            StandardizedErrorCard(),
           ],
         ),
       ),
