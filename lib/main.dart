@@ -1,42 +1,42 @@
 // lib/main.dart
-// Task GEN-00136: Error Payload Schema Standardization Engine
+// Task GEN-00148: Prerequisite Step 16 Verification Gate
 import 'package:flutter/material.dart';
-import 'widgets/standardized_error_card.dart';
-import 'widgets/operational_error_banner.dart';
+import 'widgets/step_16_gate_card.dart';
+import 'widgets/step_16_prereq_banner.dart';
 
 void main() {
-  runApp(const ErrorSchemaApp());
+  runApp(const Step16GateApp());
 }
 
-class ErrorSchemaApp extends StatelessWidget {
-  const ErrorSchemaApp({super.key});
+class Step16GateApp extends StatelessWidget {
+  const Step16GateApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Standardized Error Schema',
+      title: 'Step 16 Prerequisite Gate',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const ErrorSchemaScreen(),
+      home: const Gate16Screen(),
     );
   }
 }
 
-class ErrorSchemaScreen extends StatelessWidget {
-  const ErrorSchemaScreen({super.key});
+class Gate16Screen extends StatelessWidget {
+  const Gate16Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Error Schema Standard (GEN-00136)')),
+      appBar: AppBar(title: const Text('Step 16 Gate (GEN-00148)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            OperationalErrorBanner(status: 'Complete'),
-            StandardizedErrorCard(),
+            Step16PrereqBanner(status: 'Pass'),
+            Step16GateCard(),
           ],
         ),
       ),
