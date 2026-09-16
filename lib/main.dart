@@ -1,45 +1,45 @@
 // lib/main.dart
-// Task GEN-00092: Confirm Enforced 48dp Touch Bounds Delivery
+// Task GEN-00103: Gesture Hesitation Tracking Engine
 import 'package:flutter/material.dart';
-import 'widgets/touch_target_auditor.dart';
-import 'widgets/wcag_accessibility_banner.dart';
+import 'widgets/gesture_hesitation_tracker.dart';
+import 'widgets/w3c_rendering_banner.dart';
 
 void main() {
-  runApp(const TouchTargetApp());
+  runApp(const GestureApp());
 }
 
-class TouchTargetApp extends StatelessWidget {
-  const TouchTargetApp({super.key});
+class GestureApp extends StatelessWidget {
+  const GestureApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Touch Target Enforcement',
+      title: 'Gesture Hesitation Tracking',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
       ),
-      home: const TouchTargetScreen(),
+      home: const GestureScreen(),
     );
   }
 }
 
-class TouchTargetScreen extends StatelessWidget {
-  const TouchTargetScreen({super.key});
+class GestureScreen extends StatelessWidget {
+  const GestureScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Touch Bounds Audit (GEN-00092)')),
+      appBar: AppBar(title: const Text('Gesture Hesitation (GEN-00103)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            WcagAccessibilityBanner(status: 'Pass', touchDp: 48),
+            W3cRenderingBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: TouchTargetAuditor(),
+                child: GestureHesitationTracker(),
               ),
             ),
           ],
