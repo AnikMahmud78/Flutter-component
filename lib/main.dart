@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/function_length_checker.dart';
-import 'widgets/tki3_constraint_banner.dart';
+import 'widgets/triangular_check_decorator.dart';
+import 'widgets/pep318_syntax_banner.dart';
 
 void main() {
-  runApp(const CodeConstraintApp());
+  runApp(const DecoratorApp());
 }
 
-class CodeConstraintApp extends StatelessWidget {
-  const CodeConstraintApp({super.key});
+class DecoratorApp extends StatelessWidget {
+  const DecoratorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Atomic Code Constraint',
+      title: 'Triangular Check Decorator',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const ConstraintScreen(),
+      home: const DecoratorScreen(),
     );
   }
 }
 
-class ConstraintScreen extends StatelessWidget {
-  const ConstraintScreen({super.key});
+class DecoratorScreen extends StatelessWidget {
+  const DecoratorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Code Constraint (GEN-00414)')),
+      appBar: AppBar(title: const Text('Triangular Decorator (GEN-00425)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Tki3ConstraintBanner(status: 'Pass', maxLines: 20),
+            Pep318SyntaxBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: FunctionLengthChecker(),
+                child: TriangularCheckDecoratorWidget(),
               ),
             ),
           ],
