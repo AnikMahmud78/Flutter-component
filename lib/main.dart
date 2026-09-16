@@ -1,41 +1,41 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/dashboard_counter_updater.dart';
-import 'widgets/sre_latency_banner.dart';
+import 'widgets/steps_6_8_gate_card.dart';
+import 'widgets/dependency_6_8_banner.dart';
 
 void main() {
-  runApp(const CounterUpdateApp());
+  runApp(const Gate68App());
 }
 
-class CounterUpdateApp extends StatelessWidget {
-  const CounterUpdateApp({super.key});
+class Gate68App extends StatelessWidget {
+  const Gate68App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Dashboard Counter Refresh',
+      title: 'Prerequisite Gate Steps 6 & 8',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const CounterScreen(),
+      home: const Gate68Screen(),
     );
   }
 }
 
-class CounterScreen extends StatelessWidget {
-  const CounterScreen({super.key});
+class Gate68Screen extends StatelessWidget {
+  const Gate68Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dashboard Counters (GEN-00249)')),
+      appBar: AppBar(title: const Text('Prerequisite Gate (GEN-00260)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SreLatencyBanner(status: 'Pass', latencyMs: 180),
-            DashboardCounterUpdater(),
+            Dependency68Banner(status: 'Pass', rate: 1.0),
+            Steps68GateCard(),
           ],
         ),
       ),
