@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/release_interlock_card.dart';
-import 'widgets/interlock_status_banner.dart';
+import 'widgets/payload_size_card.dart';
+import 'widgets/mobile_opt_banner.dart';
 
 void main() {
-  runApp(const ReleaseInterlockApp());
+  runApp(const GamificationApp());
 }
 
-class ReleaseInterlockApp extends StatelessWidget {
-  const ReleaseInterlockApp({super.key});
+class GamificationApp extends StatelessWidget {
+  const GamificationApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Release Interlock Gate',
+      title: 'Gamification Telemetry Optimization',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const InterlockScreen(),
+      home: const GamificationScreen(),
     );
   }
 }
 
-class InterlockScreen extends StatelessWidget {
-  const InterlockScreen({super.key});
+class GamificationScreen extends StatelessWidget {
+  const GamificationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Release Interlock (GEN-00712)')),
+      appBar: AppBar(title: const Text('Gamification Telemetry (GEN-00723)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            InterlockStatusBanner(status: 'Pass'),
+            MobileOptBanner(status: 'Pass', sizeBytes: 342),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: ReleaseInterlockCard(),
+                child: PayloadSizeCard(),
               ),
             ),
           ],
