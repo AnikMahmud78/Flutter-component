@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/sync_dedup_card.dart';
-import 'widgets/bq_dedup_banner.dart';
+import 'widgets/skan_model_card.dart';
+import 'widgets/dmbok2_skan_banner.dart';
 
 void main() {
-  runApp(const SyncDedupApp());
+  runApp(const SkanModelApp());
 }
 
-class SyncDedupApp extends StatelessWidget {
-  const SyncDedupApp({super.key});
+class SkanModelApp extends StatelessWidget {
+  const SkanModelApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sync Dedup Table DDL',
+      title: 'SKAN Probabilistic Model',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const SyncDedupScreen(),
+      home: const SkanScreen(),
     );
   }
 }
 
-class SyncDedupScreen extends StatelessWidget {
-  const SyncDedupScreen({super.key});
+class SkanScreen extends StatelessWidget {
+  const SkanScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Sync Dedup Table (GEN-00767)')),
+      appBar: AppBar(title: const Text('SKAN Attribution (GEN-00778)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BqDedupBanner(status: 'Complete'),
+            Dmbok2SkanBanner(rating: 'High', fitPct: 0.962),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: SyncDedupCard(),
+                child: SkanModelCard(),
               ),
             ),
           ],
