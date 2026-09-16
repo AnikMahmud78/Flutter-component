@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/time_to_insight_card.dart';
-import 'widgets/improvado_uat_banner.dart';
+import 'widgets/anomaly_detector_card.dart';
+import 'widgets/ieee29119_speed_banner.dart';
 
 void main() {
-  runApp(const InsightApp());
+  runApp(const AnomalyApp());
 }
 
-class InsightApp extends StatelessWidget {
-  const InsightApp({super.key});
+class AnomalyApp extends StatelessWidget {
+  const AnomalyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Time-to-Insight UAT',
+      title: 'Marketing Anomaly Detection',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const InsightScreen(),
+      home: const AnomalyScreen(),
     );
   }
 }
 
-class InsightScreen extends StatelessWidget {
-  const InsightScreen({super.key});
+class AnomalyScreen extends StatelessWidget {
+  const AnomalyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Time-to-Insight UAT (GEN-00678)')),
+      appBar: AppBar(title: const Text('Data Governance (GEN-00689)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ImprovadoUatBanner(status: 'Pass', timeSecs: 1.8),
+            Ieee29119SpeedBanner(status: 'Pass', detectionMins: 12),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: TimeToInsightCard(),
+                child: AnomalyDetectorCard(),
               ),
             ),
           ],
