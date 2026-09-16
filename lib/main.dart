@@ -1,40 +1,42 @@
+// lib/main.dart
+// Task GEN-00057: Google Artifact Registry Publication Engine
 import 'package:flutter/material.dart';
-import 'widgets/token_repository_card.dart';
-import 'widgets/export_quality_banner.dart';
+import 'widgets/artifact_publisher_card.dart';
+import 'widgets/operational_excellence_banner.dart';
 
 void main() {
-  runApp(const TokenExportApp());
+  runApp(const ArtifactPublisherApp());
 }
 
-class TokenExportApp extends StatelessWidget {
-  const TokenExportApp({super.key});
+class ArtifactPublisherApp extends StatelessWidget {
+  const ArtifactPublisherApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Token Export Repository',
+      title: 'Google Artifact Registry Publisher',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const TokenExportScreen(),
+      home: const PublisherScreen(),
     );
   }
 }
 
-class TokenExportScreen extends StatelessWidget {
-  const TokenExportScreen({super.key});
+class PublisherScreen extends StatelessWidget {
+  const PublisherScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Token Export Repo (GEN-00035)')),
+      appBar: AppBar(title: const Text('Artifact Registry Deployment (GEN-00057)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ExportQualityBanner(status: 'Complete'),
-            TokenRepositoryCard(),
+            OperationalExcellenceBanner(status: 'Complete'),
+            ArtifactPublisherCard(),
           ],
         ),
       ),
