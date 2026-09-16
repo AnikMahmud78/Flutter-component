@@ -1,46 +1,45 @@
 import 'package:flutter/material.dart';
-import 'widgets/progressive_step1_form.dart';
-import 'widgets/onboarding_completeness_banner.dart';
+import 'widgets/execution_proof_card.dart';
+import 'widgets/governance_status_banner.dart';
 
 void main() {
-  runApp(const ProgressiveProfilingApp());
+  runApp(const ExecutionProofApp());
 }
 
-class ProgressiveProfilingApp extends StatelessWidget {
-  const ProgressiveProfilingApp({super.key});
+class ExecutionProofApp extends StatelessWidget {
+  const ExecutionProofApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Progressive Profiling Step 1',
+      title: 'Execution Proof Verification',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const OnboardingScreen(),
+      home: const ProofScreen(),
     );
   }
 }
 
-class OnboardingScreen extends StatelessWidget {
-  const OnboardingScreen({super.key});
+class ProofScreen extends StatelessWidget {
+  const ProofScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Mobile Onboarding (FLADE-027)')),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            OnboardingCompletenessBanner(status: 'Complete', coverage: 1.0),
-            Card(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: ProgressiveStep1Form(),
-              ),
-            ),
-          ],
+      appBar: AppBar(title: const Text('Execution Proof (GEN-00002)')),
+      body: RefreshIndicator(
+        onRefresh: () async => await Future.delayed(const Duration(milliseconds: 300)),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              const GovernanceStatusBanner(status: 'Complete'),
+              ExecutionProofCard(onRefresh: () {}),
+            ],
+          ),
         ),
       ),
     );
