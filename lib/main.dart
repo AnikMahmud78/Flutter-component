@@ -1,45 +1,45 @@
 // lib/main.dart
-// Task GEN-00068: Schema-Driven Input Mask Props for Date Types
+// Task GEN-00079: Build LockableFormContainer Component
 import 'package:flutter/material.dart';
-import 'widgets/date_masked_text_field.dart';
-import 'widgets/validation_quality_banner.dart';
+import 'widgets/lockable_form_container.dart';
+import 'widgets/reliability_status_banner.dart';
 
 void main() {
-  runApp(const DateMaskApp());
+  runApp(const LockableFormApp());
 }
 
-class DateMaskApp extends StatelessWidget {
-  const DateMaskApp({super.key});
+class LockableFormApp extends StatelessWidget {
+  const LockableFormApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Date Mask Field Component',
+      title: 'Lockable Form Container',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const DateMaskScreen(),
+      home: const LockableScreen(),
     );
   }
 }
 
-class DateMaskScreen extends StatelessWidget {
-  const DateMaskScreen({super.key});
+class LockableScreen extends StatelessWidget {
+  const LockableScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Date Mask Props (GEN-00068)')),
+      appBar: AppBar(title: const Text('LockableFormContainer (GEN-00079)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ValidationQualityBanner(status: 'Pass', enforcementRate: 1.0),
+            ReliabilityStatusBanner(status: 'Pass', rtoSeconds: 1),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: DateMaskedTextField(),
+                child: LockableFormContainer(),
               ),
             ),
           ],
