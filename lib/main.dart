@@ -1,8 +1,8 @@
 // lib/main.dart
-// Main test entry for GEN-00337
+// Main test entry for GEN-00348
 import 'package:flutter/material.dart';
-import 'widgets/shakti_alert_position_banner.dart';
-import 'widgets/shakti_alert_position_card.dart';
+import 'widgets/offline_queue_sweeper_banner.dart';
+import 'widgets/offline_queue_sweeper_card.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'GEN-00337 Runner',
+      title: 'GEN-00348 Runner',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
             padding: EdgeInsets.all(16.0),
             child: Column(
               children: [
-                const ShaktiAlertPositionBanner(status: 'Pass'),
-            const ShaktiAlertPositionCard(),
+                const OfflineQueueSweeperBanner(status: 'Pass'),
+            const OfflineQueueSweeperCard(),
               ],
             ),
           ),
