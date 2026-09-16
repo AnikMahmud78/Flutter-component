@@ -1,44 +1,42 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/ai_query_verifier_card.dart';
-import 'widgets/ieee29119_audit_banner.dart';
+import 'widgets/md3_theme_provider.dart';
+import 'widgets/framework_theme_banner.dart';
 
 void main() {
-  runApp(const AiQueryApp());
+  runApp(
+    const MD3ThemeProvider(
+      child: RootAppShell(),
+    ),
+  );
 }
 
-class AiQueryApp extends StatelessWidget {
-  const AiQueryApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'AI Marketing Query Verifier',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
-      home: const AiQueryScreen(),
-    );
-  }
-}
-
-class AiQueryScreen extends StatelessWidget {
-  const AiQueryScreen({super.key});
+class RootAppShell extends StatelessWidget {
+  const RootAppShell({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('AI Marketing Query (GEN-00590)')),
+      appBar: AppBar(
+        title: const Text('HABOT MD3 Root Theme (GEN-00601)'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.brightness_6),
+            onPressed: () {
+              MD3ThemeProvider.of(context)?.toggleThemeMode();
+            },
+          ),
+        ],
+      ),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Ieee29119AuditBanner(status: 'Pass'),
+            FrameworkThemeBanner(status: 'Pass', coverage: 1.0),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: AiQueryVerifierCard(),
+                child: Text('MD3ThemeProvider active at root level.'),
               ),
             ),
           ],
