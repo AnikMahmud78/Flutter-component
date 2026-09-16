@@ -1,47 +1,42 @@
 // lib/main.dart
-// Task GEN-00103: Gesture Hesitation Tracking Engine
+// Task GEN-00114: Prerequisite Steps 5 and 6 Verification Gate
 import 'package:flutter/material.dart';
-import 'widgets/gesture_hesitation_tracker.dart';
-import 'widgets/w3c_rendering_banner.dart';
+import 'widgets/steps_5_6_gate_card.dart';
+import 'widgets/itil_prereq_banner.dart';
 
 void main() {
-  runApp(const GestureApp());
+  runApp(const Steps56GateApp());
 }
 
-class GestureApp extends StatelessWidget {
-  const GestureApp({super.key});
+class Steps56GateApp extends StatelessWidget {
+  const Steps56GateApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Gesture Hesitation Tracking',
+      title: 'Prerequisite Gate 5 & 6',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const GestureScreen(),
+      home: const GateScreen(),
     );
   }
 }
 
-class GestureScreen extends StatelessWidget {
-  const GestureScreen({super.key});
+class GateScreen extends StatelessWidget {
+  const GateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Gesture Hesitation (GEN-00103)')),
+      appBar: AppBar(title: const Text('Prerequisite Gate (GEN-00114)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            W3cRenderingBanner(status: 'Pass'),
-            Card(
-              child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: GestureHesitationTracker(),
-              ),
-            ),
+            ItilPrereqBanner(status: 'Pass'),
+            Steps56GateCard(),
           ],
         ),
       ),
