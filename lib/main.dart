@@ -1,52 +1,43 @@
 import 'package:flutter/material.dart';
-import 'widgets/mobile_reporting_packet.dart';
-import 'widgets/pipeline_quality_banner.dart';
+import 'widgets/progressive_form_wizard.dart';
+import 'widgets/friction_telemetry_banner.dart';
 
 void main() {
-  runApp(const MobileReportingApp());
+  runApp(const ProgressiveFormApp());
 }
 
-class MobileReportingApp extends StatelessWidget {
-  const MobileReportingApp({super.key});
+class ProgressiveFormApp extends StatelessWidget {
+  const ProgressiveFormApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mobile Reporting Views',
+      title: 'Progressive Reveal Form',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const MobileReportingScreen(),
+      home: const ProgressiveFormScreen(),
     );
   }
 }
 
-class MobileReportingScreen extends StatelessWidget {
-  const MobileReportingScreen({super.key});
+class ProgressiveFormScreen extends StatelessWidget {
+  const ProgressiveFormScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-    final Map<String, String> specs = {
-      'Mobile Platform': 'Android / Flutter',
-      'OS Version': 'API 34 (Android 14)',
-      'Device Type': 'Pixel 8 Pro',
-      'Screen Dimensions': '${size.width.toInt()}x${size.height.toInt()} dp',
-      'Mobile Configuration': 'M3 Baseline / 4px Grid',
-    };
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Mobile Reporting Packet (FIEVR-040-A12)')),
+      appBar: AppBar(title: const Text('Progressive Reveal (FIEVR-044)')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const PipelineQualityBanner(qualityScore: 1.0, status: 'Complete'),
+            const FrictionTelemetryBanner(latencyMs: 450, status: 'Good'),
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: MobileReportingPacket(deviceSpecs: specs),
+                child: const ProgressiveFormWizard(),
               ),
             ),
           ],
