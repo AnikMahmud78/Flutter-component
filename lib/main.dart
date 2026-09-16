@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
-import 'widgets/rapid_backtrack_tracker.dart';
-import 'widgets/backtrack_quality_banner.dart';
+import 'widgets/backtrack_buffer_sync.dart';
+import 'widgets/sync_telemetry_banner.dart';
 
 void main() {
-  runApp(const BacktrackTrackerApp());
+  runApp(const BufferSyncApp());
 }
 
-class BacktrackTrackerApp extends StatelessWidget {
-  const BacktrackTrackerApp({super.key});
+class BufferSyncApp extends StatelessWidget {
+  const BufferSyncApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Rapid Backtrack Telemetry',
+      title: 'Backtrack Buffer Sync',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
       ),
-      home: const BacktrackScreen(),
+      home: const BufferSyncScreen(),
     );
   }
 }
 
-class BacktrackScreen extends StatelessWidget {
-  const BacktrackScreen({super.key});
+class BufferSyncScreen extends StatelessWidget {
+  const BufferSyncScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Rapid Backtrack Tracking (FLADE-006-06)')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(title: const Text('Network Buffer Sync (FLADE-006-11)')),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const BacktrackQualityBanner(qualityScore: 1.0, status: 'Good (100%)'),
-            const Card(
+            SyncTelemetryBanner(status: 'Good (100%)', qualityScore: 1.0),
+            Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: RapidBacktrackTracker(),
+                child: BacktrackBufferSync(),
               ),
             ),
           ],
