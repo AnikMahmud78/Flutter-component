@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/schema_text_field.dart';
-import 'widgets/clean_code_banner.dart';
+import 'widgets/friction_event_logger.dart';
+import 'widgets/friction_schema_banner.dart';
 
 void main() {
-  runApp(const SchemaMaskApp());
+  runApp(const FrictionLogApp());
 }
 
-class SchemaMaskApp extends StatelessWidget {
-  const SchemaMaskApp({super.key});
+class FrictionLogApp extends StatelessWidget {
+  const FrictionLogApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Schema Input Masking',
+      title: 'UX Friction Event Logger',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const SchemaMaskScreen(),
+      home: const FrictionLogScreen(),
     );
   }
 }
 
-class SchemaMaskScreen extends StatelessWidget {
-  const SchemaMaskScreen({super.key});
+class FrictionLogScreen extends StatelessWidget {
+  const FrictionLogScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Input Masking (GEN-00623)')),
+      appBar: AppBar(title: const Text('Friction Telemetry (GEN-00634)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CleanCodeBanner(status: 'Pass'),
+            FrictionSchemaBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: SchemaTextField(label: 'Poka-Yoke Date Field'),
+                child: FrictionEventLogger(),
               ),
             ),
           ],
