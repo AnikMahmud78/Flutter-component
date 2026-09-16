@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'widgets/nullable_fallback_renderer_widget_4538FEBFL021A06.dart';
+import 'widgets/dashboard_card_isolation_widget_2404FEBFL023A14.dart';
 
 void main() {
-  runApp(const NullableFallbackApp4538FEBFL021A06());
+  runApp(const DashboardCardIsolationApp2404FEBFL023A14());
 }
 
-class NullableFallbackApp4538FEBFL021A06 extends StatelessWidget {
-  const NullableFallbackApp4538FEBFL021A06({super.key});
+class DashboardCardIsolationApp2404FEBFL023A14 extends StatelessWidget {
+  const DashboardCardIsolationApp2404FEBFL023A14({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Nullable Field Fallback App',
+      title: 'Dashboard Card Isolation',
       theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
-      home: const NullableFallbackRendererWidget4538FEBFL021A06(),
+      home: const DashboardCardIsolationWidget2404FEBFL023A14(),
     );
   }
 }
