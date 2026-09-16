@@ -1,45 +1,59 @@
 import 'package:flutter/material.dart';
-import 'widgets/carousel_form_stepper.dart';
-import 'widgets/test_pass_status_banner.dart';
+import 'widgets/input_field_group.dart';
+import 'widgets/review_rigor_status_banner.dart';
 
 void main() {
-  runApp(const CarouselStepperApp());
+  runApp(const MolecularFormApp());
 }
 
-class CarouselStepperApp extends StatelessWidget {
-  const CarouselStepperApp({super.key});
+class MolecularFormApp extends StatelessWidget {
+  const MolecularFormApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Guided Carousel Stepper',
+      title: 'Molecular Form Components',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const StepperScreen(),
+      home: const MolecularFormScreen(),
     );
   }
 }
 
-class StepperScreen extends StatelessWidget {
-  const StepperScreen({super.key});
+class MolecularFormScreen extends StatefulWidget {
+  const MolecularFormScreen({super.key});
+
+  @override
+  State<MolecularFormScreen> createState() => _MolecularFormScreenState();
+}
+
+class _MolecularFormScreenState extends State<MolecularFormScreen> {
+  final TextEditingController _ctrl = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Carousel Form Stepper (FIEVR-033)')),
+      appBar: AppBar(title: const Text('Molecular Form Elements (FIEVR-034)')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const TestPassStatusBanner(status: 'Pass', coverage: '100%'),
-            CarouselFormStepper(
-              onSequenceComplete: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Carousel Form Sequence Finalized!')),
-                );
-              },
+            const ReviewRigorStatusBanner(
+              status: 'Pass',
+              reviewLevel: '2 Senior Approvals + Security Scan Pass',
+            ),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: InputFieldGroup(
+                  labelText: 'Molecular Component Identifier',
+                  hintText: 'e.g., input_field_group_01',
+                  helperText: 'Must comply with Design System token standards.',
+                  controller: _ctrl,
+                ),
+              ),
             ),
           ],
         ),
