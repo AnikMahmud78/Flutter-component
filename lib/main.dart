@@ -1,41 +1,41 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/rollback_error_boundary.dart';
-import 'widgets/process_conformance_banner.dart';
+import 'widgets/build_validator_runner.dart';
+import 'widgets/build_gate_banner.dart';
 
 void main() {
-  runApp(const RollbackApp());
+  runApp(const BuildValidatorApp());
 }
 
-class RollbackApp extends StatelessWidget {
-  const RollbackApp({super.key});
+class BuildValidatorApp extends StatelessWidget {
+  const BuildValidatorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'UI Rollback Engine',
+      title: 'Build Parameter Validator',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const RollbackScreen(),
+      home: const BuildValidatorScreen(),
     );
   }
 }
 
-class RollbackScreen extends StatelessWidget {
-  const RollbackScreen({super.key});
+class BuildValidatorScreen extends StatelessWidget {
+  const BuildValidatorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('UI Rollback Engine (GEN-00203)')),
+      appBar: AppBar(title: const Text('Build Validator (GEN-00215)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ProcessConformanceBanner(status: 'Complete', conformanceRate: 1.0),
-            RollbackErrorBoundary(),
+            BuildGateBanner(status: 'Complete', conformanceRate: 1.0),
+            BuildValidatorRunner(),
           ],
         ),
       ),
