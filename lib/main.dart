@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/trace_header_extractor_card.dart';
-import 'widgets/w3c_trace_banner.dart';
+import 'widgets/mcp_server_card.dart';
+import 'widgets/anthropic_mcp_banner.dart';
 
 void main() {
-  runApp(const TraceHeaderApp());
+  runApp(const McpServerApp());
 }
 
-class TraceHeaderApp extends StatelessWidget {
-  const TraceHeaderApp({super.key});
+class McpServerApp extends StatelessWidget {
+  const McpServerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'X-Trace-ID Header Extractor',
+      title: 'MCP Server Integration',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const TraceScreen(),
+      home: const McpScreen(),
     );
   }
 }
 
-class TraceScreen extends StatelessWidget {
-  const TraceScreen({super.key});
+class McpScreen extends StatelessWidget {
+  const McpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Trace Header Middleware (GEN-00568)')),
+      appBar: AppBar(title: const Text('MCP Server (GEN-00579)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            W3cTraceBanner(status: 'Complete', latencyMs: 0.08),
+            AnthropicMcpBanner(status: 'Complete'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: TraceHeaderExtractorCard(),
+                child: McpServerCard(),
               ),
             ),
           ],
