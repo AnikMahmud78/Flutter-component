@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
-import 'widgets/progressive_form_wizard.dart';
-import 'widgets/friction_telemetry_banner.dart';
+import 'widgets/graph_traceability_card.dart';
+import 'widgets/rcae_quality_banner.dart';
 
 void main() {
-  runApp(const ProgressiveFormApp());
+  runApp(const TraceabilityApp());
 }
 
-class ProgressiveFormApp extends StatelessWidget {
-  const ProgressiveFormApp({super.key});
+class TraceabilityApp extends StatelessWidget {
+  const TraceabilityApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Progressive Reveal Form',
+      title: 'Graph Traceability Dashboard',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const ProgressiveFormScreen(),
+      home: const TraceabilityScreen(),
     );
   }
 }
 
-class ProgressiveFormScreen extends StatelessWidget {
-  const ProgressiveFormScreen({super.key});
+class TraceabilityScreen extends StatelessWidget {
+  const TraceabilityScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Progressive Reveal (FIEVR-044)')),
+      appBar: AppBar(title: const Text('RCAE Traceability (FIEVR-046-15)')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const FrictionTelemetryBanner(latencyMs: 450, status: 'Good'),
-            Card(
+            const RcaeQualityBanner(qualityScore: 1.0, status: 'Good (100%)'),
+            const Card(
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: const ProgressiveFormWizard(),
+                padding: EdgeInsets.all(16.0),
+                child: GraphTraceabilityCard(),
               ),
             ),
           ],
