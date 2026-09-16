@@ -1,41 +1,41 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/steps_9_13_gate_card.dart';
-import 'widgets/itil_gating_banner.dart';
+import 'widgets/rollback_error_boundary.dart';
+import 'widgets/process_conformance_banner.dart';
 
 void main() {
-  runApp(const Steps913App());
+  runApp(const RollbackApp());
 }
 
-class Steps913App extends StatelessWidget {
-  const Steps913App({super.key});
+class RollbackApp extends StatelessWidget {
+  const RollbackApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Prerequisite Gate Steps 9 & 13',
+      title: 'UI Rollback Engine',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const GateScreen(),
+      home: const RollbackScreen(),
     );
   }
 }
 
-class GateScreen extends StatelessWidget {
-  const GateScreen({super.key});
+class RollbackScreen extends StatelessWidget {
+  const RollbackScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Prerequisite Gate (GEN-00192)')),
+      appBar: AppBar(title: const Text('UI Rollback Engine (GEN-00203)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ItilGatingBanner(status: 'Pass', verificationRate: 1.0),
-            Steps913GateCard(),
+            ProcessConformanceBanner(status: 'Complete', conformanceRate: 1.0),
+            RollbackErrorBoundary(),
           ],
         ),
       ),
