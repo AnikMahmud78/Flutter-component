@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/meta_token_verifier_card.dart';
-import 'widgets/meta_api_banner.dart';
+import 'widgets/capi_logging_card.dart';
+import 'widgets/nist_logging_banner.dart';
 
 void main() {
-  runApp(const MetaTokenApp());
+  runApp(const CapiLogApp());
 }
 
-class MetaTokenApp extends StatelessWidget {
-  const MetaTokenApp({super.key});
+class CapiLogApp extends StatelessWidget {
+  const CapiLogApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Meta Token Verifier',
+      title: 'Meta CAPI Logger',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const MetaTokenScreen(),
+      home: const CapiLogScreen(),
     );
   }
 }
 
-class MetaTokenScreen extends StatelessWidget {
-  const MetaTokenScreen({super.key});
+class CapiLogScreen extends StatelessWidget {
+  const CapiLogScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Meta CAPI Token (GEN-00524)')),
+      appBar: AppBar(title: const Text('Meta CAPI Logger (GEN-00535)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            MetaApiBanner(status: 'Complete'),
+            NistLoggingBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: MetaTokenVerifierCard(),
+                child: CapiLoggingCard(),
               ),
             ),
           ],
