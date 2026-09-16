@@ -1,49 +1,40 @@
 import 'package:flutter/material.dart';
-import 'widgets/responsive_grid_wrapper.dart';
-import 'widgets/w3c_quality_banner.dart';
+import 'widgets/token_repository_card.dart';
+import 'widgets/export_quality_banner.dart';
 
 void main() {
-  runApp(const GridWrapperApp());
+  runApp(const TokenExportApp());
 }
 
-class GridWrapperApp extends StatelessWidget {
-  const GridWrapperApp({super.key});
+class TokenExportApp extends StatelessWidget {
+  const TokenExportApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Responsive Grid Layout',
+      title: 'Token Export Repository',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const GridScreen(),
+      home: const TokenExportScreen(),
     );
   }
 }
 
-class GridScreen extends StatelessWidget {
-  const GridScreen({super.key});
+class TokenExportScreen extends StatelessWidget {
+  const TokenExportScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Responsive Grid Wrapper (GEN-00024)')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
+      appBar: AppBar(title: const Text('Token Export Repo (GEN-00035)')),
+      body: const Padding(
+        padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const W3cQualityBanner(status: 'Pass'),
-            ResponsiveGridWrapper(
-              children: List.generate(
-                4,
-                (i) => Card(
-                  child: Center(
-                    child: Text('Responsive Grid Cell #${i + 1}'),
-                  ),
-                ),
-              ),
-            ),
+            ExportQualityBanner(status: 'Complete'),
+            TokenRepositoryCard(),
           ],
         ),
       ),
