@@ -1,8 +1,8 @@
 // lib/main.dart
-// Task GEN-00159: Secure Authentication Status Badge Component
+// Task GEN-00159 (revised): Secure Authentication Status Badge Component
 import 'package:flutter/material.dart';
-import 'widgets/auth_status_badge.dart';
-import 'widgets/md3_conformance_banner.dart';
+import 'widgets/app_bar_auth_badge.dart';
+import 'widgets/presentation_conformance_banner.dart';
 
 void main() {
   runApp(const AuthBadgeApp());
@@ -14,7 +14,7 @@ class AuthBadgeApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Auth Status Badge',
+      title: 'Secure Auth Status Badge',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
@@ -24,30 +24,53 @@ class AuthBadgeApp extends StatelessWidget {
   }
 }
 
-class AuthBadgeScreen extends StatelessWidget {
+class AuthBadgeScreen extends StatefulWidget {
   const AuthBadgeScreen({super.key});
+
+  @override
+  State<AuthBadgeScreen> createState() => _AuthBadgeScreenState();
+}
+
+class _AuthBadgeScreenState extends State<AuthBadgeScreen> {
+  bool _isAuthenticated = true;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mobile Console'),
-        actions: const [
-          Padding(
-            padding: EdgeInsets.only(right: 16.0),
-            child: AuthStatusBadge(isAuthenticated: true),
+        title: const Text('Enterprise Console'),
+        actions: [
+          AppBarAuthBadge(
+            isAuthenticated: _isAuthenticated,
+            onTap: () => setState(() => _isAuthenticated = !_isAuthenticated),
           ),
+          const SizedBox(width: 8.0),
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Md3ConformanceBanner(status: 'Pass'),
+            const PresentationConformanceBanner(status: 'Pass', conformanceScore: 1.0),
             Card(
+              elevation: 2,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12.0)),
               child: Padding(
-                padding: EdgeInsets.all(16.0),
-                child: Text('Secure Auth Status Badge active inside Mobile App Bar.'),
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Mobile Infrastructure Security State',
+                      style: Theme.of(context).textTheme.titleMedium,
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text(
+                      'Tap the badge in the upper right app bar to toggle authentication states dynamically.',
+                      style: Theme.of(context).textTheme.bodyMedium,
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
