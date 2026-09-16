@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/mta_identity_join_card.dart';
-import 'widgets/dmbok2_identity_banner.dart';
+import 'widgets/sql_ingestion_card.dart';
+import 'widgets/etl_guidelines_banner.dart';
 
 void main() {
-  runApp(const MtaIdentityApp());
+  runApp(const SqlIngestionApp());
 }
 
-class MtaIdentityApp extends StatelessWidget {
-  const MtaIdentityApp({super.key});
+class SqlIngestionApp extends StatelessWidget {
+  const SqlIngestionApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MTA Identity Resolution Pipeline',
+      title: 'SQL Identity Ingestion',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const MtaScreen(),
+      home: const IngestionScreen(),
     );
   }
 }
 
-class MtaScreen extends StatelessWidget {
-  const MtaScreen({super.key});
+class IngestionScreen extends StatelessWidget {
+  const IngestionScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MTA Identity Join (GEN-00645)')),
+      appBar: AppBar(title: const Text('Identity Ingestion (GEN-00656)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Dmbok2IdentityBanner(status: 'Pass', joinRate: 0.985),
+            EtlGuidelinesBanner(status: 'Complete'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: MtaIdentityJoinCard(),
+                child: SqlIngestionCard(),
               ),
             ),
           ],
