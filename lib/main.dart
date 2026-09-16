@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/post_write_ack_card.dart';
-import 'widgets/pipe_filter_status_banner.dart';
+import 'widgets/att_consent_card.dart';
+import 'widgets/apple_att_banner.dart';
 
 void main() {
-  runApp(const PubSubAckApp());
+  runApp(const AttApp());
 }
 
-class PubSubAckApp extends StatelessWidget {
-  const PubSubAckApp({super.key});
+class AttApp extends StatelessWidget {
+  const AttApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pub/Sub Post-Write Ack',
+      title: 'ATT Consent Handler',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const PubSubAckScreen(),
+      home: const AttScreen(),
     );
   }
 }
 
-class PubSubAckScreen extends StatelessWidget {
-  const PubSubAckScreen({super.key});
+class AttScreen extends StatelessWidget {
+  const AttScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Post-Write Ack Protocol (GEN-00491)')),
+      appBar: AppBar(title: const Text('iOS ATT Handler (GEN-00502)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            PipeFilterStatusBanner(status: 'Pass'),
+            AppleAttBanner(status: 'Complete', renderTimeMs: 16.4),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: PostWriteAckCard(),
+                child: AttConsentCard(),
               ),
             ),
           ],
