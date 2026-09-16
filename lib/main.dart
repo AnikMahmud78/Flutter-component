@@ -1,41 +1,41 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/responsive_card_tester.dart';
-import 'widgets/viewport_consistency_banner.dart';
+import 'widgets/telemetry_error_collector.dart';
+import 'widgets/latency_telemetry_banner.dart';
 
 void main() {
-  runApp(const CardResponsivenessApp());
+  runApp(const TelemetryApp());
 }
 
-class CardResponsivenessApp extends StatelessWidget {
-  const CardResponsivenessApp({super.key});
+class TelemetryApp extends StatelessWidget {
+  const TelemetryApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Responsive Card Tester',
+      title: 'Telemetry Capture Engine',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const CardTestScreen(),
+      home: const TelemetryScreen(),
     );
   }
 }
 
-class CardTestScreen extends StatelessWidget {
-  const CardTestScreen({super.key});
+class TelemetryScreen extends StatelessWidget {
+  const TelemetryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Responsive Card (GEN-00170)')),
+      appBar: AppBar(title: const Text('Telemetry Capture (GEN-00181)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ViewportConsistencyBanner(status: 'Pass', hasRegressions: false),
-            ResponsiveCardTester(),
+            LatencyTelemetryBanner(status: 'Pass', latencyMs: 450),
+            TelemetryErrorCollector(),
           ],
         ),
       ),
