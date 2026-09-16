@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/lookml_dashboard_card.dart';
-import 'widgets/looker_spec_banner.dart';
+import 'widgets/time_to_insight_card.dart';
+import 'widgets/improvado_uat_banner.dart';
 
 void main() {
-  runApp(const LookmlApp());
+  runApp(const InsightApp());
 }
 
-class LookmlApp extends StatelessWidget {
-  const LookmlApp({super.key});
+class InsightApp extends StatelessWidget {
+  const InsightApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'LookML Dashboard Config',
+      title: 'Time-to-Insight UAT',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const LookmlScreen(),
+      home: const InsightScreen(),
     );
   }
 }
 
-class LookmlScreen extends StatelessWidget {
-  const LookmlScreen({super.key});
+class InsightScreen extends StatelessWidget {
+  const InsightScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('LookML Dashboard (GEN-00667)')),
+      appBar: AppBar(title: const Text('Time-to-Insight UAT (GEN-00678)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            LookerSpecBanner(status: 'Complete'),
+            ImprovadoUatBanner(status: 'Pass', timeSecs: 1.8),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: LookmlDashboardCard(),
+                child: TimeToInsightCard(),
               ),
             ),
           ],
