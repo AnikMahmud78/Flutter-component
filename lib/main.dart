@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/anomaly_detector_card.dart';
-import 'widgets/ieee29119_speed_banner.dart';
+import 'widgets/push_audit_table_card.dart';
+import 'widgets/bq_schema_banner.dart';
 
 void main() {
-  runApp(const AnomalyApp());
+  runApp(const PushAuditApp());
 }
 
-class AnomalyApp extends StatelessWidget {
-  const AnomalyApp({super.key});
+class PushAuditApp extends StatelessWidget {
+  const PushAuditApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Marketing Anomaly Detection',
+      title: 'Notification Audit Table',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const AnomalyScreen(),
+      home: const AuditTableScreen(),
     );
   }
 }
 
-class AnomalyScreen extends StatelessWidget {
-  const AnomalyScreen({super.key});
+class AuditTableScreen extends StatelessWidget {
+  const AuditTableScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Data Governance (GEN-00689)')),
+      appBar: AppBar(title: const Text('Push Audit DDL (GEN-00701)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Ieee29119SpeedBanner(status: 'Pass', detectionMins: 12),
+            BqSchemaBanner(status: 'Complete'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: AnomalyDetectorCard(),
+                child: PushAuditTableCard(),
               ),
             ),
           ],
