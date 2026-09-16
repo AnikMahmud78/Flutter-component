@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
-import 'widgets/backtrack_buffer_sync.dart';
-import 'widgets/sync_telemetry_banner.dart';
+import 'widgets/device_test_runner.dart';
+import 'widgets/test_quality_banner.dart';
 
 void main() {
-  runApp(const BufferSyncApp());
+  runApp(const DeviceTestApp());
 }
 
-class BufferSyncApp extends StatelessWidget {
-  const BufferSyncApp({super.key});
+class DeviceTestApp extends StatelessWidget {
+  const DeviceTestApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Backtrack Buffer Sync',
+      title: 'Physical Device Testing',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const BufferSyncScreen(),
+      home: const DeviceTestScreen(),
     );
   }
 }
 
-class BufferSyncScreen extends StatelessWidget {
-  const BufferSyncScreen({super.key});
+class DeviceTestScreen extends StatelessWidget {
+  const DeviceTestScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Network Buffer Sync (FLADE-006-11)')),
+      appBar: AppBar(title: const Text('Interactive Device Testing (FLADE-006-13)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SyncTelemetryBanner(status: 'Good (100%)', qualityScore: 1.0),
+            TestQualityBanner(status: 'Good (100%)', qualityScore: 1.0),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: BacktrackBufferSync(),
+                child: DeviceTestRunner(),
               ),
             ),
           ],
