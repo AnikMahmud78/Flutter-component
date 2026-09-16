@@ -1,40 +1,49 @@
 import 'package:flutter/material.dart';
-import 'widgets/dependency_gate_card.dart';
-import 'widgets/itil_quality_banner.dart';
+import 'widgets/responsive_grid_wrapper.dart';
+import 'widgets/w3c_quality_banner.dart';
 
 void main() {
-  runApp(const DependencyGateApp());
+  runApp(const GridWrapperApp());
 }
 
-class DependencyGateApp extends StatelessWidget {
-  const DependencyGateApp({super.key});
+class GridWrapperApp extends StatelessWidget {
+  const GridWrapperApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Dependency Gating',
+      title: 'Responsive Grid Layout',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const DependencyScreen(),
+      home: const GridScreen(),
     );
   }
 }
 
-class DependencyScreen extends StatelessWidget {
-  const DependencyScreen({super.key});
+class GridScreen extends StatelessWidget {
+  const GridScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dependency Gating (GEN-00013)')),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
+      appBar: AppBar(title: const Text('Responsive Grid Wrapper (GEN-00024)')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ItilQualityBanner(status: 'Pass'),
-            DependencyGateCard(),
+            const W3cQualityBanner(status: 'Pass'),
+            ResponsiveGridWrapper(
+              children: List.generate(
+                4,
+                (i) => Card(
+                  child: Center(
+                    child: Text('Responsive Grid Cell #${i + 1}'),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
