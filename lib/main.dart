@@ -1,45 +1,45 @@
 // lib/main.dart
-// Task GEN-00079: Build LockableFormContainer Component
+// Task GEN-00092: Confirm Enforced 48dp Touch Bounds Delivery
 import 'package:flutter/material.dart';
-import 'widgets/lockable_form_container.dart';
-import 'widgets/reliability_status_banner.dart';
+import 'widgets/touch_target_auditor.dart';
+import 'widgets/wcag_accessibility_banner.dart';
 
 void main() {
-  runApp(const LockableFormApp());
+  runApp(const TouchTargetApp());
 }
 
-class LockableFormApp extends StatelessWidget {
-  const LockableFormApp({super.key});
+class TouchTargetApp extends StatelessWidget {
+  const TouchTargetApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Lockable Form Container',
+      title: 'Touch Target Enforcement',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const LockableScreen(),
+      home: const TouchTargetScreen(),
     );
   }
 }
 
-class LockableScreen extends StatelessWidget {
-  const LockableScreen({super.key});
+class TouchTargetScreen extends StatelessWidget {
+  const TouchTargetScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('LockableFormContainer (GEN-00079)')),
+      appBar: AppBar(title: const Text('Touch Bounds Audit (GEN-00092)')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ReliabilityStatusBanner(status: 'Pass', rtoSeconds: 1),
+            WcagAccessibilityBanner(status: 'Pass', touchDp: 48),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: LockableFormContainer(),
+                child: TouchTargetAuditor(),
               ),
             ),
           ],
