@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/outlier_cleanse_card.dart';
-import 'widgets/iso25012_cleanse_banner.dart';
+import 'widgets/utm_injector_card.dart';
+import 'widgets/rfc3986_utm_banner.dart';
 
 void main() {
-  runApp(const OutlierCleanseApp());
+  runApp(const UtmInjectorApp());
 }
 
-class OutlierCleanseApp extends StatelessWidget {
-  const OutlierCleanseApp({super.key});
+class UtmInjectorApp extends StatelessWidget {
+  const UtmInjectorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Predictive CLV Data Cleanse',
+      title: 'UTM Link Shortener',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const CleanseScreen(),
+      home: const UtmScreen(),
     );
   }
 }
 
-class CleanseScreen extends StatelessWidget {
-  const CleanseScreen({super.key});
+class UtmScreen extends StatelessWidget {
+  const UtmScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Outlier Cleanse (GEN-00789)')),
+      appBar: AppBar(title: const Text('UTM Injector (GEN-00800)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Iso25012CleanseBanner(status: 'Pass'),
+            Rfc3986UtmBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: OutlierCleanseCard(),
+                child: UtmInjectorCard(),
               ),
             ),
           ],
