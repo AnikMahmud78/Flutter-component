@@ -1,41 +1,46 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/dlq_retry_card.dart';
-import 'widgets/sre_retry_banner.dart';
+import 'widgets/function_length_checker.dart';
+import 'widgets/tki3_constraint_banner.dart';
 
 void main() {
-  runApp(const DlqApp());
+  runApp(const CodeConstraintApp());
 }
 
-class DlqApp extends StatelessWidget {
-  const DlqApp({super.key});
+class CodeConstraintApp extends StatelessWidget {
+  const CodeConstraintApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DLQ Retry Boundary',
+      title: 'Atomic Code Constraint',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const DlqScreen(),
+      home: const ConstraintScreen(),
     );
   }
 }
 
-class DlqScreen extends StatelessWidget {
-  const DlqScreen({super.key});
+class ConstraintScreen extends StatelessWidget {
+  const ConstraintScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('DLQ Retry Config (GEN-00403)')),
+      appBar: AppBar(title: const Text('Code Constraint (GEN-00414)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SreRetryBanner(status: 'Pass', maxAttempts: 5),
-            DlqRetryCard(),
+            Tki3ConstraintBanner(status: 'Pass', maxLines: 20),
+            Card(
+              child: Padding(
+                padding: EdgeInsets.all(16.0),
+                child: FunctionLengthChecker(),
+              ),
+            ),
           ],
         ),
       ),
