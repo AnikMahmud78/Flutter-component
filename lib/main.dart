@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/att_consent_card.dart';
-import 'widgets/apple_att_banner.dart';
+import 'widgets/aasa_hosting_card.dart';
+import 'widgets/apple_hosting_banner.dart';
 
 void main() {
-  runApp(const AttApp());
+  runApp(const AasaApp());
 }
 
-class AttApp extends StatelessWidget {
-  const AttApp({super.key});
+class AasaApp extends StatelessWidget {
+  const AasaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ATT Consent Handler',
+      title: 'AASA Hosting Checker',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const AttScreen(),
+      home: const AasaScreen(),
     );
   }
 }
 
-class AttScreen extends StatelessWidget {
-  const AttScreen({super.key});
+class AasaScreen extends StatelessWidget {
+  const AasaScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('iOS ATT Handler (GEN-00502)')),
+      appBar: AppBar(title: const Text('AASA Hosting (GEN-00513)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            AppleAttBanner(status: 'Complete', renderTimeMs: 16.4),
+            AppleHostingBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: AttConsentCard(),
+                child: AasaHostingCard(),
               ),
             ),
           ],
