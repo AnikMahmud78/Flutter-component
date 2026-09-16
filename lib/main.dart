@@ -1,30 +1,40 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/md3_theme_provider.dart';
-import 'widgets/framework_theme_banner.dart';
+import 'widgets/scaffold_header_timer.dart';
+import 'widgets/m3_timer_banner.dart';
 
 void main() {
-  runApp(
-    const MD3ThemeProvider(
-      child: RootAppShell(),
-    ),
-  );
+  runApp(const HeaderTimerApp());
 }
 
-class RootAppShell extends StatelessWidget {
-  const RootAppShell({super.key});
+class HeaderTimerApp extends StatelessWidget {
+  const HeaderTimerApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Header Countdown Timer',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+      ),
+      home: const TimerScreen(),
+    );
+  }
+}
+
+class TimerScreen extends StatelessWidget {
+  const TimerScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HABOT MD3 Root Theme (GEN-00601)'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.brightness_6),
-            onPressed: () {
-              MD3ThemeProvider.of(context)?.toggleThemeMode();
-            },
+        title: const Text('MTOI Exception Console'),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: ScaffoldHeaderTimer(),
           ),
         ],
       ),
@@ -32,11 +42,11 @@ class RootAppShell extends StatelessWidget {
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            FrameworkThemeBanner(status: 'Pass', coverage: 1.0),
+            M3TimerBanner(status: 'Complete', fps: 60.0),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: Text('MD3ThemeProvider active at root level.'),
+                child: Text('MTOI Exception Handling active - countdown timer bound to header bar.'),
               ),
             ),
           ],
