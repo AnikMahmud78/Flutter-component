@@ -1,41 +1,41 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/build_validator_runner.dart';
-import 'widgets/build_gate_banner.dart';
+import 'widgets/steps_11_27_gate_card.dart';
+import 'widgets/dependency_11_27_banner.dart';
 
 void main() {
-  runApp(const BuildValidatorApp());
+  runApp(const Gate1127App());
 }
 
-class BuildValidatorApp extends StatelessWidget {
-  const BuildValidatorApp({super.key});
+class Gate1127App extends StatelessWidget {
+  const Gate1127App({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Build Parameter Validator',
+      title: 'Prerequisite Gate Steps 11 & 27',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const BuildValidatorScreen(),
+      home: const Gate1127Screen(),
     );
   }
 }
 
-class BuildValidatorScreen extends StatelessWidget {
-  const BuildValidatorScreen({super.key});
+class Gate1127Screen extends StatelessWidget {
+  const Gate1127Screen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Build Validator (GEN-00215)')),
+      appBar: AppBar(title: const Text('Prerequisite Gate (GEN-00226)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BuildGateBanner(status: 'Complete', conformanceRate: 1.0),
-            BuildValidatorRunner(),
+            Dependency1127Banner(status: 'Pass', rate: 1.0),
+            Steps1127GateCard(),
           ],
         ),
       ),
