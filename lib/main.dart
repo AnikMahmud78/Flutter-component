@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/privacy_sandbox_gate.dart';
-import 'widgets/privacy_compliance_banner.dart';
+import 'widgets/cloud_run_health_card.dart';
+import 'widgets/ietf_health_banner.dart';
 
 void main() {
-  runApp(const PrivacySandboxApp());
+  runApp(const HealthApp());
 }
 
-class PrivacySandboxApp extends StatelessWidget {
-  const PrivacySandboxApp({super.key});
+class HealthApp extends StatelessWidget {
+  const HealthApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Privacy Sandbox Consent Gate',
+      title: 'Cloud Run Health Route',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const PrivacyScreen(),
+      home: const HealthScreen(),
     );
   }
 }
 
-class PrivacyScreen extends StatelessWidget {
-  const PrivacyScreen({super.key});
+class HealthScreen extends StatelessWidget {
+  const HealthScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Privacy Sandbox (GEN-00447)')),
+      appBar: AppBar(title: const Text('Cloud Run Health (GEN-00458)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            PrivacyComplianceBanner(status: 'Pass'),
+            IetfHealthBanner(status: 'Pass', latencyMs: 1.8),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: PrivacySandboxGate(),
+                child: CloudRunHealthCard(),
               ),
             ),
           ],
