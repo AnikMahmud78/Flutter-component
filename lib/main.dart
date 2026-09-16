@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/push_audit_table_card.dart';
-import 'widgets/bq_schema_banner.dart';
+import 'widgets/release_interlock_card.dart';
+import 'widgets/interlock_status_banner.dart';
 
 void main() {
-  runApp(const PushAuditApp());
+  runApp(const ReleaseInterlockApp());
 }
 
-class PushAuditApp extends StatelessWidget {
-  const PushAuditApp({super.key});
+class ReleaseInterlockApp extends StatelessWidget {
+  const ReleaseInterlockApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Notification Audit Table',
+      title: 'Release Interlock Gate',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const AuditTableScreen(),
+      home: const InterlockScreen(),
     );
   }
 }
 
-class AuditTableScreen extends StatelessWidget {
-  const AuditTableScreen({super.key});
+class InterlockScreen extends StatelessWidget {
+  const InterlockScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Push Audit DDL (GEN-00701)')),
+      appBar: AppBar(title: const Text('Release Interlock (GEN-00712)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BqSchemaBanner(status: 'Complete'),
+            InterlockStatusBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: PushAuditTableCard(),
+                child: ReleaseInterlockCard(),
               ),
             ),
           ],
