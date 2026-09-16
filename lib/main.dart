@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/cloud_run_health_card.dart';
-import 'widgets/ietf_health_banner.dart';
+import 'widgets/cloud_sql_resource_card.dart';
+import 'widgets/gcp_module_banner.dart';
 
 void main() {
-  runApp(const HealthApp());
+  runApp(const CloudSqlApp());
 }
 
-class HealthApp extends StatelessWidget {
-  const HealthApp({super.key});
+class CloudSqlApp extends StatelessWidget {
+  const CloudSqlApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cloud Run Health Route',
+      title: 'Cloud SQL Resource Config',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const HealthScreen(),
+      home: const CloudSqlScreen(),
     );
   }
 }
 
-class HealthScreen extends StatelessWidget {
-  const HealthScreen({super.key});
+class CloudSqlScreen extends StatelessWidget {
+  const CloudSqlScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Cloud Run Health (GEN-00458)')),
+      appBar: AppBar(title: const Text('Cloud SQL Instance (GEN-00469)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            IetfHealthBanner(status: 'Pass', latencyMs: 1.8),
+            GcpModuleBanner(status: 'Complete'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: CloudRunHealthCard(),
+                child: CloudSqlResourceCard(),
               ),
             ),
           ],
