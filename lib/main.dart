@@ -1,43 +1,43 @@
 import 'package:flutter/material.dart';
-import 'widgets/graph_traceability_card.dart';
-import 'widgets/rcae_quality_banner.dart';
+import 'widgets/rapid_backtrack_tracker.dart';
+import 'widgets/backtrack_quality_banner.dart';
 
 void main() {
-  runApp(const TraceabilityApp());
+  runApp(const BacktrackTrackerApp());
 }
 
-class TraceabilityApp extends StatelessWidget {
-  const TraceabilityApp({super.key});
+class BacktrackTrackerApp extends StatelessWidget {
+  const BacktrackTrackerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Graph Traceability Dashboard',
+      title: 'Rapid Backtrack Telemetry',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const TraceabilityScreen(),
+      home: const BacktrackScreen(),
     );
   }
 }
 
-class TraceabilityScreen extends StatelessWidget {
-  const TraceabilityScreen({super.key});
+class BacktrackScreen extends StatelessWidget {
+  const BacktrackScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('RCAE Traceability (FIEVR-046-15)')),
+      appBar: AppBar(title: const Text('Rapid Backtrack Tracking (FLADE-006-06)')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const RcaeQualityBanner(qualityScore: 1.0, status: 'Good (100%)'),
+            const BacktrackQualityBanner(qualityScore: 1.0, status: 'Good (100%)'),
             const Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: GraphTraceabilityCard(),
+                child: RapidBacktrackTracker(),
               ),
             ),
           ],
