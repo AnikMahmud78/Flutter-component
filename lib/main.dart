@@ -1,43 +1,52 @@
 import 'package:flutter/material.dart';
-import 'widgets/pareto_check_sheet_logger.dart';
-import 'widgets/quality_execution_banner.dart';
+import 'widgets/mobile_reporting_packet.dart';
+import 'widgets/pipeline_quality_banner.dart';
 
 void main() {
-  runApp(const ParetoCollectorApp());
+  runApp(const MobileReportingApp());
 }
 
-class ParetoCollectorApp extends StatelessWidget {
-  const ParetoCollectorApp({super.key});
+class MobileReportingApp extends StatelessWidget {
+  const MobileReportingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pareto Check Sheet Collector',
+      title: 'Mobile Reporting Views',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
       ),
-      home: const ParetoCollectorScreen(),
+      home: const MobileReportingScreen(),
     );
   }
 }
 
-class ParetoCollectorScreen extends StatelessWidget {
-  const ParetoCollectorScreen({super.key});
+class MobileReportingScreen extends StatelessWidget {
+  const MobileReportingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final Map<String, String> specs = {
+      'Mobile Platform': 'Android / Flutter',
+      'OS Version': 'API 34 (Android 14)',
+      'Device Type': 'Pixel 8 Pro',
+      'Screen Dimensions': '${size.width.toInt()}x${size.height.toInt()} dp',
+      'Mobile Configuration': 'M3 Baseline / 4px Grid',
+    };
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Pareto Data Collector (FIEVR-040-A09)')),
+      appBar: AppBar(title: const Text('Mobile Reporting Packet (FIEVR-040-A12)')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            const QualityExecutionBanner(qualityScore: 1.0, status: 'Complete'),
+            const PipelineQualityBanner(qualityScore: 1.0, status: 'Complete'),
             Card(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
-                child: const ParetoCheckSheetLogger(),
+                child: MobileReportingPacket(deviceSpecs: specs),
               ),
             ),
           ],
