@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/bigquery_cluster_card.dart';
-import 'widgets/bq_best_practice_banner.dart';
+import 'widgets/trace_header_extractor_card.dart';
+import 'widgets/w3c_trace_banner.dart';
 
 void main() {
-  runApp(const BqClusterApp());
+  runApp(const TraceHeaderApp());
 }
 
-class BqClusterApp extends StatelessWidget {
-  const BqClusterApp({super.key});
+class TraceHeaderApp extends StatelessWidget {
+  const TraceHeaderApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BigQuery Lineage Clustering',
+      title: 'X-Trace-ID Header Extractor',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const ClusterScreen(),
+      home: const TraceScreen(),
     );
   }
 }
 
-class ClusterScreen extends StatelessWidget {
-  const ClusterScreen({super.key});
+class TraceScreen extends StatelessWidget {
+  const TraceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('BigQuery Clustering (GEN-00557)')),
+      appBar: AppBar(title: const Text('Trace Header Middleware (GEN-00568)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BqBestPracticeBanner(status: 'Pass', lookupSpeedMs: 142.0),
+            W3cTraceBanner(status: 'Complete', latencyMs: 0.08),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: BigQueryClusterCard(),
+                child: TraceHeaderExtractorCard(),
               ),
             ),
           ],
