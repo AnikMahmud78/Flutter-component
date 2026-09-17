@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/vendor_heatmap_card.dart';
-import 'widgets/rage_click_accuracy_banner.dart';
+import 'widgets/cta_regex_bind_card.dart';
+import 'widgets/structural_integrity_banner.dart';
 
 void main() {
-  runApp(const VendorHeatmapScreenApp());
+  runApp(const CtaRegexBindScreenApp());
 }
 
-class VendorHeatmapScreenApp extends StatelessWidget {
-  const VendorHeatmapScreenApp({super.key});
+class CtaRegexBindScreenApp extends StatelessWidget {
+  const CtaRegexBindScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Vendor Heatmap Analytics (GEN-01078)',
+      title: 'CTA Regex Interlock (GEN-01089)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const VendorHeatmapScreen(),
+      home: const CtaRegexBindScreen(),
     );
   }
 }
 
-class VendorHeatmapScreen extends StatelessWidget {
-  const VendorHeatmapScreen({super.key});
+class CtaRegexBindScreen extends StatelessWidget {
+  const CtaRegexBindScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Vendor Heatmap Analytics (GEN-01078)')),
+      appBar: AppBar(title: const Text('CTA Regex Interlock (GEN-01089)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            RageClickAccuracyBanner(status: 'Good', accuracy: 0.95),
+            StructuralIntegrityBanner(status: 'Pass', integrity: 1.0),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: VendorHeatmapCard(),
+                child: CtaRegexBindCard(),
               ),
             ),
           ],
