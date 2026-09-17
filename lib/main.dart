@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/deep_link_nav_card.dart';
-import 'widgets/ux_responsiveness_banner.dart';
+import 'widgets/terraform_scaling_card.dart';
+import 'widgets/scaling_rule_banner.dart';
 
 void main() {
-  runApp(const DeepLinkNavApp());
+  runApp(const ScalingApp());
 }
 
-class DeepLinkNavApp extends StatelessWidget {
-  const DeepLinkNavApp({super.key});
+class ScalingApp extends StatelessWidget {
+  const ScalingApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Instant Deep Link Navigation',
+      title: 'Cloud Run Auto-Scaling Config',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const NavScreen(),
+      home: const ScalingScreen(),
     );
   }
 }
 
-class NavScreen extends StatelessWidget {
-  const NavScreen({super.key});
+class ScalingScreen extends StatelessWidget {
+  const ScalingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Deep Link Router (GEN-00890)')),
+      appBar: AppBar(title: const Text('Auto-Scaling Config (GEN-00901)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            UxResponsivenessBanner(status: 'Pass', launchMs: 76.2),
+            ScalingRuleBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: DeepLinkNavCard(),
+                child: TerraformScalingCard(),
               ),
             ),
           ],
