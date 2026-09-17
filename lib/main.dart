@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/mto_efficiency_card.dart';
-import 'widgets/looker_load_banner.dart';
+import 'widgets/m3_surface_container.dart';
+import 'widgets/m3_surface_banner.dart';
 
 void main() {
-  runApp(const MtoEfficiencyApp());
+  runApp(const SurfaceApp());
 }
 
-class MtoEfficiencyApp extends StatelessWidget {
-  const MtoEfficiencyApp({super.key});
+class SurfaceApp extends StatelessWidget {
+  const SurfaceApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MTO Workforce Efficiency',
+      title: 'MD3 Surface Standardization',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const EfficiencyScreen(),
+      home: const SurfaceScreen(),
     );
   }
 }
 
-class EfficiencyScreen extends StatelessWidget {
-  const EfficiencyScreen({super.key});
+class SurfaceScreen extends StatelessWidget {
+  const SurfaceScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MTO Workforce Efficiency (GEN-00845)')),
+      appBar: AppBar(title: const Text('MD3 Surface Standards (GEN-00856)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            LookerLoadBanner(status: 'Complete', loadTimeSecs: 0.4),
+            M3SurfaceBanner(status: 'Complete'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: MtoEfficiencyCard(),
+                child: M3SurfaceContainer(),
               ),
             ),
           ],
