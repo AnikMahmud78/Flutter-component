@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/financial_reconciliation_card.dart';
-import 'widgets/reconciliation_variance_banner.dart';
+import 'widgets/review_sentiment_card.dart';
+import 'widgets/sentiment_schedule_banner.dart';
 
 void main() {
-  runApp(const FinancialReconciliationScreenApp());
+  runApp(const ReviewSentimentScreenApp());
 }
 
-class FinancialReconciliationScreenApp extends StatelessWidget {
-  const FinancialReconciliationScreenApp({super.key});
+class ReviewSentimentScreenApp extends StatelessWidget {
+  const ReviewSentimentScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Financial Reconciliation (GEN-00934)',
+      title: 'Review Sentiment Engine (GEN-00945)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const FinancialReconciliationScreen(),
+      home: const ReviewSentimentScreen(),
     );
   }
 }
 
-class FinancialReconciliationScreen extends StatelessWidget {
-  const FinancialReconciliationScreen({super.key});
+class ReviewSentimentScreen extends StatelessWidget {
+  const ReviewSentimentScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Financial Reconciliation (GEN-00934)')),
+      appBar: AppBar(title: const Text('Review Sentiment Engine (GEN-00945)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ReconciliationVarianceBanner(status: 'Pass', varianceAed: 0.0),
+            SentimentScheduleBanner(status: 'Pass', intervalHours: 4),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: FinancialReconciliationCard(),
+                child: ReviewSentimentCard(),
               ),
             ),
           ],
