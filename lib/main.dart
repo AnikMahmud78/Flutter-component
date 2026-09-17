@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/terraform_scaling_card.dart';
-import 'widgets/scaling_rule_banner.dart';
+import 'widgets/journey_funnel_card.dart';
+import 'widgets/ga4_funnel_banner.dart';
 
 void main() {
-  runApp(const ScalingApp());
+  runApp(const JourneyFunnelApp());
 }
 
-class ScalingApp extends StatelessWidget {
-  const ScalingApp({super.key});
+class JourneyFunnelApp extends StatelessWidget {
+  const JourneyFunnelApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Cloud Run Auto-Scaling Config',
+      title: 'Customer Journey Funnel',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const ScalingScreen(),
+      home: const FunnelScreen(),
     );
   }
 }
 
-class ScalingScreen extends StatelessWidget {
-  const ScalingScreen({super.key});
+class FunnelScreen extends StatelessWidget {
+  const FunnelScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Auto-Scaling Config (GEN-00901)')),
+      appBar: AppBar(title: const Text('Journey Funnel (GEN-00912)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ScalingRuleBanner(status: 'Pass'),
+            Ga4FunnelBanner(status: 'Pass'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: TerraformScalingCard(),
+                child: JourneyFunnelCard(),
               ),
             ),
           ],
