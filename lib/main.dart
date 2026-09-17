@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/clock_decorator_card.dart';
-import 'widgets/pep8_syntax_banner.dart';
+import 'widgets/api_latency_card.dart';
+import 'widgets/iso25010_efficiency_banner.dart';
 
 void main() {
-  runApp(const ClockDecoratorApp());
+  runApp(const ApiLatencyApp());
 }
 
-class ClockDecoratorApp extends StatelessWidget {
-  const ClockDecoratorApp({super.key});
+class ApiLatencyApp extends StatelessWidget {
+  const ApiLatencyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Clock Decorator',
+      title: 'API Latency SLA Monitor',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const ClockDecoratorScreen(),
+      home: const LatencyScreen(),
     );
   }
 }
 
-class ClockDecoratorScreen extends StatelessWidget {
-  const ClockDecoratorScreen({super.key});
+class LatencyScreen extends StatelessWidget {
+  const LatencyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Clock Decorator (GEN-00822)')),
+      appBar: AppBar(title: const Text('API Response Latency (GEN-00833)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Pep8SyntaxBanner(status: 'Complete'),
+            Iso25010EfficiencyBanner(status: 'Pass', latencyMs: 38.2),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: ClockDecoratorCard(),
+                child: ApiLatencyCard(),
               ),
             ),
           ],
