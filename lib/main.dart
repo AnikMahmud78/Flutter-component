@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/optimistic_ui_card.dart';
-import 'widgets/api_sync_rate_banner.dart';
+import 'widgets/mobile_funnel_template_card.dart';
+import 'widgets/funnel_completion_banner.dart';
 
 void main() {
-  runApp(const OptimisticUiScreenApp());
+  runApp(const MobileFunnelTemplateScreenApp());
 }
 
-class OptimisticUiScreenApp extends StatelessWidget {
-  const OptimisticUiScreenApp({super.key});
+class MobileFunnelTemplateScreenApp extends StatelessWidget {
+  const MobileFunnelTemplateScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Optimistic UI Engine (GEN-01056)',
+      title: 'Mobile Funnel Template (GEN-01067)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const OptimisticUiScreen(),
+      home: const MobileFunnelTemplateScreen(),
     );
   }
 }
 
-class OptimisticUiScreen extends StatelessWidget {
-  const OptimisticUiScreen({super.key});
+class MobileFunnelTemplateScreen extends StatelessWidget {
+  const MobileFunnelTemplateScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Optimistic UI Engine (GEN-01056)')),
+      appBar: AppBar(title: const Text('Mobile Funnel Template (GEN-01067)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ApiSyncRateBanner(status: 'Pass', syncRate: 0.999),
+            FunnelCompletionBanner(status: 'Good', completionRate: 0.8),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: OptimisticUiCard(),
+                child: MobileFunnelTemplateCard(),
               ),
             ),
           ],
