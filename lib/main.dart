@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/touch_ripple_category_card.dart';
-import 'widgets/discoverability_time_banner.dart';
+import 'widgets/touch_filter_controls_card.dart';
+import 'widgets/filter_latency_banner.dart';
 
 void main() {
-  runApp(const TouchRippleCategoryScreenApp());
+  runApp(const TouchFilterControlsScreenApp());
 }
 
-class TouchRippleCategoryScreenApp extends StatelessWidget {
-  const TouchRippleCategoryScreenApp({super.key});
+class TouchFilterControlsScreenApp extends StatelessWidget {
+  const TouchFilterControlsScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Touch Ripple Interactions (GEN-01123)',
+      title: 'Touch Filter Controls (GEN-01134)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const TouchRippleCategoryScreen(),
+      home: const TouchFilterControlsScreen(),
     );
   }
 }
 
-class TouchRippleCategoryScreen extends StatelessWidget {
-  const TouchRippleCategoryScreen({super.key});
+class TouchFilterControlsScreen extends StatelessWidget {
+  const TouchFilterControlsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Touch Ripple Interactions (GEN-01123)')),
+      appBar: AppBar(title: const Text('Touch Filter Controls (GEN-01134)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DiscoverabilityTimeBanner(status: 'Good', timeToFind: '<3s'),
+            FilterLatencyBanner(status: 'Good', latency: '<300ms'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: TouchRippleCategoryCard(),
+                child: TouchFilterControlsCard(),
               ),
             ),
           ],
