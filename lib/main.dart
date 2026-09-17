@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/precommit_abort_card.dart';
-import 'widgets/precommit_abort_banner.dart';
+import 'widgets/shimmer_animation_card.dart';
+import 'widgets/gpu_render_banner.dart';
 
 void main() {
-  runApp(const PrecommitAbortScreenApp());
+  runApp(const ShimmerAnimationScreenApp());
 }
 
-class PrecommitAbortScreenApp extends StatelessWidget {
-  const PrecommitAbortScreenApp({super.key});
+class ShimmerAnimationScreenApp extends StatelessWidget {
+  const ShimmerAnimationScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Pre-Commit Abort Hook (GEN-00979)',
+      title: 'GPU Shimmer Animation (GEN-00990)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const PrecommitAbortScreen(),
+      home: const ShimmerAnimationScreen(),
     );
   }
 }
 
-class PrecommitAbortScreen extends StatelessWidget {
-  const PrecommitAbortScreen({super.key});
+class ShimmerAnimationScreen extends StatelessWidget {
+  const ShimmerAnimationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pre-Commit Abort Hook (GEN-00979)')),
+      appBar: AppBar(title: const Text('GPU Shimmer Animation (GEN-00990)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            PrecommitAbortBanner(status: 'Pass'),
+            GpuRenderBanner(status: 'Pass', refreshRateFps: 60),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: PrecommitAbortCard(),
+                child: ShimmerAnimationCard(),
               ),
             ),
           ],
