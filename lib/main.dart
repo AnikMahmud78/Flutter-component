@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/pii_normalizer_card.dart';
-import 'widgets/capi_normalization_banner.dart';
+import 'widgets/clock_decorator_card.dart';
+import 'widgets/pep8_syntax_banner.dart';
 
 void main() {
-  runApp(const PiiNormalizerApp());
+  runApp(const ClockDecoratorApp());
 }
 
-class PiiNormalizerApp extends StatelessWidget {
-  const PiiNormalizerApp({super.key});
+class ClockDecoratorApp extends StatelessWidget {
+  const ClockDecoratorApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'PII Normalization Pipeline',
+      title: 'Clock Decorator',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const NormalizerScreen(),
+      home: const ClockDecoratorScreen(),
     );
   }
 }
 
-class NormalizerScreen extends StatelessWidget {
-  const NormalizerScreen({super.key});
+class ClockDecoratorScreen extends StatelessWidget {
+  const ClockDecoratorScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('PII Normalization (GEN-00811)')),
+      appBar: AppBar(title: const Text('Clock Decorator (GEN-00822)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CapiNormalizationBanner(status: 'Complete'),
+            Pep8SyntaxBanner(status: 'Complete'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: PiiNormalizerCard(),
+                child: ClockDecoratorCard(),
               ),
             ),
           ],
