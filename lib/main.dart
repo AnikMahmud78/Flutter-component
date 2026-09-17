@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/spend_pacing_card.dart';
-import 'widgets/budget_pacing_banner.dart';
+import 'widgets/banned_terms_card.dart';
+import 'widgets/banned_terms_banner.dart';
 
 void main() {
-  runApp(const SpendPacingScreenApp());
+  runApp(const BannedTermsScreenApp());
 }
 
-class SpendPacingScreenApp extends StatelessWidget {
-  const SpendPacingScreenApp({super.key});
+class BannedTermsScreenApp extends StatelessWidget {
+  const BannedTermsScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ad Spend Pacing Engine (GEN-00967)',
+      title: 'Banned Terminology Dictionary (GEN-00976)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const SpendPacingScreen(),
+      home: const BannedTermsScreen(),
     );
   }
 }
 
-class SpendPacingScreen extends StatelessWidget {
-  const SpendPacingScreen({super.key});
+class BannedTermsScreen extends StatelessWidget {
+  const BannedTermsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Ad Spend Pacing Engine (GEN-00967)')),
+      appBar: AppBar(title: const Text('Banned Terminology Dictionary (GEN-00976)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BudgetPacingBanner(status: 'Pass', alertPrecision: 100.0),
+            BannedTermsBanner(status: 'Complete'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: SpendPacingCard(),
+                child: BannedTermsCard(),
               ),
             ),
           ],
