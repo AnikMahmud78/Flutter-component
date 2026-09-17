@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/deferred_deep_link_card.dart';
-import 'widgets/deferred_routing_banner.dart';
+import 'widgets/health_probe_card.dart';
+import 'widgets/health_probe_banner.dart';
 
 void main() {
-  runApp(const DeferredDeepLinkScreenApp());
+  runApp(const HealthProbeScreenApp());
 }
 
-class DeferredDeepLinkScreenApp extends StatelessWidget {
-  const DeferredDeepLinkScreenApp({super.key});
+class HealthProbeScreenApp extends StatelessWidget {
+  const HealthProbeScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Deferred Deep Link (GEN-01001)',
+      title: 'Health Probe Architecture (GEN-01012)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const DeferredDeepLinkScreen(),
+      home: const HealthProbeScreen(),
     );
   }
 }
 
-class DeferredDeepLinkScreen extends StatelessWidget {
-  const DeferredDeepLinkScreen({super.key});
+class HealthProbeScreen extends StatelessWidget {
+  const HealthProbeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Deferred Deep Link (GEN-01001)')),
+      appBar: AppBar(title: const Text('Health Probe Architecture (GEN-01012)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DeferredRoutingBanner(status: 'Complete'),
+            HealthProbeBanner(status: 'Complete'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: DeferredDeepLinkCard(),
+                child: HealthProbeCard(),
               ),
             ),
           ],
