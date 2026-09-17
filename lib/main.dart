@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/fre_carousel_card.dart';
-import 'widgets/fre_completion_banner.dart';
+import 'widgets/touch_ripple_category_card.dart';
+import 'widgets/discoverability_time_banner.dart';
 
 void main() {
-  runApp(const FreCarouselScreenApp());
+  runApp(const TouchRippleCategoryScreenApp());
 }
 
-class FreCarouselScreenApp extends StatelessWidget {
-  const FreCarouselScreenApp({super.key});
+class TouchRippleCategoryScreenApp extends StatelessWidget {
+  const TouchRippleCategoryScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FRE Carousel (GEN-01112)',
+      title: 'Touch Ripple Interactions (GEN-01123)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const FreCarouselScreen(),
+      home: const TouchRippleCategoryScreen(),
     );
   }
 }
 
-class FreCarouselScreen extends StatelessWidget {
-  const FreCarouselScreen({super.key});
+class TouchRippleCategoryScreen extends StatelessWidget {
+  const TouchRippleCategoryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('FRE Carousel (GEN-01112)')),
+      appBar: AppBar(title: const Text('Touch Ripple Interactions (GEN-01123)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            FreCompletionBanner(status: 'Good', completionRate: 0.9),
+            DiscoverabilityTimeBanner(status: 'Good', timeToFind: '<3s'),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: FreCarouselCard(),
+                child: TouchRippleCategoryCard(),
               ),
             ),
           ],
