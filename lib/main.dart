@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/service_ctr_card.dart';
-import 'widgets/dashboard_refresh_banner.dart';
+import 'widgets/dwell_time_card.dart';
+import 'widgets/ia_task_success_banner.dart';
 
 void main() {
-  runApp(const ServiceCtrScreenApp());
+  runApp(const DwellTimeScreenApp());
 }
 
-class ServiceCtrScreenApp extends StatelessWidget {
-  const ServiceCtrScreenApp({super.key});
+class DwellTimeScreenApp extends StatelessWidget {
+  const DwellTimeScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Service CTR Dashboard (GEN-01156)',
+      title: 'Dwell-Time Tracking (GEN-01167)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const ServiceCtrScreen(),
+      home: const DwellTimeScreen(),
     );
   }
 }
 
-class ServiceCtrScreen extends StatelessWidget {
-  const ServiceCtrScreen({super.key});
+class DwellTimeScreen extends StatelessWidget {
+  const DwellTimeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Service CTR Dashboard (GEN-01156)')),
+      appBar: AppBar(title: const Text('Dwell-Time Tracking (GEN-01167)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DashboardRefreshBanner(status: 'Good', refreshLatency: '<5 minutes'),
+            IaTaskSuccessBanner(status: 'Good', successRate: 0.95),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: ServiceCtrCard(),
+                child: DwellTimeCard(),
               ),
             ),
           ],
