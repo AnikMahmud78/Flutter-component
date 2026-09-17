@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/visual_state_benchmark_card.dart';
-import 'widgets/state_persistence_banner.dart';
+import 'widgets/special_requirements_card.dart';
+import 'widgets/field_capture_accuracy_banner.dart';
 
 void main() {
-  runApp(const VisualStateBenchmarkScreenApp());
+  runApp(const SpecialRequirementsScreenApp());
 }
 
-class VisualStateBenchmarkScreenApp extends StatelessWidget {
-  const VisualStateBenchmarkScreenApp({super.key});
+class SpecialRequirementsScreenApp extends StatelessWidget {
+  const SpecialRequirementsScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Visual State Benchmark (GEN-01189)',
+      title: 'Special Requirements Field (GEN-01200)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const VisualStateBenchmarkScreen(),
+      home: const SpecialRequirementsScreen(),
     );
   }
 }
 
-class VisualStateBenchmarkScreen extends StatelessWidget {
-  const VisualStateBenchmarkScreen({super.key});
+class SpecialRequirementsScreen extends StatelessWidget {
+  const SpecialRequirementsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Visual State Benchmark (GEN-01189)')),
+      appBar: AppBar(title: const Text('Special Requirements Field (GEN-01200)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            StatePersistenceBanner(status: 'Pass', reliability: 1.0),
+            FieldCaptureAccuracyBanner(status: 'Pass', accuracy: 0.999),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: VisualStateBenchmarkCard(),
+                child: SpecialRequirementsCard(),
               ),
             ),
           ],
