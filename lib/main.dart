@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/md3_bottom_sheet_card.dart';
-import 'widgets/touch_target_banner.dart';
+import 'widgets/spend_pacing_card.dart';
+import 'widgets/budget_pacing_banner.dart';
 
 void main() {
-  runApp(const Md3BottomSheetScreenApp());
+  runApp(const SpendPacingScreenApp());
 }
 
-class Md3BottomSheetScreenApp extends StatelessWidget {
-  const Md3BottomSheetScreenApp({super.key});
+class SpendPacingScreenApp extends StatelessWidget {
+  const SpendPacingScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MD3 Bottom-Sheet UI (GEN-00956)',
+      title: 'Ad Spend Pacing Engine (GEN-00967)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const Md3BottomSheetScreen(),
+      home: const SpendPacingScreen(),
     );
   }
 }
 
-class Md3BottomSheetScreen extends StatelessWidget {
-  const Md3BottomSheetScreen({super.key});
+class SpendPacingScreen extends StatelessWidget {
+  const SpendPacingScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MD3 Bottom-Sheet UI (GEN-00956)')),
+      appBar: AppBar(title: const Text('Ad Spend Pacing Engine (GEN-00967)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TouchTargetBanner(status: 'Pass', minTouchTarget: 48.0),
+            BudgetPacingBanner(status: 'Pass', alertPrecision: 100.0),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: Md3BottomSheetCard(),
+                child: SpendPacingCard(),
               ),
             ),
           ],
