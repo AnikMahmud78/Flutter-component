@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/m3_surface_container.dart';
-import 'widgets/m3_surface_banner.dart';
+import 'widgets/isolate_serialization_card.dart';
+import 'widgets/async_threading_banner.dart';
 
 void main() {
-  runApp(const SurfaceApp());
+  runApp(const SerializationApp());
 }
 
-class SurfaceApp extends StatelessWidget {
-  const SurfaceApp({super.key});
+class SerializationApp extends StatelessWidget {
+  const SerializationApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'MD3 Surface Standardization',
+      title: 'Isolate Serialization',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const SurfaceScreen(),
+      home: const SerializationScreen(),
     );
   }
 }
 
-class SurfaceScreen extends StatelessWidget {
-  const SurfaceScreen({super.key});
+class SerializationScreen extends StatelessWidget {
+  const SerializationScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MD3 Surface Standards (GEN-00856)')),
+      appBar: AppBar(title: const Text('Isolate Worker (GEN-00867)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            M3SurfaceBanner(status: 'Complete'),
+            AsyncThreadingBanner(status: 'Pass', delayMs: 0),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: M3SurfaceContainer(),
+                child: IsolateSerializationCard(),
               ),
             ),
           ],
