@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/mobile_funnel_template_card.dart';
-import 'widgets/funnel_completion_banner.dart';
+import 'widgets/vendor_heatmap_card.dart';
+import 'widgets/rage_click_accuracy_banner.dart';
 
 void main() {
-  runApp(const MobileFunnelTemplateScreenApp());
+  runApp(const VendorHeatmapScreenApp());
 }
 
-class MobileFunnelTemplateScreenApp extends StatelessWidget {
-  const MobileFunnelTemplateScreenApp({super.key});
+class VendorHeatmapScreenApp extends StatelessWidget {
+  const VendorHeatmapScreenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Mobile Funnel Template (GEN-01067)',
+      title: 'Vendor Heatmap Analytics (GEN-01078)',
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const MobileFunnelTemplateScreen(),
+      home: const VendorHeatmapScreen(),
     );
   }
 }
 
-class MobileFunnelTemplateScreen extends StatelessWidget {
-  const MobileFunnelTemplateScreen({super.key});
+class VendorHeatmapScreen extends StatelessWidget {
+  const VendorHeatmapScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Mobile Funnel Template (GEN-01067)')),
+      appBar: AppBar(title: const Text('Vendor Heatmap Analytics (GEN-01078)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            FunnelCompletionBanner(status: 'Good', completionRate: 0.8),
+            RageClickAccuracyBanner(status: 'Good', accuracy: 0.95),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: MobileFunnelTemplateCard(),
+                child: VendorHeatmapCard(),
               ),
             ),
           ],
