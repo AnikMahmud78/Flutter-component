@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/api_latency_card.dart';
-import 'widgets/iso25010_efficiency_banner.dart';
+import 'widgets/mto_efficiency_card.dart';
+import 'widgets/looker_load_banner.dart';
 
 void main() {
-  runApp(const ApiLatencyApp());
+  runApp(const MtoEfficiencyApp());
 }
 
-class ApiLatencyApp extends StatelessWidget {
-  const ApiLatencyApp({super.key});
+class MtoEfficiencyApp extends StatelessWidget {
+  const MtoEfficiencyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'API Latency SLA Monitor',
+      title: 'MTO Workforce Efficiency',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const LatencyScreen(),
+      home: const EfficiencyScreen(),
     );
   }
 }
 
-class LatencyScreen extends StatelessWidget {
-  const LatencyScreen({super.key});
+class EfficiencyScreen extends StatelessWidget {
+  const EfficiencyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('API Response Latency (GEN-00833)')),
+      appBar: AppBar(title: const Text('MTO Workforce Efficiency (GEN-00845)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Iso25010EfficiencyBanner(status: 'Pass', latencyMs: 38.2),
+            LookerLoadBanner(status: 'Complete', loadTimeSecs: 0.4),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: ApiLatencyCard(),
+                child: MtoEfficiencyCard(),
               ),
             ),
           ],
