@@ -1,44 +1,44 @@
 // lib/main.dart
 import 'package:flutter/material.dart';
-import 'widgets/lineage_graph_visualizer.dart';
-import 'widgets/graph_accuracy_banner.dart';
+import 'widgets/deep_link_nav_card.dart';
+import 'widgets/ux_responsiveness_banner.dart';
 
 void main() {
-  runApp(const GraphVisualizerApp());
+  runApp(const DeepLinkNavApp());
 }
 
-class GraphVisualizerApp extends StatelessWidget {
-  const GraphVisualizerApp({super.key});
+class DeepLinkNavApp extends StatelessWidget {
+  const DeepLinkNavApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Lineage Graph Visualizer',
+      title: 'Instant Deep Link Navigation',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const VisualizerScreen(),
+      home: const NavScreen(),
     );
   }
 }
 
-class VisualizerScreen extends StatelessWidget {
-  const VisualizerScreen({super.key});
+class NavScreen extends StatelessWidget {
+  const NavScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Lineage Graph Visualizer (GEN-00878)')),
+      appBar: AppBar(title: const Text('Deep Link Router (GEN-00890)')),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
-            GraphAccuracyBanner(status: 'Pass'),
+            UxResponsivenessBanner(status: 'Pass', launchMs: 76.2),
             Card(
               child: Padding(
                 padding: EdgeInsets.all(16.0),
-                child: LineageGraphVisualizer(),
+                child: DeepLinkNavCard(),
               ),
             ),
           ],
