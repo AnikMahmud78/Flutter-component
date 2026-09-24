@@ -1,64 +1,60 @@
 import 'package:flutter/material.dart';
-import 'models/provider_latency_model.dart';
-import 'widgets/provider_latency_card.dart';
+import 'models/history_card_model.dart';
+import 'widgets/history_rating_prompt_card.dart';
 
 void main() {
-  runApp(const ProviderLatencyApp());
+  runApp(const RatingPromptApp());
 }
 
-class ProviderLatencyApp extends StatelessWidget {
-  const ProviderLatencyApp({Key? key}) : super(key: key);
+class RatingPromptApp extends StatelessWidget {
+  const RatingPromptApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Communication Dashboard',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo)),
-      home: const ProviderLatencyScreen(),
+      title: 'HABOT History Rating Prompts',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple)),
+      home: const RatingPromptScreen(),
     );
   }
 }
 
-class ProviderLatencyScreen extends StatefulWidget {
-  const ProviderLatencyScreen({Key? key}) : super(key: key);
+class RatingPromptScreen extends StatefulWidget {
+  const RatingPromptScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProviderLatencyScreen> createState() => _ProviderLatencyScreenState();
+  State<RatingPromptScreen> createState() => _RatingPromptScreenState();
 }
 
-class _ProviderLatencyScreenState extends State<ProviderLatencyScreen> {
-  late ProviderLatencyModel _model;
-
-  @override
-  void initState() {
-    super.initState();
-    _model = ProviderLatencyModel(
-      providerId: 'PRV-9521',
-      responseSlaMinutes: 2.4,
-      engagementRate: 0.92,
-      lastRefreshed: DateTime.now(),
-    );
-  }
+class _RatingPromptScreenState extends State<RatingPromptScreen> {
+  HistoryCardModel _item = const HistoryCardModel(
+    serviceId: 'SRV-9532-88',
+    serviceTitle: 'After-School Care & Transport',
+    isCompleted: true,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Provider Engagement Monitor')),
+      appBar: AppBar(title: const Text('History Service Prompts')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ProviderLatencyCard(
-              model: _model,
-              onRefresh: () {
+            HistoryRatingPromptCard(
+              model: _item,
+              onRateSelected: (rating) {
                 setState(() {
-                  _model = ProviderLatencyModel(
-                    providerId: 'PRV-9521',
-                    responseSlaMinutes: 2.1,
-                    engagementRate: 0.94,
-                    lastRefreshed: DateTime.now(),
+                  _item = HistoryCardModel(
+                    serviceId: _item.serviceId,
+                    serviceTitle: _item.serviceTitle,
+                    isCompleted: true,
+                    rating: rating,
                   );
                 });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('Rating \$rating submitted! Telemetry synced.')),
+                );
               },
             ),
           ],
