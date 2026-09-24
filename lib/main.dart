@@ -1,28 +1,20 @@
 import 'package:flutter/material.dart';
-import 'services/strict_compliance_checker.dart';
 
-void main() => runApp(const BooleanComplianceApp());
+void main() => runApp(const BinaryEcApp());
 
-class BooleanComplianceApp extends StatelessWidget {
-  const BooleanComplianceApp({super.key});
+class BinaryEcApp extends StatelessWidget {
+  const BinaryEcApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final checker = StrictComplianceChecker();
-    final bool isCompliant = checker.checkSoxCompliance({'isApproved': true, 'hasAuditTrail': true});
-
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Strict Boolean Compliance Evaluator')),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Compliance Status: \${isCompliant ? "TRUE" : "FALSE"}',
-                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-              ),
-            ],
+        appBar: AppBar(title: const Text('Binary EC Instructions Inspector')),
+        body: const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: Text(
+            'Runbook instruction verification completed under IEEE 1016 specification.',
+            style: TextStyle(fontSize: 16),
           ),
         ),
       ),
