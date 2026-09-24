@@ -1,52 +1,51 @@
 import 'package:flutter/material.dart';
-import 'models/sop_video_compliance_model.dart';
-import 'services/sop_media_validator.dart';
-import 'widgets/video_format_card.dart';
-import 'widgets/pr_rejection_banner.dart';
+import 'models/video_3g_playback_model.dart';
+import 'services/hls_network_simulator.dart';
+import 'widgets/streaming_performance_card.dart';
+import 'widgets/latency_metric_banner.dart';
 
 void main() {
-  runApp(const HABOTSopMediaApp());
+  runApp(const HABOT3gVideoApp());
 }
 
-class HABOTSopMediaApp extends StatelessWidget {
-  const HABOTSopMediaApp({super.key});
+class HABOT3gVideoApp extends StatelessWidget {
+  const HABOT3gVideoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10159GEN-01927 SOP Media Compression',
+      title: '10170GEN-01938 3G Video Playback',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006874)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF7D5260)),
       ),
-      home: const SopMediaScreen(),
+      home: const Video3gScreen(),
     );
   }
 }
 
-class SopMediaScreen extends StatefulWidget {
-  const SopMediaScreen({super.key});
+class Video3gScreen extends StatefulWidget {
+  const Video3gScreen({super.key});
 
   @override
-  State<SopMediaScreen> createState() => _SopMediaScreenState();
+  State<Video3gScreen> createState() => _Video3gScreenState();
 }
 
-class _SopMediaScreenState extends State<SopMediaScreen> {
-  late SopVideoComplianceModel _model;
+class _Video3gScreenState extends State<Video3gScreen> {
+  late Video3gPlaybackModel _model;
 
   @override
   void initState() {
     super.initState();
-    _checkFile();
+    _runTest();
   }
 
-  void _checkFile() {
+  void _runTest() {
     setState(() {
-      _model = SopMediaValidator.validateSopVideo(
-        taskId: '10159GEN-01927',
-        sopId: 'SOP-MOBILE-1092',
-        fileExtension: 'mp4',
-        inspectorId: 'USER-ANIK-8821',
+      _model = HlsNetworkSimulator.evaluate3gPlayback(
+        taskId: '10170GEN-01938',
+        mediaUrl: 'https://cdn.habot.io/sops/stream_01938.m3u8',
+        userId: 'USER-ANIK-8821',
       );
     });
   }
@@ -54,17 +53,14 @@ class _SopMediaScreenState extends State<SopMediaScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('SOP Video Format Enforcer')),
+      appBar: AppBar(title: const Text('3G Instant Playback Verifier')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            PrRejectionBanner(prRejectionRate: _model.prRejectionRate),
+            LatencyMetricBanner(successRate: _model.playbackSuccessRate),
             const SizedBox(height: 16.0),
-            VideoFormatCard(
-              model: _model,
-              onValidateNewFile: _checkFile,
-            ),
+            StreamingPerformanceCard(model: _model, onTestPlayback: _runTest),
           ],
         ),
       ),
