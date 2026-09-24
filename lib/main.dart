@@ -1,63 +1,51 @@
 import 'package:flutter/material.dart';
-import 'models/add_on_selector_model.dart';
-import 'widgets/add_on_selector_card.dart';
+import 'models/price_summary_model.dart';
+import 'widgets/price_summary_card.dart';
 
 void main() {
-  runApp(const AddOnSelectorApp());
+  runApp(const PriceSummaryApp());
 }
 
-class AddOnSelectorApp extends StatelessWidget {
-  const AddOnSelectorApp({Key? key}) : super(key: key);
+class PriceSummaryApp extends StatelessWidget {
+  const PriceSummaryApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Checkout Add-On Package',
+      title: 'Price Summary Card',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const AddOnSelectorScreen(),
+      home: const PriceSummaryScreen(),
     );
   }
 }
 
-class AddOnSelectorScreen extends StatefulWidget {
-  const AddOnSelectorScreen({Key? key}) : super(key: key);
-
-  @override
-  State<AddOnSelectorScreen> createState() => _AddOnSelectorScreenState();
-}
-
-class _AddOnSelectorScreenState extends State<AddOnSelectorScreen> {
-  AddOnSelectorModel _model = const AddOnSelectorModel(
-    addOnId: 'ADDON-9752-01',
-    addOnTitle: 'Priority Service Protection & Insurance',
-    price: 4.99,
-    isSelected: false,
-    attachRate: 0.28,
-  );
+class PriceSummaryScreen extends StatelessWidget {
+  const PriceSummaryScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const summaryModel = PriceSummaryModel(
+      subtotal: 120.00,
+      serviceFee: 8.50,
+      tax: 9.60,
+      calculationAccuracy: 0.9999,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Checkout Add-On Module')),
+      appBar: AppBar(title: const Text('M3 Surface Summary Card')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            AddOnSelectorCard(
-              model: _model,
-              onToggle: (selected) {
-                setState(() {
-                  _model = AddOnSelectorModel(
-                    addOnId: _model.addOnId,
-                    addOnTitle: _model.addOnTitle,
-                    price: _model.price,
-                    isSelected: selected,
-                    attachRate: _model.attachRate,
-                  );
-                });
+            PriceSummaryCard(
+              model: summaryModel,
+              onCheckout: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('ASC 606 Calculation Verified (99.99%)')),
+                );
               },
             ),
           ],
