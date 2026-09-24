@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'widgets/m3_assistive_text_field.dart';
+import 'models/anomaly_item.dart';
+import 'widgets/quarantined_anomalies_dashboard.dart';
 
-void main() => runApp(const TextFieldsApp());
+void main() => runApp(const QuarantinedDashboardApp());
 
-class TextFieldsApp extends StatelessWidget {
-  const TextFieldsApp({super.key});
+class QuarantinedDashboardApp extends StatelessWidget {
+  const QuarantinedDashboardApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final anomalies = [
+      AnomalyItem(anomalyId: 'ANOM-091', severity: 'High', description: 'Out-of-bounds IBAN check attempt', detectedAt: DateTime.now()),
+    ];
+
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('M3 Assistive Text Fields')),
+        appBar: AppBar(title: const Text('Quarantine Security Dashboard')),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              M3AssistiveTextField(
-                labelText: 'API Gateway Endpoint',
-                helperText: 'Enter full qualified URL including https:// scheme',
-                validator: (val) => (val?.isEmpty ?? true) ? 'Endpoint is required' : null,
-              ),
-            ],
+          child: QuarantinedAnomaliesDashboard(
+            userRole: 'MANAGER',
+            anomalies: anomalies,
           ),
         ),
       ),
