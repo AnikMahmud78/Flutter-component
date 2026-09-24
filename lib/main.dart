@@ -1,27 +1,22 @@
 import 'package:flutter/material.dart';
-import 'models/anomaly_item.dart';
-import 'widgets/quarantined_anomalies_dashboard.dart';
+import 'widgets/m3_date_picker_field.dart';
 
-void main() => runApp(const QuarantinedDashboardApp());
+void main() => runApp(const DatePickerApp());
 
-class QuarantinedDashboardApp extends StatelessWidget {
-  const QuarantinedDashboardApp({super.key});
+class DatePickerApp extends StatelessWidget {
+  const DatePickerApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final anomalies = [
-      AnomalyItem(anomalyId: 'ANOM-091', severity: 'High', description: 'Out-of-bounds IBAN check attempt', detectedAt: DateTime.now()),
-    ];
-
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Quarantine Security Dashboard')),
+        appBar: AppBar(title: const Text('M3 DatePicker Integration')),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: QuarantinedAnomaliesDashboard(
-            userRole: 'MANAGER',
-            anomalies: anomalies,
+          child: M3DatePickerField(
+            labelText: 'Effective Audit Date',
+            onDateSelected: (date) {},
           ),
         ),
       ),
