@@ -1,0 +1,24 @@
+steps:
+  - name: 'gcr.io/flutter-dev/flutter:3.19.0'
+    id: 'Flutter-Analyze-Linter'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Starting Static Code Lint Analysis..."
+        flutter pub get
+        flutter analyze --fatal-infos --fatal-warnings
+    timeout: '300s'
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'Verify-Token-Compliance'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "Checking for un-tokenized dynamic styling..."
+        chmod +x ./scripts/run_linter.sh
+        ./scripts/run_linter.sh
+
+options:
+  logging: CLOUD_LOGGING_ONLY
