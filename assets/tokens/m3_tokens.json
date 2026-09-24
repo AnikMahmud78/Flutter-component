@@ -1,0 +1,23 @@
+{
+  "md": {
+    "sys": {
+      "color": {
+        "primary": {"value": "#005AC1", "type": "color"},
+        "onPrimary": {"value": "#FFFFFF", "type": "color"},
+        "error": {"value": "#BA1A1A", "type": "color"},
+        "onError": {"value": "#FFFFFF", "type": "color"},
+        "surface": {"value": "#FEF7FF", "type": "color"}
+      },
+      "spacing": {
+        "xs": {"value": "4px", "type": "dimension"},
+        "sm": {"value": "8px", "type": "dimension"},
+        "md": {"value": "16px", "type": "dimension"},
+        "lg": {"value": "24px", "type": "dimension"},
+        "xl": {"value": "32px", "type": "dimension"}
+      },
+      "touchTarget": {
+        "minArea": {"value": "48dp", "type": "dimension"}
+      }
+    }
+  }
+}

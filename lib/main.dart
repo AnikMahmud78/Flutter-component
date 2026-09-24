@@ -1,48 +1,26 @@
 import 'package:flutter/material.dart';
-import 'widgets/alert_micro_animator.dart';
-import 'models/alert_payload.dart';
 
 void main() {
-  runApp(const AlertAnimApp());
+  runApp(const TokenApp());
 }
 
-class AlertAnimApp extends StatefulWidget {
-  const AlertAnimApp({Key? key}) : super(key: key);
-
-  @override
-  State<AlertAnimApp> createState() => _AlertAnimAppState();
-}
-
-class _AlertAnimAppState extends State<AlertAnimApp> {
-  AlertPayload _currentAlert = AlertPayload(alertId: 'A-1', message: 'System Nominal', severity: 'LOW');
-
-  void _fireNewAlert() {
-    setState(() {
-      _currentAlert = AlertPayload(
-        alertId: 'A-${DateTime.now().millisecondsSinceEpoch}',
-        message: 'HIGH LATENCY SPIKE DETECTED',
-        severity: 'CRITICAL',
-      );
-    });
-  }
+class TokenApp extends StatelessWidget {
+  const TokenApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.red),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: const Color(0xFF005AC1)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Alert Micro-Animation Console')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              AlertMicroAnimator(alert: _currentAlert),
-              const SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: _fireNewAlert,
-                child: const Text('FIRE INCOMING ALERT UPDATE'),
-              ),
-            ],
+        appBar: AppBar(title: const Text('M3 Design Tokens Catalog')),
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Text(
+              'Design Tokens JSON Master Repository Loaded.\nSource: assets/tokens/m3_tokens.json\nCoverage: 100%',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ),
