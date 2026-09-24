@@ -1,55 +1,53 @@
 import 'package:flutter/material.dart';
-import 'models/qr_expand_model.dart';
-import 'widgets/qr_expand_card.dart';
+import 'models/fulfillment_bi_model.dart';
+import 'widgets/fulfillment_bi_card.dart';
 
 void main() {
-  runApp(const QRExpandApp());
+  runApp(const FulfillmentBiApp());
 }
 
-class QRExpandApp extends StatelessWidget {
-  const QRExpandApp({Key? key}) : super(key: key);
+class FulfillmentBiApp extends StatelessWidget {
+  const FulfillmentBiApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'QR Pass Expand Gesture',
+      title: 'Fulfillment BI App',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const QRExpandScreen(),
+      home: const FulfillmentBiScreen(),
     );
   }
 }
 
-class QRExpandScreen extends StatelessWidget {
-  const QRExpandScreen({Key? key}) : super(key: key);
+class FulfillmentBiScreen extends StatelessWidget {
+  const FulfillmentBiScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const passModel = QRExpandModel(passId: 'PASS-9807-FULL', scanSuccessRate: 0.999);
+    const biModel = FulfillmentBiModel(
+      avgFulfillmentHours: 1.4,
+      transitionSpeedSeconds: 12.5,
+      activeBottlenecks: 0,
+    );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('QR Pass Gesture View')),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: QRExpandCard(
-            model: passModel,
-            onTapExpand: () {
-              showDialog(
-                context: context,
-                builder: (ctx) => Dialog.fullscreen(
-                  child: Scaffold(
-                    appBar: AppBar(title: const Text('Full-Screen QR Pass')),
-                    body: const Center(
-                      child: Icon(Icons.qr_code_2, size: 280.0),
-                    ),
-                  ),
-                ),
-              );
-            },
-          ),
+      appBar: AppBar(title: const Text('Fulfillment BI Console')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            FulfillmentBiCard(
+              model: biModel,
+              onRefresh: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Operational Metrics Synced (<5 mins SLA)')),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );
