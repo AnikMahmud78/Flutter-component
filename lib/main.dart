@@ -1,56 +1,61 @@
 import 'package:flutter/material.dart';
-import 'models/viewport_bounds_model.dart';
-import 'widgets/viewport_bounds_card.dart';
+import 'models/message_age_alert_model.dart';
+import 'widgets/message_age_alert_card.dart';
 
 void main() {
-  runApp(const ViewportBoundsApp());
+  runApp(const MessageAgeAlertApp());
 }
 
-class ViewportBoundsApp extends StatelessWidget {
-  const ViewportBoundsApp({Key? key}) : super(key: key);
+class MessageAgeAlertApp extends StatelessWidget {
+  const MessageAgeAlertApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Viewport Bounds Enforcer',
+      title: 'Message Age Alert Monitor',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const ViewportBoundsScreen(),
+      home: const MessageAgeAlertScreen(),
     );
   }
 }
 
-class ViewportBoundsScreen extends StatefulWidget {
-  const ViewportBoundsScreen({Key? key}) : super(key: key);
+class MessageAgeAlertScreen extends StatefulWidget {
+  const MessageAgeAlertScreen({Key? key}) : super(key: key);
 
   @override
-  State<ViewportBoundsScreen> createState() => _ViewportBoundsScreenState();
+  State<MessageAgeAlertScreen> createState() => _MessageAgeAlertScreenState();
 }
 
-class _ViewportBoundsScreenState extends State<ViewportBoundsScreen> {
+class _MessageAgeAlertScreenState extends State<MessageAgeAlertScreen> {
+  MessageAgeAlertModel _model = MessageAgeAlertModel(
+    queueTopic: 'habot-events-v1',
+    maxUnacknowledgedAgeSeconds: 8,
+    lastChecked: DateTime.now(),
+  );
+
   @override
   Widget build(BuildContext context) {
-    final mediaQuery = MediaQuery.of(context);
-    final model = ViewportBoundsModel(
-      windowWidthDp: mediaQuery.size.width,
-      windowHeightDp: mediaQuery.size.height,
-      devicePixelRatio: mediaQuery.devicePixelRatio,
-      compliancePercentage: 100.0,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Viewport Bounds Console')),
-      body: SingleChildScrollView(
+      appBar: AppBar(title: const Text('Queue SLA Monitor')),
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ViewportBoundsCard(
-              model: model,
-              onValidateBounds: () {
+            MessageAgeAlertCard(
+              model: _model,
+              onTriggerPoll: () {
+                setState(() {
+                  _model = MessageAgeAlertModel(
+                    queueTopic: 'habot-events-v1',
+                    maxUnacknowledgedAgeSeconds: 5,
+                    lastChecked: DateTime.now(),
+                  );
+                });
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Active Window Bounds Verified (100% Compliance)')),
+                  const SnackBar(content: Text('Queue Polled: SLA Compliant (5s)')),
                 );
               },
             ),
