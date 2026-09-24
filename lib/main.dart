@@ -1,50 +1,69 @@
 import 'package:flutter/material.dart';
-import 'models/price_summary_model.dart';
-import 'widgets/price_summary_card.dart';
+import 'models/cart_swipe_model.dart';
+import 'widgets/cart_swipe_list_card.dart';
 
 void main() {
-  runApp(const PriceSummaryApp());
+  runApp(const CartSwipeApp());
 }
 
-class PriceSummaryApp extends StatelessWidget {
-  const PriceSummaryApp({Key? key}) : super(key: key);
+class CartSwipeApp extends StatelessWidget {
+  const CartSwipeApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Price Summary Card',
+      title: 'Cart Swipe Gesture',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const PriceSummaryScreen(),
+      home: const CartSwipeScreen(),
     );
   }
 }
 
-class PriceSummaryScreen extends StatelessWidget {
-  const PriceSummaryScreen({Key? key}) : super(key: key);
+class CartSwipeScreen extends StatefulWidget {
+  const CartSwipeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CartSwipeScreen> createState() => _CartSwipeScreenState();
+}
+
+class _CartSwipeScreenState extends State<CartSwipeScreen> {
+  late CartSwipeModel _cartModel;
+
+  @override
+  void initState() {
+    super.initState();
+    _cartModel = const CartSwipeModel(
+      items: [
+        CartItemModel(itemId: 'ITEM-1', title: 'Monthly Transportation Pass', price: 85.00),
+        CartItemModel(itemId: 'ITEM-2', title: 'After-School Math Tutoring', price: 120.00),
+      ],
+      cartIntegrityRate: 0.999,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    const summaryModel = PriceSummaryModel(
-      subtotal: 120.00,
-      serviceFee: 8.50,
-      tax: 9.60,
-      calculationAccuracy: 0.9999,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('M3 Surface Summary Card')),
+      appBar: AppBar(title: const Text('Cart Swipe-to-Dismiss')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            PriceSummaryCard(
-              model: summaryModel,
-              onCheckout: () {
+            CartSwipeListCard(
+              model: _cartModel,
+              onItemDismissed: (id) {
+                setState(() {
+                  final updatedList = _cartModel.items.where((i) => i.itemId != id).toList();
+                  _cartModel = CartSwipeModel(
+                    items: updatedList,
+                    cartIntegrityRate: 0.999,
+                  );
+                });
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('ASC 606 Calculation Verified (99.99%)')),
+                  const SnackBar(content: Text('Item Removed. Cart Integrity Verified (99.9%)')),
                 );
               },
             ),
