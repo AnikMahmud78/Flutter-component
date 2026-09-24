@@ -1,22 +1,37 @@
 import 'package:flutter/material.dart';
-import 'widgets/recruiter_response_widget.dart';
+import 'models/workday_payload.dart';
+import 'services/workday_payload_mapper.dart';
 
-void main() => runApp(const RecruiterCaptureApp());
+void main() => runApp(const WorkdayMapperApp());
 
-class RecruiterCaptureApp extends StatelessWidget {
-  const RecruiterCaptureApp({super.key});
+class WorkdayMapperApp extends StatelessWidget {
+  const WorkdayMapperApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final mapper = WorkdayPayloadMapper();
+    final payload = mapper.buildPayload(
+      rawId: 'APP-9910',
+      rawSsn: '000-11-2222',
+      selectedPackage: 'STD_BG_CHECK',
+    );
+    final isValid = mapper.validateMapping(payload);
+
     return MaterialApp(
-      title: 'Recruiter Response System',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Recruiter Response Capture')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: RecruiterResponseWidget(
-            onCaptured: (resp) {},
+        appBar: AppBar(title: const Text('Workday Payload Mapping')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text('Applicant ID: ${payload.applicantId}'),
+              Text('Package Code: ${payload.packageCode}'),
+              const SizedBox(height: 12),
+              Chip(
+                label: Text(isValid ? 'Mapping Valid' : 'Mapping Failed'),
+                backgroundColor: isValid ? Colors.green.shade100 : Colors.red.shade100,
+              )
+            ],
           ),
         ),
       ),
