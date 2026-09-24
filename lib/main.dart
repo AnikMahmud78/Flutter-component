@@ -1,33 +1,30 @@
 import 'package:flutter/material.dart';
-import 'widgets/wizard_layout_widget.dart';
-import 'widgets/auto_focus_search_bar.dart';
+import 'widgets/poka_yoke_guard_card.dart';
+import 'models/poka_yoke_telemetry.dart';
 
 void main() {
-  runApp(const HabotEnterpriseApp());
+  runApp(const HabotPokaYokeApp());
 }
 
-class HabotEnterpriseApp extends StatelessWidget {
-  const HabotEnterpriseApp({super.key});
+class HabotPokaYokeApp extends StatelessWidget {
+  const HabotPokaYokeApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Design System Console',
-      debugShowCheckedModeBanner: false,
+      title: 'HABOT Poka-Yoke Fraud Engine',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6750A4)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF005AC1)),
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('HABOT Mobile Infrastructure Console'),
-        ),
-        body: SafeArea(
-          child: Column(
-            children: const [
-              AutoFocusSearchBar(),
-              Expanded(child: WizardLayoutWidget()),
-            ],
+        appBar: AppBar(title: const Text('HABOT Fraud Prevention Console')),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: PokaYokeGuardCard(
+            onExecutionLogged: (PokaYokeTelemetry telemetry) {
+              debugPrint('BigQuery Telemetry Stream: ${telemetry.toJson()}');
+            },
           ),
         ),
       ),
