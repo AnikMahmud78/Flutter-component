@@ -1,52 +1,61 @@
 import 'package:flutter/material.dart';
-import 'models/qr_pass_model.dart';
-import 'widgets/qr_pass_card.dart';
+import 'models/realtime_status_model.dart';
+import 'widgets/realtime_status_card.dart';
 
 void main() {
-  runApp(const QRPassApp());
+  runApp(const RealTimeStatusApp());
 }
 
-class QRPassApp extends StatelessWidget {
-  const QRPassApp({Key? key}) : super(key: key);
+class RealTimeStatusApp extends StatelessWidget {
+  const RealTimeStatusApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT QR Pass',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-      ),
-      home: const QRPassScreen(),
+      title: 'HABOT Telemetry Dispatch',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),
+      home: const RealTimeStatusScreen(),
     );
   }
 }
 
-class QRPassScreen extends StatelessWidget {
-  const QRPassScreen({Key? key}) : super(key: key);
+class RealTimeStatusScreen extends StatefulWidget {
+  const RealTimeStatusScreen({Key? key}) : super(key: key);
+
+  @override
+  State<RealTimeStatusScreen> createState() => _RealTimeStatusScreenState();
+}
+
+class _RealTimeStatusScreenState extends State<RealTimeStatusScreen> {
+  RealTimeStatusModel _currentModel = RealTimeStatusModel(
+    dispatchId: 'DSP-9510-01',
+    latencyMs: 142,
+    timestamp: DateTime.now(),
+  );
+
+  void _runDispatchTest() {
+    setState(() {
+      _currentModel = RealTimeStatusModel(
+        dispatchId: 'DSP-9510-\${DateTime.now().millisecondsSinceEpoch}',
+        latencyMs: 98,
+        timestamp: DateTime.now(),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    const passModel = QRPassModel(
-      passId: 'PASS-9499-XYZ',
-      holderName: 'Enterprise Operator',
-      payload: 'HABOT::TOKEN::9499::SECURE',
-      scanSuccessRate: 0.998,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('M3 QR Container Pass')),
-      body: Center(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: QRPassCard(
-            model: passModel,
-            onRefreshScan: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('ISO/IEC 18004 Verification Passed (99.8%)')),
-              );
-            },
-          ),
+      appBar: AppBar(title: const Text('Dispatch SLA Tester')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            RealTimeStatusCard(
+              model: _currentModel,
+              onTriggerDispatch: _runDispatchTest,
+            ),
+          ],
         ),
       ),
     );
