@@ -1,18 +1,24 @@
-// lib/models/triangular_check_model.dart
-class TriangularCheckModel {
-  final double amountA;
-  final double amountB;
-  final double variance;
-  final String completionStatus;
-  final String actionEventTimestamp;
-  final String userSessionId;
-
-  const TriangularCheckModel({
-    required this.amountA,
-    required this.amountB,
-    required this.variance,
-    required this.completionStatus,
-    required this.actionEventTimestamp,
-    required this.userSessionId,
-  });
+import 'package:flutter/foundation.dart';
+
+@immutable
+class TriangularCheckModel {
+  final double sideA;
+  final double sideB;
+  final double totalC;
+  final double accuracyScore;
+
+  const TriangularCheckModel({
+    required this.sideA,
+    required this.sideB,
+    required this.totalC,
+    required this.accuracyScore,
+  });
+
+  bool get isBalanced => (sideA + sideB - totalC).abs() < 0.001;
+
+  String get completionStatus {
+    if (isBalanced && accuracyScore >= 99.99) return 'Complete';
+    if (accuracyScore >= 99.5) return 'Partial';
+    return 'Not Complete';
+  }
 }

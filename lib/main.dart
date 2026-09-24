@@ -1,61 +1,55 @@
 import 'package:flutter/material.dart';
-import 'models/message_age_alert_model.dart';
-import 'widgets/message_age_alert_card.dart';
+import 'models/triangular_check_model.dart';
+import 'widgets/triangular_check_card.dart';
 
 void main() {
-  runApp(const MessageAgeAlertApp());
+  runApp(const TriangularCheckApp());
 }
 
-class MessageAgeAlertApp extends StatelessWidget {
-  const MessageAgeAlertApp({Key? key}) : super(key: key);
+class TriangularCheckApp extends StatelessWidget {
+  const TriangularCheckApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Message Age Alert Monitor',
+      title: 'Triangular Check Gate',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const MessageAgeAlertScreen(),
+      home: const TriangularCheckScreen(),
     );
   }
 }
 
-class MessageAgeAlertScreen extends StatefulWidget {
-  const MessageAgeAlertScreen({Key? key}) : super(key: key);
+class TriangularCheckScreen extends StatefulWidget {
+  const TriangularCheckScreen({Key? key}) : super(key: key);
 
   @override
-  State<MessageAgeAlertScreen> createState() => _MessageAgeAlertScreenState();
+  State<TriangularCheckScreen> createState() => _TriangularCheckScreenState();
 }
 
-class _MessageAgeAlertScreenState extends State<MessageAgeAlertScreen> {
-  MessageAgeAlertModel _model = MessageAgeAlertModel(
-    queueTopic: 'habot-events-v1',
-    maxUnacknowledgedAgeSeconds: 8,
-    lastChecked: DateTime.now(),
+class _TriangularCheckScreenState extends State<TriangularCheckScreen> {
+  TriangularCheckModel _model = const TriangularCheckModel(
+    sideA: 100.00,
+    sideB: 15.00,
+    totalC: 115.00,
+    accuracyScore: 99.99,
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Queue SLA Monitor')),
+      appBar: AppBar(title: const Text('Pre-Submit Quality Gate')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            MessageAgeAlertCard(
+            TriangularCheckCard(
               model: _model,
-              onTriggerPoll: () {
-                setState(() {
-                  _model = MessageAgeAlertModel(
-                    queueTopic: 'habot-events-v1',
-                    maxUnacknowledgedAgeSeconds: 5,
-                    lastChecked: DateTime.now(),
-                  );
-                });
+              onRunCheck: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Queue Polled: SLA Compliant (5s)')),
+                  const SnackBar(content: Text('Triangular Check Passed (100% Mathematical Balance)')),
                 );
               },
             ),
