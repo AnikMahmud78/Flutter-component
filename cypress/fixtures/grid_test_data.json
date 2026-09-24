@@ -1,0 +1,8 @@
+{
+  "taskId": "10269GEN-02039",
+  "viewports": [
+    { "width": 360, "height": 800, "name": "Compact" },
+    { "width": 720, "height": 1024, "name": "Medium" },
+    { "width": 1280, "height": 800, "name": "Expanded" }
+  ]
+}
