@@ -1,53 +1,45 @@
 import 'package:flutter/material.dart';
-import 'models/scroll_fps_model.dart';
-import 'widgets/scroll_fps_card.dart';
+import 'models/zero_zoom_model.dart';
+import 'widgets/zero_zoom_card.dart';
 
 void main() {
-  runApp(const ScrollFpsApp());
+  runApp(const ZeroZoomApp());
 }
 
-class ScrollFpsApp extends StatelessWidget {
-  const ScrollFpsApp({Key? key}) : super(key: key);
+class ZeroZoomApp extends StatelessWidget {
+  const ZeroZoomApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Scroll FPS Profiler',
+      title: 'Zero-Zoom Viewport App',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const ScrollFpsScreen(),
+      home: const ZeroZoomScreen(),
     );
   }
 }
 
-class ScrollFpsScreen extends StatefulWidget {
-  const ScrollFpsScreen({Key? key}) : super(key: key);
-
-  @override
-  State<ScrollFpsScreen> createState() => _ScrollFpsScreenState();
-}
-
-class _ScrollFpsScreenState extends State<ScrollFpsScreen> {
-  ScrollFpsModel _model = const ScrollFpsModel(currentFps: 60.0, droppedFrames: 0, completionRate: 100.0);
+class ZeroZoomScreen extends StatelessWidget {
+  const ZeroZoomScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const zeroZoomModel = ZeroZoomModel(isFitToViewport: true, completionRate: 100.0);
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Frame Rate Telemetry')),
+      appBar: AppBar(title: const Text('Zero-Zoom Layout Engine')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ScrollFpsCard(
-              model: _model,
-              onTestScroll: () {
-                setState(() {
-                  _model = const ScrollFpsModel(currentFps: 59.8, droppedFrames: 0, completionRate: 100.0);
-                });
+            ZeroZoomCard(
+              model: zeroZoomModel,
+              onVerifyLayout: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('60 FPS Render Speed Verified')),
+                  const SnackBar(content: Text('Layout Fits Viewport (Zero Zoom/Scroll Required)')),
                 );
               },
             ),
