@@ -1,48 +1,46 @@
 import 'package:flutter/material.dart';
-import 'models/gesture_event_model.dart';
-import 'widgets/gesture_tracker_card.dart';
+import 'models/dropoff_analytics_model.dart';
+import 'widgets/dropoff_analytics_card.dart';
 
 void main() {
-  runApp(const GestureTrackerApp());
+  runApp(const DropoffAnalyticsApp());
 }
 
-class GestureTrackerApp extends StatelessWidget {
-  const GestureTrackerApp({Key? key}) : super(key: key);
+class DropoffAnalyticsApp extends StatelessWidget {
+  const DropoffAnalyticsApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Gesture Telemetry App',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
-      home: const GestureTrackerScreen(),
+      title: 'HABOT Analytics App',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple)),
+      home: const DropoffAnalyticsScreen(),
     );
   }
 }
 
-class GestureTrackerScreen extends StatefulWidget {
-  const GestureTrackerScreen({Key? key}) : super(key: key);
-
-  @override
-  State<GestureTrackerScreen> createState() => _GestureTrackerScreenState();
-}
-
-class _GestureTrackerScreenState extends State<GestureTrackerScreen> {
-  GestureEventModel _model = const GestureEventModel(lastGesture: 'None', detectionAccuracy: 0.96);
+class DropoffAnalyticsScreen extends StatelessWidget {
+  const DropoffAnalyticsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const analytics = DropoffAnalyticsModel(
+      stageName: 'Identity Verification Step 2',
+      dropoffRate: 0.03,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Gesture Capture Console')),
+      appBar: AppBar(title: const Text('Operational Drop-off Dashboard')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            GestureTrackerCard(
-              model: _model,
-              onGestureCaptured: (gestureName) {
-                setState(() {
-                  _model = GestureEventModel(lastGesture: gestureName, detectionAccuracy: 0.96);
-                });
+            DropoffAnalyticsCard(
+              model: analytics,
+              onRefreshData: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('ISO/IEC/IEEE 42010 Telemetry Validated')),
+                );
               },
             ),
           ],
