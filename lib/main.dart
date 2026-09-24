@@ -1,51 +1,50 @@
 import 'package:flutter/material.dart';
-import 'models/clv_economics_model.dart';
-import 'services/economics_evaluator.dart';
-import 'widgets/clv_ratio_card.dart';
-import 'widgets/economics_status_banner.dart';
+import 'models/plain_language_model.dart';
+import 'services/readability_calculator.dart';
+import 'widgets/plain_text_card.dart';
+import 'widgets/language_score_banner.dart';
 
 void main() {
-  runApp(const HABOTClvApp());
+  runApp(const HABOTPlainLanguageApp());
 }
 
-class HABOTClvApp extends StatelessWidget {
-  const HABOTClvApp({super.key});
+class HABOTPlainLanguageApp extends StatelessWidget {
+  const HABOTPlainLanguageApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10258GEN-02028 CLV Monitor',
+      title: '10280GEN-02051 Plain Language',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF2E6B27)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006689)),
       ),
-      home: const ClvScreen(),
+      home: const PlainLanguageScreen(),
     );
   }
 }
 
-class ClvScreen extends StatefulWidget {
-  const ClvScreen({super.key});
+class PlainLanguageScreen extends StatefulWidget {
+  const PlainLanguageScreen({super.key});
 
   @override
-  State<ClvScreen> createState() => _ClvScreenState();
+  State<PlainLanguageScreen> createState() => _PlainLanguageScreenState();
 }
 
-class _ClvScreenState extends State<ClvScreen> {
-  late ClvEconomicsModel _model;
+class _PlainLanguageScreenState extends State<PlainLanguageScreen> {
+  late PlainLanguageModel _model;
 
   @override
   void initState() {
     super.initState();
-    _recalculate();
+    _analyze();
   }
 
-  void _recalculate() {
+  void _analyze() {
     setState(() {
-      _model = EconomicsEvaluator.calculateRatio(
-        taskId: '10258GEN-02028',
-        clv: 12500.0,
-        cac: 2800.0,
+      _model = ReadabilityCalculator.analyzeText(
+        taskId: '10280GEN-02051',
+        text: 'Select your preferred data sync window to upload offline logs.',
         userId: 'USER-ANIK-8821',
       );
     });
@@ -54,14 +53,14 @@ class _ClvScreenState extends State<ClvScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('CLV vs CAC Financial Guard')),
+      appBar: AppBar(title: const Text('MD3 Plain Language Evaluator')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            EconomicsStatusBanner(growthRate: _model.growthRatePercent),
+            LanguageScoreBanner(rate: _model.completionRate),
             const SizedBox(height: 16.0),
-            ClvRatioCard(model: _model, onRefresh: _recalculate),
+            PlainTextCard(model: _model, onReCheck: _analyze),
           ],
         ),
       ),
