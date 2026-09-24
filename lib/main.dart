@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'models/user_profile.dart';
-import 'widgets/read_only_profile_card.dart';
+import 'widgets/m3_assistive_text_field.dart';
 
-void main() => runApp(const ProfileApp());
+void main() => runApp(const TextFieldsApp());
 
-class ProfileApp extends StatelessWidget {
-  const ProfileApp({super.key});
+class TextFieldsApp extends StatelessWidget {
+  const TextFieldsApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple)),
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Read-Only Profile View')),
-        body: const Padding(
-          padding: EdgeInsets.all(16.0),
-          child: ReadOnlyProfileCard(
-            profile: UserProfile(
-              name: 'Anik Rahman',
-              role: 'Lead Systems Architect',
-              department: 'Mobile Infrastructure',
-              email: 'anik@habot.io',
-            ),
+        appBar: AppBar(title: const Text('M3 Assistive Text Fields')),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              M3AssistiveTextField(
+                labelText: 'API Gateway Endpoint',
+                helperText: 'Enter full qualified URL including https:// scheme',
+                validator: (val) => (val?.isEmpty ?? true) ? 'Endpoint is required' : null,
+              ),
+            ],
           ),
         ),
       ),
