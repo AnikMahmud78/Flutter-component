@@ -1,31 +1,25 @@
 import 'package:flutter/material.dart';
-import 'widgets/poka_yoke_guard_card.dart';
-import 'models/poka_yoke_telemetry.dart';
+import 'widgets/m3_compliance_dialog.dart';
 
 void main() {
-  runApp(const HabotPokaYokeApp());
+  runApp(const ComplianceDialogApp());
 }
 
-class HabotPokaYokeApp extends StatelessWidget {
-  const HabotPokaYokeApp({Key? key}) : super(key: key);
+class ComplianceDialogApp extends StatelessWidget {
+  const ComplianceDialogApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Poka-Yoke Fraud Engine',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF005AC1)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
       home: Scaffold(
-        appBar: AppBar(title: const Text('HABOT Fraud Prevention Console')),
-        body: SingleChildScrollView(
+        appBar: AppBar(title: const Text('M3 Compliance Console')),
+        body: Padding(
           padding: const EdgeInsets.all(16.0),
-          child: PokaYokeGuardCard(
-            onExecutionLogged: (PokaYokeTelemetry telemetry) {
-              debugPrint('BigQuery Telemetry Stream: ${telemetry.toJson()}');
-            },
-          ),
+          child: M3ComplianceForm(onValidationPass: () {}),
         ),
       ),
     );
