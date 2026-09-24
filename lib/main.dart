@@ -1,29 +1,24 @@
 import 'package:flutter/material.dart';
-import 'models/abandonment_metric.dart';
-import 'widgets/single_column_layout.dart';
+import 'widgets/required_fields_form.dart';
 
 void main() {
-  runApp(const AbandonmentPreventionApp());
+  runApp(const FormEnforcementApp());
 }
 
-class AbandonmentPreventionApp extends StatelessWidget {
-  const AbandonmentPreventionApp({super.key});
+class FormEnforcementApp extends StatelessWidget {
+  const FormEnforcementApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Layout Abandonment Prevention',
-      theme: ThemeData(
-        useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-      ),
+      title: 'Required Field Enforcement',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Single-Column Mobile UX')),
-        body: SingleColumnLayoutWidget(
-          metric: AbandonmentMetric(
-            abandonmentRate: 0.12,
-            riskLevel: 'Low',
-            timestamp: DateTime.now(),
+        appBar: AppBar(title: const Text('Strict Form Completion Gate')),
+        body: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: RequiredFieldsForm(
+            onSubmitResult: (pass) {},
           ),
         ),
       ),
