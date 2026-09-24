@@ -1,59 +1,47 @@
 import 'package:flutter/material.dart';
-import 'models/history_card_model.dart';
-import 'widgets/history_rating_prompt_card.dart';
+import 'models/dispute_ticket_model.dart';
+import 'widgets/dispute_validation_card.dart';
 
 void main() {
-  runApp(const RatingPromptApp());
+  runApp(const DisputeApp());
 }
 
-class RatingPromptApp extends StatelessWidget {
-  const RatingPromptApp({Key? key}) : super(key: key);
+class DisputeApp extends StatelessWidget {
+  const DisputeApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT History Rating Prompts',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple)),
-      home: const RatingPromptScreen(),
+      title: 'Dispute Ticket SLA App',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
+      home: const DisputeScreen(),
     );
   }
 }
 
-class RatingPromptScreen extends StatefulWidget {
-  const RatingPromptScreen({Key? key}) : super(key: key);
-
-  @override
-  State<RatingPromptScreen> createState() => _RatingPromptScreenState();
-}
-
-class _RatingPromptScreenState extends State<RatingPromptScreen> {
-  HistoryCardModel _item = const HistoryCardModel(
-    serviceId: 'SRV-9532-88',
-    serviceTitle: 'After-School Care & Transport',
-    isCompleted: true,
-  );
+class DisputeScreen extends StatelessWidget {
+  const DisputeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const ticket = DisputeTicketModel(
+      disputeId: 'DISP-9543-12',
+      ticketNumber: 'TK-2026-9543',
+      isSlaTimerActive: true,
+      cycleTimeHours: 36,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('History Service Prompts')),
+      appBar: AppBar(title: const Text('ODR Dispute Tracker')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            HistoryRatingPromptCard(
-              model: _item,
-              onRateSelected: (rating) {
-                setState(() {
-                  _item = HistoryCardModel(
-                    serviceId: _item.serviceId,
-                    serviceTitle: _item.serviceTitle,
-                    isCompleted: true,
-                    rating: rating,
-                  );
-                });
+            DisputeValidationCard(
+              model: ticket,
+              onValidateSubmission: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Rating \$rating submitted! Telemetry synced.')),
+                  const SnackBar(content: Text('100% Ticket & Active Timer Validation Passed')),
                 );
               },
             ),
