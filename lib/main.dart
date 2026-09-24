@@ -1,66 +1,50 @@
 import 'package:flutter/material.dart';
-import 'models/plain_language_model.dart';
-import 'services/readability_calculator.dart';
-import 'widgets/plain_text_card.dart';
-import 'widgets/language_score_banner.dart';
+import 'models/fluid_scaling_model.dart';
+import 'services/fluid_text_utility.dart';
+import 'widgets/fluid_text_card.dart';
+import 'widgets/scaling_banner.dart';
 
 void main() {
-  runApp(const HABOTPlainLanguageApp());
+  runApp(const HABOTFluidApp());
 }
 
-class HABOTPlainLanguageApp extends StatelessWidget {
-  const HABOTPlainLanguageApp({super.key});
+class HABOTFluidApp extends StatelessWidget {
+  const HABOTFluidApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10280GEN-02051 Plain Language',
+      title: '10291GEN-02062 Fluid Scaling',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006689)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4A6267)),
       ),
-      home: const PlainLanguageScreen(),
+      home: const FluidScreen(),
     );
   }
 }
 
-class PlainLanguageScreen extends StatefulWidget {
-  const PlainLanguageScreen({super.key});
-
-  @override
-  State<PlainLanguageScreen> createState() => _PlainLanguageScreenState();
-}
-
-class _PlainLanguageScreenState extends State<PlainLanguageScreen> {
-  late PlainLanguageModel _model;
-
-  @override
-  void initState() {
-    super.initState();
-    _analyze();
-  }
-
-  void _analyze() {
-    setState(() {
-      _model = ReadabilityCalculator.analyzeText(
-        taskId: '10280GEN-02051',
-        text: 'Select your preferred data sync window to upload offline logs.',
-        userId: 'USER-ANIK-8821',
-      );
-    });
-  }
+class FluidScreen extends StatelessWidget {
+  const FluidScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final double width = MediaQuery.of(context).size.width;
+    final FluidScalingModel model = FluidTextUtility.evaluateFluidState(
+      taskId: '10291GEN-02062',
+      viewportWidth: width,
+      userId: 'USER-ANIK-8821',
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('MD3 Plain Language Evaluator')),
+      appBar: AppBar(title: const Text('Fluid Text Scaling Engine')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            LanguageScoreBanner(rate: _model.completionRate),
+            ScalingBanner(rate: model.completionRate),
             const SizedBox(height: 16.0),
-            PlainTextCard(model: _model, onReCheck: _analyze),
+            FluidTextCard(model: model),
           ],
         ),
       ),
