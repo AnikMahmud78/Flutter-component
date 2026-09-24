@@ -1,54 +1,50 @@
 import 'package:flutter/material.dart';
-import 'models/m3_error_handler_model.dart';
-import 'widgets/m3_error_handler_card.dart';
+import 'models/atomic_byt_model.dart';
+import 'widgets/atomic_byt_card.dart';
 
 void main() {
-  runApp(const M3ErrorHandlerApp());
+  runApp(const AtomicBytApp());
 }
 
-class M3ErrorHandlerApp extends StatelessWidget {
-  const M3ErrorHandlerApp({Key? key}) : super(key: key);
+class AtomicBytApp extends StatelessWidget {
+  const AtomicBytApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'M3 Error Handler',
+      title: 'Atomic Byt Enforcer',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const M3ErrorHandlerScreen(),
+      home: const AtomicBytScreen(),
     );
   }
 }
 
-class M3ErrorHandlerScreen extends StatefulWidget {
-  const M3ErrorHandlerScreen({Key? key}) : super(key: key);
-
-  @override
-  State<M3ErrorHandlerScreen> createState() => _M3ErrorHandlerScreenState();
-}
-
-class _M3ErrorHandlerScreenState extends State<M3ErrorHandlerScreen> {
-  M3ErrorHandlerModel _model = const M3ErrorHandlerModel(errorMessage: null, completionRate: 100.0);
+class AtomicBytScreen extends StatelessWidget {
+  const AtomicBytScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const bytModel = AtomicBytModel(
+      bytName: 'Md3StatusChipByt',
+      isAtomicCompliant: true,
+      completionRate: 100.0,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('MD3 Error Guidelines')),
+      appBar: AppBar(title: const Text('Atomic Byt Governance')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            M3ErrorHandlerCard(
-              model: _model,
-              onTriggerError: () {
-                setState(() {
-                  _model = M3ErrorHandlerModel(
-                    errorMessage: _model.hasError ? null : 'Invalid account identifier format',
-                    completionRate: 100.0,
-                  );
-                });
+            AtomicBytCard(
+              model: bytModel,
+              onInspectByt: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Atomic Component Standard Verified')),
+                );
               },
             ),
           ],
