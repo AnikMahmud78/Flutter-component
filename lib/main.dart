@@ -1,45 +1,49 @@
 import 'package:flutter/material.dart';
-import 'models/secure_lock_model.dart';
-import 'widgets/secure_lock_badge_card.dart';
+import 'models/review_exception_model.dart';
+import 'widgets/review_exception_card.dart';
 
 void main() {
-  runApp(const SecureLockApp());
+  runApp(const ReviewExceptionApp());
 }
 
-class SecureLockApp extends StatelessWidget {
-  const SecureLockApp({Key? key}) : super(key: key);
+class ReviewExceptionApp extends StatelessWidget {
+  const ReviewExceptionApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Secure Lock Chassis',
+      title: 'Ops Exception View',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const SecureLockScreen(),
+      home: const ReviewExceptionScreen(),
     );
   }
 }
 
-class SecureLockScreen extends StatelessWidget {
-  const SecureLockScreen({Key? key}) : super(key: key);
+class ReviewExceptionScreen extends StatelessWidget {
+  const ReviewExceptionScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const lockModel = SecureLockModel(isEncrypted: true, recognitionAccuracy: 0.96);
+    const exceptionModel = ReviewExceptionModel(
+      exceptionId: 'EXC-9796-01',
+      flaggedReason: 'Suspicious IP/Review Velocity Spike',
+      verificationRate: 0.99,
+    );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Card Form Chassis')),
+      appBar: AppBar(title: const Text('Ops Exception View Package')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SecureLockBadgeCard(
-              model: lockModel,
-              onFormSubmitted: () {
+            ReviewExceptionCard(
+              model: exceptionModel,
+              onResolveException: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Payment Method Saved (ISO 9186 Verified)')),
+                  const SnackBar(content: Text('Exception Audited Under ISO 20488')),
                 );
               },
             ),
