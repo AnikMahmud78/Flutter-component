@@ -1,52 +1,67 @@
 import 'package:flutter/material.dart';
-import 'models/skeleton_mimic_model.dart';
-import 'widgets/skeleton_mimic_card.dart';
+import 'models/modal_focus_model.dart';
+import 'widgets/modal_focus_card.dart';
 
 void main() {
-  runApp(const SkeletonMimicApp());
+  runApp(const ModalFocusApp());
 }
 
-class SkeletonMimicApp extends StatelessWidget {
-  const SkeletonMimicApp({Key? key}) : super(key: key);
+class ModalFocusApp extends StatelessWidget {
+  const ModalFocusApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Skeleton Mimic Loader',
+      title: 'Modal Focus Bounding',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const SkeletonMimicScreen(),
+      home: const ModalFocusScreen(),
     );
   }
 }
 
-class SkeletonMimicScreen extends StatefulWidget {
-  const SkeletonMimicScreen({Key? key}) : super(key: key);
+class ModalFocusScreen extends StatefulWidget {
+  const ModalFocusScreen({Key? key}) : super(key: key);
 
   @override
-  State<SkeletonMimicScreen> createState() => _SkeletonMimicScreenState();
+  State<ModalFocusScreen> createState() => _ModalFocusScreenState();
 }
 
-class _SkeletonMimicScreenState extends State<SkeletonMimicScreen> {
-  SkeletonMimicModel _model = const SkeletonMimicModel(isLoading: true, completionRate: 100.0);
+class _ModalFocusScreenState extends State<ModalFocusScreen> {
+  ModalFocusModel _model = const ModalFocusModel(isModalOpen: false, prRejectionRate: 99.5);
+
+  void _showBoundedModal() {
+    showDialog(
+      context: context,
+      builder: (context) => FocusScope(
+        autofocus: true,
+        child: AlertDialog(
+          title: const Text('Bounded Modal'),
+          content: const Text('Focus is trapped inside this modal dialog.'),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Close Modal'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Skeleton Loader Mimic')),
+      appBar: AppBar(title: const Text('Focus Management Console')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SkeletonMimicCard(
+            ModalFocusCard(
               model: _model,
-              onToggleLoading: () {
-                setState(() {
-                  _model = SkeletonMimicModel(isLoading: !_model.isLoading, completionRate: 100.0);
-                });
-              },
+              onOpenModal: _showBoundedModal,
             ),
           ],
         ),
