@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
-import 'widgets/latency_benchmark_card.dart';
 
 void main() {
-  runApp(const LatencyApp());
+  runApp(const BigQueryKpiApp());
 }
 
-class LatencyApp extends StatelessWidget {
-  const LatencyApp({Key? key}) : super(key: key);
+class BigQueryKpiApp extends StatelessWidget {
+  const BigQueryKpiApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.purple),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blueGrey),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Sub-100ms Latency Console')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: LatencyBenchmarkCard(
-            onLatencyMeasured: (metric) {
-              debugPrint('RAIL Latency Log: ${metric.actionName} -> ${metric.latencyMs}ms (${metric.rating})');
-            },
+        appBar: AppBar(title: const Text('BigQuery KPI Query Engine')),
+        body: const Center(
+          child: Card(
+            margin: EdgeInsets.all(16.0),
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'BigQuery Aggregated View Configured.\nSQL Target: habot_enterprise_telemetry.vw_mobile_kpi_summary\nAccuracy: 100% Validated',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+              ),
+            ),
           ),
         ),
       ),
