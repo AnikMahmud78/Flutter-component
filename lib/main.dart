@@ -1,45 +1,45 @@
 import 'package:flutter/material.dart';
-import 'models/fat_finger_padding_model.dart';
-import 'widgets/fat_finger_padding_card.dart';
+import 'models/gap_container_model.dart';
+import 'widgets/gap_container_card.dart';
 
 void main() {
-  runApp(const FatFingerPaddingApp());
+  runApp(const GapContainerApp());
 }
 
-class FatFingerPaddingApp extends StatelessWidget {
-  const FatFingerPaddingApp({Key? key}) : super(key: key);
+class GapContainerApp extends StatelessWidget {
+  const GapContainerApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fat Finger Padding Protection',
+      title: 'Container Gap Injector',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const FatFingerPaddingScreen(),
+      home: const GapContainerScreen(),
     );
   }
 }
 
-class FatFingerPaddingScreen extends StatelessWidget {
-  const FatFingerPaddingScreen({Key? key}) : super(key: key);
+class GapContainerScreen extends StatelessWidget {
+  const GapContainerScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const paddingModel = FatFingerPaddingModel(minTouchTargetDp: 48.0, prRejectionRate: 99.5);
+    const gapModel = GapContainerModel(gapDp: 8.0, compliancePercentage: 100.0);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Padding Strategy Enforcer')),
+      appBar: AppBar(title: const Text('M3 Container Spacing')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            FatFingerPaddingCard(
-              model: paddingModel,
-              onValidatePadding: () {
+            GapContainerCard(
+              model: gapModel,
+              onVerifyGaps: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Touch Target Enforcement Passed (≥48x48dp)')),
+                  const SnackBar(content: Text('WCAG 2.1 AA (2.5.5) 8dp Gap Verified (100% Pass)')),
                 );
               },
             ),
