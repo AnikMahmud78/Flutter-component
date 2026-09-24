@@ -1,70 +1,70 @@
 import 'package:flutter/material.dart';
-import 'models/persona_config_model.dart';
-import 'widgets/persona_governance_card.dart';
+import 'widgets/keyboard_anchored_menu.dart';
 
 void main() {
-  runApp(const PersonaGovernanceApp());
+  runApp(const KeyboardAnimationApp());
 }
 
-class PersonaGovernanceApp extends StatelessWidget {
-  const PersonaGovernanceApp({Key? key}) : super(key: key);
+class KeyboardAnimationApp extends StatelessWidget {
+  const KeyboardAnimationApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Persona Governance Audit',
+      title: 'Keyboard Anchored Slash Menu',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
       ),
-      home: const PersonaScreen(),
+      home: const KeyboardScreen(),
     );
   }
 }
 
-class PersonaScreen extends StatefulWidget {
-  const PersonaScreen({Key? key}) : super(key: key);
+class KeyboardScreen extends StatefulWidget {
+  const KeyboardScreen({Key? key}) : super(key: key);
 
   @override
-  State<PersonaScreen> createState() => _PersonaScreenState();
+  State<KeyboardScreen> createState() => _KeyboardScreenState();
 }
 
-class _PersonaScreenState extends State<PersonaScreen> {
-  late PersonaConfigModel _model;
+class _KeyboardScreenState extends State<KeyboardScreen> {
+  final TextEditingController _controller = TextEditingController();
+  bool _isMenuOpen = false;
 
-  @override
-  void initState() {
-    super.initState();
-    _model = PersonaConfigModel(
-      notebookId: 'NB-HABOT-2026',
-      personaName: 'Lead Systems Architect & Automation Engineer',
-      toneGuideline: 'Rigorous, Technical, Direct, Concise',
-      reuseRate: 92.5,
-      status: 'Good',
-    );
+  void _onTextChanged(String text) {
+    setState(() {
+      _isMenuOpen = text.endsWith('/');
+    });
   }
 
-  void _confirmPolicy() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Domain persona & tone guidelines confirmed for notebook.')),
-    );
+  void _handleCommand(String cmd) {
+    _controller.text = '${_controller.text}$cmd ';
+    setState(() => _isMenuOpen = false);
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Prompt Persona Governance')),
-      body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 600),
-          child: Padding(
+      appBar: AppBar(title: const Text('Slash Command Animation')),
+      body: Stack(
+        children: [
+          Padding(
             padding: const EdgeInsets.all(16.0),
-            child: PersonaGovernanceCard(
-              model: _model,
-              onConfirm: _confirmPolicy,
+            child: TextField(
+              controller: _controller,
+              onChanged: _onTextChanged,
+              decoration: const InputDecoration(
+                hintText: 'Type / to trigger slash menu...',
+                border: OutlineInputBorder(),
+              ),
             ),
           ),
-        ),
+          KeyboardAnchoredMenu(
+            isOpen: _isMenuOpen,
+            onCommandSelected: _handleCommand,
+          ),
+        ],
       ),
     );
   }
