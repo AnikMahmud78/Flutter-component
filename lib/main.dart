@@ -1,81 +1,59 @@
 import 'package:flutter/material.dart';
-import 'models/prompt_style_model.dart';
-import 'widgets/monospace_prompt_block.dart';
+import 'models/citation_model.dart';
+import 'widgets/citation_chip.dart';
 
 void main() {
-  runApp(const PromptStyleApp());
+  runApp(const CitationApp());
 }
 
-class PromptStyleApp extends StatelessWidget {
-  const PromptStyleApp({Key? key}) : super(key: key);
+class CitationApp extends StatelessWidget {
+  const CitationApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Monospace Text Component',
+      title: 'M3 Citation Chips',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const PromptStyleScreen(),
+      home: const CitationScreen(),
     );
   }
 }
 
-class PromptStyleScreen extends StatefulWidget {
-  const PromptStyleScreen({Key? key}) : super(key: key);
+class CitationScreen extends StatefulWidget {
+  const CitationScreen({Key? key}) : super(key: key);
 
   @override
-  State<PromptStyleScreen> createState() => _PromptStyleScreenState();
+  State<CitationScreen> createState() => _CitationScreenState();
 }
 
-class _PromptStyleScreenState extends State<PromptStyleScreen> {
-  late PromptStyleModel _model;
+class _CitationScreenState extends State<CitationScreen> {
+  final List<CitationModel> _citations = [
+    CitationModel(id: 'c1', sourceTitle: 'NIST 800-207 Zero Trust', url: 'https://nist.gov', index: 1),
+    CitationModel(id: 'c2', sourceTitle: 'ISO/IEC 27001 Security', url: 'https://iso.org', index: 2),
+    CitationModel(id: 'c3', sourceTitle: 'M3 Design Guidelines', url: 'https://m3.material.io', index: 3),
+  ];
 
-  @override
-  void initState() {
-    super.initState();
-    _model = PromptStyleModel(
-      rawPromptText: 'SYSTEM PROMPT: Enforce corporate mobile egress IP security tokens on all API requests.',
-      fontFamily: 'monospace',
-      consistencyScore: 100.0,
-      qualityRating: 'Good',
+  void _onCitationTap(CitationModel citation) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(content: Text('Opening Citation [${citation.index}]: ${citation.url}')),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Design System Monospace Audit')),
-      body: SingleChildScrollView(
+      appBar: AppBar(title: const Text('M3 Citation Input Chips')),
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 600),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text('Prompt Block Preview', style: theme.textTheme.titleMedium),
-                const SizedBox(height: 12),
-                MonospacePromptBlock(promptText: _model.rawPromptText),
-                const SizedBox(height: 16),
-                Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Font Family: ${_model.fontFamily}'),
-                        Text('Consistency Score: ${_model.consistencyScore}%'),
-                        Text('Quality Rating: ${_model.qualityRating}'),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+        child: Wrap(
+          spacing: 8.0,
+          runSpacing: 8.0,
+          children: _citations
+              .map((c) => CitationChip(citation: c, OnSelected: _onCitationTap))
+              .toList(),
         ),
       ),
     );
