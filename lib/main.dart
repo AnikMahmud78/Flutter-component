@@ -1,67 +1,59 @@
 import 'package:flutter/material.dart';
-import 'models/liveness_health_model.dart';
-import 'services/liveness_evaluator_engine.dart';
-import 'widgets/health_criteria_card.dart';
-import 'widgets/liveness_status_banner.dart';
+import 'models/achievement_badge_model.dart';
+import 'services/badge_award_engine.dart';
+import 'widgets/achievement_badge_widget.dart';
+import 'widgets/gamified_banner.dart';
 
 void main() {
-  runApp(const HABOTLivenessApp());
+  runApp(const HABOTGamifiedApp());
 }
 
-class HABOTLivenessApp extends StatelessWidget {
-  const HABOTLivenessApp({super.key});
+class HABOTGamifiedApp extends StatelessWidget {
+  const HABOTGamifiedApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10324GEN-02095 Liveness Handshake',
+      title: '10335GEN-02106 MD3 Gamified Badges',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00687A)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF7B5300)),
       ),
-      home: const LivenessScreen(),
+      home: const GamifiedScreen(),
     );
   }
 }
 
-class LivenessScreen extends StatefulWidget {
-  const LivenessScreen({super.key});
+class GamifiedScreen extends StatefulWidget {
+  const GamifiedScreen({super.key});
 
   @override
-  State<LivenessScreen> createState() => _LivenessScreenState();
+  State<GamifiedScreen> createState() => _GamifiedScreenState();
 }
 
-class _LivenessScreenState extends State<LivenessScreen> {
-  late LivenessHealthModel _model;
+class _GamifiedScreenState extends State<GamifiedScreen> {
+  late AchievementBadgeModel _model;
 
   @override
   void initState() {
     super.initState();
-    _probe();
-  }
-
-  void _probe() {
-    setState(() {
-      _model = LivenessEvaluatorEngine.evaluateResponse(
-        taskId: '10324GEN-02095',
-        statusCode: 200,
-        latencyMs: 42.0,
-        userId: 'USER-ANIK-8821',
-      );
-    });
+    _model = BadgeAwardEngine.fetchUserBadge(
+      taskId: '10335GEN-02106',
+      userId: 'USER-ANIK-8821',
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Liveness Criteria Verifier')),
+      appBar: AppBar(title: const Text('MD3 Gamified Achievement Badges')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            LivenessStatusBanner(rate: _model.stepCompletionRate),
+            GamifiedBanner(rate: _model.completionRate),
             const SizedBox(height: 16.0),
-            HealthCriteriaCard(model: _model, onPing: _probe),
+            AchievementBadgeWidget(model: _model),
           ],
         ),
       ),
