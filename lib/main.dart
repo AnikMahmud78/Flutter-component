@@ -1,46 +1,54 @@
 import 'package:flutter/material.dart';
-import 'models/zero_zoom_model.dart';
-import 'widgets/zero_zoom_card.dart';
+import 'models/z_index_overlay_model.dart';
+import 'widgets/z_index_overlay_card.dart';
 
 void main() {
-  runApp(const ZeroZoomApp());
+  runApp(const ZIndexOverlayApp());
 }
 
-class ZeroZoomApp extends StatelessWidget {
-  const ZeroZoomApp({Key? key}) : super(key: key);
+class ZIndexOverlayApp extends StatelessWidget {
+  const ZIndexOverlayApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Zero-Zoom Viewport App',
+      title: 'Z-Index Overlay Barrier',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple),
       ),
-      home: const ZeroZoomScreen(),
+      home: const ZIndexOverlayScreen(),
     );
   }
 }
 
-class ZeroZoomScreen extends StatelessWidget {
-  const ZeroZoomScreen({Key? key}) : super(key: key);
+class ZIndexOverlayScreen extends StatefulWidget {
+  const ZIndexOverlayScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ZIndexOverlayScreen> createState() => _ZIndexOverlayScreenState();
+}
+
+class _ZIndexOverlayScreenState extends State<ZIndexOverlayScreen> {
+  ZIndexOverlayModel _model = const ZIndexOverlayModel(isOverlayActive: false, complianceRate: 100.0);
 
   @override
   Widget build(BuildContext context) {
-    const zeroZoomModel = ZeroZoomModel(isFitToViewport: true, completionRate: 100.0);
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Zero-Zoom Layout Engine')),
+      appBar: AppBar(title: const Text('Z-Index Touch Enforcer')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ZeroZoomCard(
-              model: zeroZoomModel,
-              onVerifyLayout: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Layout Fits Viewport (Zero Zoom/Scroll Required)')),
-                );
+            ZIndexOverlayCard(
+              model: _model,
+              onToggleOverlay: () {
+                setState(() {
+                  _model = ZIndexOverlayModel(
+                    isOverlayActive: !_model.isOverlayActive,
+                    complianceRate: 100.0,
+                  );
+                });
               },
             ),
           ],
