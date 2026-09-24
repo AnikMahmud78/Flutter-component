@@ -1,35 +1,44 @@
-// lib/widgets/mto_efficiency_card.dart
-import 'package:flutter/material.dart';
-
-class MtoEfficiencyCard extends StatelessWidget {
-  const MtoEfficiencyCard({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text('MTO Workforce Efficiency Metrics', style: theme.textTheme.titleMedium),
-        const SizedBox(height: 12.0),
-        ListTile(
-          contentPadding: EdgeInsets.zero,
-          title: const Text('Active Queue Depth: 14 Tasks'),
-          subtitle: const Text('Avg Turnaround Time: 12.4 mins'),
-          trailing: Icon(Icons.check_circle, color: theme.colorScheme.primary),
-        ),
-        const SizedBox(height: 16.0),
-        ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 48.0),
-          child: ElevatedButton.icon(
-            style: ElevatedButton.styleFrom(minimumSize: const Size(double.infinity, 48.0)),
-            onPressed: () {},
-            icon: const Icon(Icons.insights),
-            label: const Text('DRILL DOWN QUEUE DETAILS'),
-          ),
-        ),
-      ],
-    );
-  }
+import 'package:flutter/material.dart';
+import '../models/efficiency_metric.dart';
+
+class MtoEfficiencyCard extends StatelessWidget {
+  final EfficiencyMetric metric;
+
+  const MtoEfficiencyCard({super.key, required this.metric});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 3,
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('UI Task Completion Metrics', style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 12),
+            Text('Baseline Avg Time: \${metric.baselineMinutes} mins'),
+            Text('Optimized UI Avg Time: \${metric.optimizedMinutes} mins'),
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                Icon(
+                  metric.passesTarget ? Icons.trending_down : Icons.warning,
+                  color: metric.passesTarget ? Colors.green : Colors.red,
+                ),
+                const SizedBox(width: 8),
+                Text(
+                  'Time Reduction: \${metric.reductionPercentage.toStringAsFixed(1)}%',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: metric.passesTarget ? Colors.green : Colors.red,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
