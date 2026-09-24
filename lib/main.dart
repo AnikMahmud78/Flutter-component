@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
-import 'models/tactile_feedback_model.dart';
-import 'widgets/tactile_feedback_card.dart';
+import 'models/progressive_disclosure_model.dart';
+import 'widgets/progressive_disclosure_card.dart';
 
 void main() {
-  runApp(const TactileFeedbackApp());
+  runApp(const ProgressiveDisclosureApp());
 }
 
-class TactileFeedbackApp extends StatelessWidget {
-  const TactileFeedbackApp({Key? key}) : super(key: key);
+class ProgressiveDisclosureApp extends StatelessWidget {
+  const ProgressiveDisclosureApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tactile Feedback App',
+      title: 'Progressive Disclosure Gate',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TactileFeedbackScreen(),
+      home: const ProgressiveDisclosureScreen(),
     );
   }
 }
 
-class TactileFeedbackScreen extends StatefulWidget {
-  const TactileFeedbackScreen({Key? key}) : super(key: key);
+class ProgressiveDisclosureScreen extends StatefulWidget {
+  const ProgressiveDisclosureScreen({Key? key}) : super(key: key);
 
   @override
-  State<TactileFeedbackScreen> createState() => _TactileFeedbackScreenState();
+  State<ProgressiveDisclosureScreen> createState() => _ProgressiveDisclosureScreenState();
 }
 
-class _TactileFeedbackScreenState extends State<TactileFeedbackScreen> {
-  TactileFeedbackModel _model = const TactileFeedbackModel(isSelected: false, completionRate: 100.0);
+class _ProgressiveDisclosureScreenState extends State<ProgressiveDisclosureScreen> {
+  ProgressiveDisclosureModel _model = const ProgressiveDisclosureModel(isExpanded: false, prRejectionRate: 99.5);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Tactile Selection Feedback')),
+      appBar: AppBar(title: const Text('Progressive Disclosure Console')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TactileFeedbackCard(
+            ProgressiveDisclosureCard(
               model: _model,
-              onSelectionChanged: (selected) {
+              onExpansionChanged: (expanded) {
                 setState(() {
-                  _model = TactileFeedbackModel(isSelected: selected, completionRate: 100.0);
+                  _model = ProgressiveDisclosureModel(isExpanded: expanded, prRejectionRate: 99.5);
                 });
               },
             ),
