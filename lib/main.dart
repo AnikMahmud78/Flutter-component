@@ -1,50 +1,54 @@
 import 'package:flutter/material.dart';
-import 'models/price_range_model.dart';
-import 'widgets/price_range_slider_card.dart';
+import 'models/availability_badge_model.dart';
+import 'widgets/availability_badge_card.dart';
 
 void main() {
-  runApp(const PriceSliderApp());
+  runApp(const AvailabilityBadgeApp());
 }
 
-class PriceSliderApp extends StatelessWidget {
-  const PriceSliderApp({Key? key}) : super(key: key);
+class AvailabilityBadgeApp extends StatelessWidget {
+  const AvailabilityBadgeApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Price Range Filter',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
-      home: const PriceSliderScreen(),
+      title: 'Availability Badge Monitor',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),
+      home: const AvailabilityBadgeScreen(),
     );
   }
 }
 
-class PriceSliderScreen extends StatefulWidget {
-  const PriceSliderScreen({Key? key}) : super(key: key);
+class AvailabilityBadgeScreen extends StatefulWidget {
+  const AvailabilityBadgeScreen({Key? key}) : super(key: key);
 
   @override
-  State<PriceSliderScreen> createState() => _PriceSliderScreenState();
+  State<AvailabilityBadgeScreen> createState() => _AvailabilityBadgeScreenState();
 }
 
-class _PriceSliderScreenState extends State<PriceSliderScreen> {
-  PriceRangeModel _model = const PriceRangeModel(minPrice: 50.0, maxPrice: 250.0, latencyMs: 120);
+class _AvailabilityBadgeScreenState extends State<AvailabilityBadgeScreen> {
+  AvailabilityBadgeModel _model = const AvailabilityBadgeModel(
+    statusText: 'Available Today',
+    isAvailable: true,
+    accuracy: 0.999,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Filter Controls')),
+      appBar: AppBar(title: const Text('M3 Availability Badge')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            PriceRangeSliderCard(
+            AvailabilityBadgeCard(
               model: _model,
-              RangeChanged: (newValues) {
+              onToggleStatus: () {
                 setState(() {
-                  _model = PriceRangeModel(
-                    minPrice: newValues.start,
-                    maxPrice: newValues.end,
-                    latencyMs: 110,
+                  _model = AvailabilityBadgeModel(
+                    statusText: _model.isAvailable ? 'Unavailable' : 'Available Today',
+                    isAvailable: !_model.isAvailable,
+                    accuracy: 0.999,
                   );
                 });
               },
