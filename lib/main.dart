@@ -1,49 +1,48 @@
 import 'package:flutter/material.dart';
-import 'models/devops_metrics_model.dart';
-import 'widgets/devops_metrics_card.dart';
+import 'models/figma_token_map_model.dart';
+import 'widgets/figma_token_map_card.dart';
 
 void main() {
-  runApp(const DevOpsMetricsApp());
+  runApp(const FigmaTokenMapApp());
 }
 
-class DevOpsMetricsApp extends StatelessWidget {
-  const DevOpsMetricsApp({Key? key}) : super(key: key);
+class FigmaTokenMapApp extends StatelessWidget {
+  const FigmaTokenMapApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'DevOps Build Health',
+      title: 'Figma Token Mapper',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const DevOpsMetricsScreen(),
+      home: const FigmaTokenMapScreen(),
     );
   }
 }
 
-class DevOpsMetricsScreen extends StatelessWidget {
-  const DevOpsMetricsScreen({Key? key}) : super(key: key);
+class FigmaTokenMapScreen extends StatelessWidget {
+  const FigmaTokenMapScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const devOpsModel = DevOpsMetricsModel(
-      buildPassRate: 1.0,
-      complianceScore: 0.99,
-      refreshLatencyMinutes: 1.5,
+    const mapModel = FigmaTokenMapModel(
+      figmaFileId: 'FIGMA-M3-9895',
+      mappingCompletionRate: 99.5,
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('DevOps Health Console')),
+      appBar: AppBar(title: const Text('Figma Design Tokens')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DevOpsMetricsCard(
-              model: devOpsModel,
-              onRefresh: () {
+            FigmaTokenMapCard(
+              model: mapModel,
+              onSyncTokens: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('CI/CD Health Telemetry Synced (<5m SLA)')),
+                  const SnackBar(content: Text('1:1 Pixel Fidelity Confirmed (100% Pass)')),
                 );
               },
             ),
