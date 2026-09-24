@@ -1,60 +1,50 @@
 import 'package:flutter/material.dart';
-import 'models/availability_badge_model.dart';
-import 'widgets/availability_badge_card.dart';
+import 'models/service_detail_model.dart';
+import 'widgets/service_detail_chassis.dart';
 
 void main() {
-  runApp(const AvailabilityBadgeApp());
+  runApp(const ServiceDetailApp());
 }
 
-class AvailabilityBadgeApp extends StatelessWidget {
-  const AvailabilityBadgeApp({Key? key}) : super(key: key);
+class ServiceDetailApp extends StatelessWidget {
+  const ServiceDetailApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Availability Badge Monitor',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),
-      home: const AvailabilityBadgeScreen(),
+      title: 'HABOT Service Detail Chassis',
+      theme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+      ),
+      home: const ServiceDetailScreen(),
     );
   }
 }
 
-class AvailabilityBadgeScreen extends StatefulWidget {
-  const AvailabilityBadgeScreen({Key? key}) : super(key: key);
-
-  @override
-  State<AvailabilityBadgeScreen> createState() => _AvailabilityBadgeScreenState();
-}
-
-class _AvailabilityBadgeScreenState extends State<AvailabilityBadgeScreen> {
-  AvailabilityBadgeModel _model = const AvailabilityBadgeModel(
-    statusText: 'Available Today',
-    isAvailable: true,
-    accuracy: 0.999,
-  );
+class ServiceDetailScreen extends StatelessWidget {
+  const ServiceDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const detailModel = ServiceDetailModel(
+      serviceId: 'SRV-9697-MASTER',
+      title: 'Premium Home Cleaning & Organization',
+      providerName: 'Elite Home Solutions',
+      hourlyRate: 45.0,
+      rating: 4.9,
+      iaTaskSuccessRate: 0.95,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('M3 Availability Badge')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            AvailabilityBadgeCard(
-              model: _model,
-              onToggleStatus: () {
-                setState(() {
-                  _model = AvailabilityBadgeModel(
-                    statusText: _model.isAvailable ? 'Unavailable' : 'Available Today',
-                    isAvailable: !_model.isAvailable,
-                    accuracy: 0.999,
-                  );
-                });
-              },
-            ),
-          ],
-        ),
+      appBar: AppBar(title: const Text('Service Details')),
+      body: ServiceDetailChassis(
+        model: detailModel,
+        onBookNow: () {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Service Booking Initiated (IA Task Success: 95%)')),
+          );
+        },
       ),
     );
   }
