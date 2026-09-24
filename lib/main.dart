@@ -1,50 +1,49 @@
 import 'package:flutter/material.dart';
-import 'models/video_3g_playback_model.dart';
-import 'services/hls_network_simulator.dart';
-import 'widgets/streaming_performance_card.dart';
-import 'widgets/latency_metric_banner.dart';
+import 'models/calamity_gap_model.dart';
+import 'services/calamity_channel_service.dart';
+import 'widgets/calamity_alert_card.dart';
+import 'widgets/escalation_header.dart';
 
 void main() {
-  runApp(const HABOT3gVideoApp());
+  runApp(const HABOTCalamityApp());
 }
 
-class HABOT3gVideoApp extends StatelessWidget {
-  const HABOT3gVideoApp({super.key});
+class HABOTCalamityApp extends StatelessWidget {
+  const HABOTCalamityApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10170GEN-01938 3G Video Playback',
+      title: '10181GEN-01949 Calamity Channel',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF7D5260)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFB3261E)),
       ),
-      home: const Video3gScreen(),
+      home: const CalamityScreen(),
     );
   }
 }
 
-class Video3gScreen extends StatefulWidget {
-  const Video3gScreen({super.key});
+class CalamityScreen extends StatefulWidget {
+  const CalamityScreen({super.key});
 
   @override
-  State<Video3gScreen> createState() => _Video3gScreenState();
+  State<CalamityScreen> createState() => _CalamityScreenState();
 }
 
-class _Video3gScreenState extends State<Video3gScreen> {
-  late Video3gPlaybackModel _model;
+class _CalamityScreenState extends State<CalamityScreen> {
+  late CalamityGapModel _model;
 
   @override
   void initState() {
     super.initState();
-    _runTest();
+    _loadGap();
   }
 
-  void _runTest() {
+  void _loadGap() {
     setState(() {
-      _model = HlsNetworkSimulator.evaluate3gPlayback(
-        taskId: '10170GEN-01938',
-        mediaUrl: 'https://cdn.habot.io/sops/stream_01938.m3u8',
+      _model = CalamityChannelService.fetchActiveGap(
+        taskId: '10181GEN-01949',
         userId: 'USER-ANIK-8821',
       );
     });
@@ -53,14 +52,14 @@ class _Video3gScreenState extends State<Video3gScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('3G Instant Playback Verifier')),
+      appBar: AppBar(title: const Text('Calamity Channel Governance')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            LatencyMetricBanner(successRate: _model.playbackSuccessRate),
+            EscalationHeader(rate: _model.completionRate),
             const SizedBox(height: 16.0),
-            StreamingPerformanceCard(model: _model, onTestPlayback: _runTest),
+            CalamityAlertCard(model: _model, onAcknowledge: _loadGap),
           ],
         ),
       ),
