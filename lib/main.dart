@@ -1,51 +1,68 @@
 import 'package:flutter/material.dart';
-import 'models/adaptive_layout_model.dart';
-import 'services/layout_breakpoint_engine.dart';
-import 'widgets/adaptive_navigation_shell.dart';
-import 'widgets/completion_status_card.dart';
+import 'models/geofence_feature_model.dart';
+import 'services/geofence_engine.dart';
+import 'widgets/geofence_status_card.dart';
+import 'widgets/geofence_metric_banner.dart';
 
 void main() {
-  runApp(const HABOTAdaptiveLayoutApp());
+  runApp(const HABOTGeofenceApp());
 }
 
-class HABOTAdaptiveLayoutApp extends StatelessWidget {
-  const HABOTAdaptiveLayoutApp({super.key});
+class HABOTGeofenceApp extends StatelessWidget {
+  const HABOTGeofenceApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10236GEN-02005 Layout Router',
+      title: '10247GEN-02016 Geofence Features',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6750A4)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF356A5D)),
       ),
-      home: const LayoutRouterScreen(),
+      home: const GeofenceScreen(),
     );
   }
 }
 
-class LayoutRouterScreen extends StatelessWidget {
-  const LayoutRouterScreen({super.key});
+class GeofenceScreen extends StatefulWidget {
+  const GeofenceScreen({super.key});
+
+  @override
+  State<GeofenceScreen> createState() => _GeofenceScreenState();
+}
+
+class _GeofenceScreenState extends State<GeofenceScreen> {
+  late GeofenceFeatureModel _model;
+
+  @override
+  void initState() {
+    super.initState();
+    _ping();
+  }
+
+  void _ping() {
+    setState(() {
+      _model = GeofenceEngine.checkLocation(
+        taskId: '10247GEN-02016',
+        lat: 25.7439,
+        lng: 89.2752,
+        userId: 'USER-ANIK-8821',
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final double width = MediaQuery.of(context).size.width;
-    final AdaptiveLayoutModel model = LayoutBreakpointEngine.evaluateWidth(
-      width,
-      '10236GEN-02005',
-      'USER-ANIK-8821',
-    );
-
-    return AdaptiveNavigationShell(
-      model: model,
-      child: Scaffold(
-        appBar: AppBar(title: const Text('Dynamic Component Mount/Unmount Router')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: CompletionStatusCard(
-            rate: model.completionRate,
-            activeMode: model.currentMode.name.toUpperCase(),
-          ),
+    return Scaffold(
+      appBar: AppBar(title: const Text('Geofence Auto-Unlock Engine')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            GeofenceMetricBanner(rate: _model.completionRate),
+            const SizedBox(height: 16.0),
+            GeofenceStatusCard(model: _model, onRefreshLocation: _ping),
+          ],
         ),
       ),
     );
