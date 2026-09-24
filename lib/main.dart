@@ -1,49 +1,49 @@
 import 'package:flutter/material.dart';
-import 'models/fulfillment_bi_model.dart';
-import 'widgets/fulfillment_bi_card.dart';
+import 'models/fcm_priority_model.dart';
+import 'widgets/fcm_priority_card.dart';
 
 void main() {
-  runApp(const FulfillmentBiApp());
+  runApp(const FcmPriorityApp());
 }
 
-class FulfillmentBiApp extends StatelessWidget {
-  const FulfillmentBiApp({Key? key}) : super(key: key);
+class FcmPriorityApp extends StatelessWidget {
+  const FcmPriorityApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Fulfillment BI App',
+      title: 'FCM Priority Alert',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
       ),
-      home: const FulfillmentBiScreen(),
+      home: const FcmPriorityScreen(),
     );
   }
 }
 
-class FulfillmentBiScreen extends StatelessWidget {
-  const FulfillmentBiScreen({Key? key}) : super(key: key);
+class FcmPriorityScreen extends StatelessWidget {
+  const FcmPriorityScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const biModel = FulfillmentBiModel(
-      avgFulfillmentHours: 1.4,
-      transitionSpeedSeconds: 12.5,
-      activeBottlenecks: 0,
+    const fcmModel = FcmPriorityModel(
+      channelId: 'HABOT_CRITICAL_ALERTS',
+      isHighPriority: true,
+      mttdMinutes: 1,
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Fulfillment BI Console')),
+      appBar: AppBar(title: const Text('FCM Alert Configuration')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            FulfillmentBiCard(
-              model: biModel,
-              onRefresh: () {
+            FcmPriorityCard(
+              model: fcmModel,
+              onTestAlert: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Operational Metrics Synced (<5 mins SLA)')),
+                  const SnackBar(content: Text('Lock Screen High-Priority Alert Sent (MTTD <2m)')),
                 );
               },
             ),
