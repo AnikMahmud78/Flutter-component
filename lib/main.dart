@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
-import 'models/strict_input_model.dart';
-import 'widgets/strict_input_card.dart';
+import 'models/skeleton_mimic_model.dart';
+import 'widgets/skeleton_mimic_card.dart';
 
 void main() {
-  runApp(const StrictInputApp());
+  runApp(const SkeletonMimicApp());
 }
 
-class StrictInputApp extends StatelessWidget {
-  const StrictInputApp({Key? key}) : super(key: key);
+class SkeletonMimicApp extends StatelessWidget {
+  const SkeletonMimicApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Strict Input Component',
+      title: 'Skeleton Mimic Loader',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.grey),
       ),
-      home: const StrictInputScreen(),
+      home: const SkeletonMimicScreen(),
     );
   }
 }
 
-class StrictInputScreen extends StatefulWidget {
-  const StrictInputScreen({Key? key}) : super(key: key);
+class SkeletonMimicScreen extends StatefulWidget {
+  const SkeletonMimicScreen({Key? key}) : super(key: key);
 
   @override
-  State<StrictInputScreen> createState() => _StrictInputScreenState();
+  State<SkeletonMimicScreen> createState() => _SkeletonMimicScreenState();
 }
 
-class _StrictInputScreenState extends State<StrictInputScreen> {
-  StrictInputModel _model = const StrictInputModel(numericValue: '', completionRate: 100.0);
+class _SkeletonMimicScreenState extends State<SkeletonMimicScreen> {
+  SkeletonMimicModel _model = const SkeletonMimicModel(isLoading: true, completionRate: 100.0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Input Type Rejection Gate')),
+      appBar: AppBar(title: const Text('Skeleton Loader Mimic')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            StrictInputCard(
+            SkeletonMimicCard(
               model: _model,
-              onChanged: (val) {
+              onToggleLoading: () {
                 setState(() {
-                  _model = StrictInputModel(numericValue: val, completionRate: 100.0);
+                  _model = SkeletonMimicModel(isLoading: !_model.isLoading, completionRate: 100.0);
                 });
               },
             ),
