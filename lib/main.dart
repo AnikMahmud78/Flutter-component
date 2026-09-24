@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
-import 'services/token_audit_engine.dart';
+import 'models/user_profile.dart';
+import 'widgets/read_only_profile_card.dart';
 
-void main() => runApp(const TokenAuditApp());
+void main() => runApp(const ProfileApp());
 
-class TokenAuditApp extends StatelessWidget {
-  const TokenAuditApp({super.key});
+class ProfileApp extends StatelessWidget {
+  const ProfileApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final auditEngine = TokenAuditEngine();
-    final sampleCode = [
-      "color: md.sys.color.primary",
-      "padding: Spacing.medium",
-      "color: md.sys.color.surface",
-    ];
-    final score = auditEngine.auditSourceCode(sampleCode);
-
     return MaterialApp(
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('NPM Token Audit Engine')),
-        body: Center(
-          child: Text(
-            'Token Compliance Rate: \${(score * 100).toStringAsFixed(0)}%',
-            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        appBar: AppBar(title: const Text('Read-Only Profile View')),
+        body: const Padding(
+          padding: EdgeInsets.all(16.0),
+          child: ReadOnlyProfileCard(
+            profile: UserProfile(
+              name: 'Anik Rahman',
+              role: 'Lead Systems Architect',
+              department: 'Mobile Infrastructure',
+              email: 'anik@habot.io',
+            ),
           ),
         ),
       ),
