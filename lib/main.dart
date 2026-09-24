@@ -1,86 +1,69 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'models/countdown_model.dart';
-import 'widgets/countdown_clock_widget.dart';
+import 'models/persona_config_model.dart';
+import 'widgets/persona_governance_card.dart';
 
 void main() {
-  runApp(const CountdownClockApp());
+  runApp(const PersonaGovernanceApp());
 }
 
-class CountdownClockApp extends StatelessWidget {
-  const CountdownClockApp({Key? key}) : super(key: key);
+class PersonaGovernanceApp extends StatelessWidget {
+  const PersonaGovernanceApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Task Countdown Timer',
+      title: 'Persona Governance Audit',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const CountdownScreen(),
+      home: const PersonaScreen(),
     );
   }
 }
 
-class CountdownScreen extends StatefulWidget {
-  const CountdownScreen({Key? key}) : super(key: key);
+class PersonaScreen extends StatefulWidget {
+  const PersonaScreen({Key? key}) : super(key: key);
 
   @override
-  State<CountdownScreen> createState() => _CountdownScreenState();
+  State<PersonaScreen> createState() => _PersonaScreenState();
 }
 
-class _CountdownScreenState extends State<CountdownScreen> {
-  static const int _initialSeconds = 300;
-  int _secondsLeft = _initialSeconds;
-  Timer? _timer;
+class _PersonaScreenState extends State<PersonaScreen> {
+  late PersonaConfigModel _model;
 
   @override
   void initState() {
     super.initState();
-    _startTimer();
+    _model = PersonaConfigModel(
+      notebookId: 'NB-HABOT-2026',
+      personaName: 'Lead Systems Architect & Automation Engineer',
+      toneGuideline: 'Rigorous, Technical, Direct, Concise',
+      reuseRate: 92.5,
+      status: 'Good',
+    );
   }
 
-  void _startTimer() {
-    _timer?.cancel();
-    _secondsLeft = _initialSeconds;
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
-      if (_secondsLeft > 0) {
-        setState(() => _secondsLeft--);
-      } else {
-        _timer?.cancel();
-      }
-    });
-  }
-
-  @override
-  void dispose() {
-    _timer?.cancel();
-    super.dispose();
+  void _confirmPolicy() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Domain persona & tone guidelines confirmed for notebook.')),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final model = CountdownModel(
-      totalSeconds: _initialSeconds,
-      remainingSeconds: _secondsLeft,
-      isExpired: _secondsLeft == 0,
-    );
-
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Task Session Window'),
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: CountdownClockWidget(model: model),
-          ),
-        ],
-      ),
+      appBar: AppBar(title: const Text('Prompt Persona Governance')),
       body: Center(
-        child: ElevatedButton(
-          onPressed: _startTimer,
-          child: const Text('Reset 5-Minute Window'),
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 600),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: PersonaGovernanceCard(
+              model: _model,
+              onConfirm: _confirmPolicy,
+            ),
+          ),
         ),
       ),
     );
