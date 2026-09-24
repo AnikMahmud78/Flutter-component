@@ -1,59 +1,65 @@
 import 'package:flutter/material.dart';
-import 'models/field_subtext_model.dart';
-import 'services/field_subtext_service.dart';
-import 'widgets/action_field_widget.dart';
-import 'widgets/subtext_status_banner.dart';
+import 'models/uri_context_model.dart';
+import 'services/uri_parser_engine.dart';
+import 'widgets/uri_context_card.dart';
+import 'widgets/routing_banner.dart';
 
 void main() {
-  runApp(const HABOTSubtextApp());
+  runApp(const HABOTUriApp());
 }
 
-class HABOTSubtextApp extends StatelessWidget {
-  const HABOTSubtextApp({super.key});
+class HABOTUriApp extends StatelessWidget {
+  const HABOTUriApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10302GEN-02073 Field Subtext',
+      title: '10313GEN-02084 URI Context',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006A6A)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF535D7E)),
       ),
-      home: const SubtextScreen(),
+      home: const UriScreen(),
     );
   }
 }
 
-class SubtextScreen extends StatefulWidget {
-  const SubtextScreen({super.key});
+class UriScreen extends StatefulWidget {
+  const UriScreen({super.key});
 
   @override
-  State<SubtextScreen> createState() => _SubtextScreenState();
+  State<UriScreen> createState() => _UriScreenState();
 }
 
-class _SubtextScreenState extends State<SubtextScreen> {
-  late FieldSubtextModel _model;
+class _UriScreenState extends State<UriScreen> {
+  late UriContextModel _model;
 
   @override
   void initState() {
     super.initState();
-    _model = FieldSubtextService.getSubtextConfig(
-      taskId: '10302GEN-02073',
-      userId: 'USER-ANIK-8821',
-    );
+    _parse();
+  }
+
+  void _parse() {
+    setState(() {
+      _model = UriParserEngine.parseUri(
+        'habot://console/execution?task_id=10313GEN-02084&trace_id=TRACE-992-2026',
+        'USER-ANIK-8821',
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Actionable Subtext Field Renderer')),
+      appBar: AppBar(title: const Text('URI Context Deep-Link Engine')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SubtextStatusBanner(rate: _model.completionRate),
+            RoutingBanner(rate: _model.completionRate),
             const SizedBox(height: 16.0),
-            ActionFieldWidget(model: _model),
+            UriContextCard(model: _model, onParseNewUri: _parse),
           ],
         ),
       ),
