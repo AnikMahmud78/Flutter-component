@@ -1,55 +1,61 @@
 import 'package:flutter/material.dart';
-import 'models/form_lock_model.dart';
-import 'widgets/form_lock_card.dart';
+import 'models/hesitation_monitor_model.dart';
+import 'widgets/hesitation_monitor_card.dart';
 
 void main() {
-  runApp(const FormLockApp());
+  runApp(const HesitationMonitorApp());
 }
 
-class FormLockApp extends StatelessWidget {
-  const FormLockApp({Key? key}) : super(key: key);
+class HesitationMonitorApp extends StatelessWidget {
+  const HesitationMonitorApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Form Lock Verification',
+      title: 'Hesitation Telemetry Logger',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
       ),
-      home: const FormLockScreen(),
+      home: const HesitationMonitorScreen(),
     );
   }
 }
 
-class FormLockScreen extends StatefulWidget {
-  const FormLockScreen({Key? key}) : super(key: key);
+class HesitationMonitorScreen extends StatefulWidget {
+  const HesitationMonitorScreen({Key? key}) : super(key: key);
 
   @override
-  State<FormLockScreen> createState() => _FormLockScreenState();
+  State<HesitationMonitorScreen> createState() => _HesitationMonitorScreenState();
 }
 
-class _FormLockScreenState extends State<FormLockScreen> {
-  FormLockModel _model = const FormLockModel(isFormValid: false, lockRatePercentage: 100.0);
+class _HesitationMonitorScreenState extends State<HesitationMonitorScreen> {
+  HesitationMonitorModel _model = const HesitationMonitorModel(
+    thresholdSeconds: 5,
+    detectionAccuracy: 95.0,
+    isHesitationDetected: false,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Submit State Lock Verification')),
+      appBar: AppBar(title: const Text('Friction Telemetry Console')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            FormLockCard(
+            HesitationMonitorCard(
               model: _model,
-              onToggleValidity: (valid) {
+              onSimulateHesitation: () {
                 setState(() {
-                  _model = FormLockModel(isFormValid: valid, lockRatePercentage: 100.0);
+                  _model = const HesitationMonitorModel(
+                    thresholdSeconds: 5,
+                    detectionAccuracy: 95.0,
+                    isHesitationDetected: true,
+                  );
                 });
-              },
-              onSubmit: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Form Submitted Successfully')),
+                  const SnackBar(content: Text('Hesitation Event Logged to BigQuery Stream')),
                 );
               },
             ),
