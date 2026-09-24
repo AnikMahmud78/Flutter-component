@@ -1,25 +1,28 @@
 import 'package:flutter/material.dart';
-import 'widgets/rbac_lead_dashboard.dart';
-import 'models/user_role_permissions.dart';
+import 'widgets/reconnecting_indicator.dart';
 
 void main() {
-  runApp(const RbacApp());
+  runApp(const ReconnectApp());
 }
 
-class RbacApp extends StatelessWidget {
-  const RbacApp({Key? key}) : super(key: key);
+class ReconnectApp extends StatelessWidget {
+  const ReconnectApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final leadPermissions = UserRolePermissions.forRole(UserRole.engineeringLead);
-
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.blueGrey),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.amber),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Engineering Governance Console')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: RbacLeadDashboard(permissions: leadPermissions),
+        appBar: AppBar(title: const Text('Network Continuity Console')),
+        body: Column(
+          children: const [
+            ReconnectingIndicator(isReconnecting: true),
+            Expanded(
+              child: Center(
+                child: Text('Dashboard operational during partial recovery.'),
+              ),
+            ),
+          ],
         ),
       ),
     );
