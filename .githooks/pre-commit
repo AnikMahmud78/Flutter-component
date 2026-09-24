@@ -1,0 +1,23 @@
+#!/bin/bash
+set -e
+
+echo "Running Pre-Commit EC Documentation Checker..."
+
+# Extract staged dart files
+STAGED_FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.dart$' || true)
+
+if [ -z "$STAGED_FILES" ]; then
+  echo "No Dart files staged for commit. Skipping EC check."
+  exit 0
+fi
+
+for FILE in $STAGED_FILES; do
+  if ! grep -q "/// EC:" "$FILE"; then
+    echo "ERROR: File $FILE is missing mandatory Binary English Code header ('/// EC: Verb Action')."
+    echo "Commit rejected per GEN-02347 policy."
+    exit 1
+  fi
+done
+
+echo "All staged files passed English Code (EC) validation."
+exit 0
