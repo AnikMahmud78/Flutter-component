@@ -1,55 +1,25 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'widgets/realtime_badge.dart';
-import 'models/badge_event.dart';
+import 'widgets/npm_package_bridge.dart';
 
 void main() {
-  runApp(const RealtimeBadgeApp());
+  runApp(const NpmBridgeApp());
 }
 
-class RealtimeBadgeApp extends StatefulWidget {
-  const RealtimeBadgeApp({Key? key}) : super(key: key);
-
-  @override
-  State<RealtimeBadgeApp> createState() => _RealtimeBadgeAppState();
-}
-
-class _RealtimeBadgeAppState extends State<RealtimeBadgeApp> {
-  final StreamController<BadgeEvent> _controller = StreamController<BadgeEvent>.broadcast();
-  int _counter = 1;
-
-  void _simulateIncomingPush() {
-    _controller.add(BadgeEvent(
-      count: _counter++,
-      category: 'ALERTS',
-      timestamp: DateTime.now(),
-    ));
-  }
-
-  @override
-  void dispose() {
-    _controller.close();
-    super.dispose();
-  }
+class NpmBridgeApp extends StatelessWidget {
+  const NpmBridgeApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.indigo),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.teal),
       home: Scaffold(
-        appBar: AppBar(
-          title: const Text('Realtime Badge Telemetry'),
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(right: 16.0),
-              child: RealtimeBadgeCounter(eventStream: _controller.stream),
-            ),
-          ],
-        ),
-        body: Center(
-          child: ElevatedButton(
-            onPressed: _simulateIncomingPush,
-            child: const Text('SIMULATE FCM INCOMING PUSH EVENT'),
+        appBar: AppBar(title: const Text('NPM Integration Bridge Console')),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: NpmPackageBridgeCard(
+            onNpmPackageExecuted: (payload) {
+              debugPrint('NPM Module Executed: ${payload.packageName} - ${payload.version}');
+            },
           ),
         ),
       ),
