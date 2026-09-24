@@ -1,79 +1,56 @@
 import 'package:flutter/material.dart';
-import 'models/calamity_alert_model.dart';
-import 'widgets/calamity_dashboard_card.dart';
+import 'models/byt_image_model.dart';
+import 'widgets/zoomable_byt_image.dart';
 
 void main() {
-  runApp(const CalamityAlertApp());
+  runApp(const ZoomableBytApp());
 }
 
-class CalamityAlertApp extends StatelessWidget {
-  const CalamityAlertApp({Key? key}) : super(key: key);
+class ZoomableBytApp extends StatelessWidget {
+  const ZoomableBytApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Calamity Alert Management',
+      title: 'Byt Image Pinch-to-Zoom',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const CalamityScreen(),
+      home: const BytImageScreen(),
     );
   }
 }
 
-class CalamityScreen extends StatefulWidget {
-  const CalamityScreen({Key? key}) : super(key: key);
-
-  @override
-  State<CalamityScreen> createState() => _CalamityScreenState();
-}
-
-class _CalamityScreenState extends State<CalamityScreen> {
-  late CalamityAlertModel _alert;
-
-  @override
-  void initState() {
-    super.initState();
-    _alert = CalamityAlertModel(
-      alertId: 'CALAMITY-9901',
-      description: 'API egress logic failure detected. Requires Tech to rewrite routing logic.',
-      isCleared: false,
-      requiredFixLogic: 'return egressIp.isCorporate;',
-    );
-  }
-
-  void _resolveAlert(String submittedCode) {
-    if (submittedCode.trim() == _alert.requiredFixLogic) {
-      setState(() {
-        _alert = CalamityAlertModel(
-          alertId: _alert.alertId,
-          description: _alert.description,
-          isCleared: true,
-          requiredFixLogic: _alert.requiredFixLogic,
-        );
-      });
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Logic check failed. Incorrect code rewrite.')),
-      );
-    }
-  }
+class BytImageScreen extends StatelessWidget {
+  const BytImageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final bytModel = BytImageModel(
+      imageId: 'BYT-CROP-8821',
+      imageUrl: 'https://placeholder.co/600x400',
+      minScale: 1.0,
+      maxScale: 4.0,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Team Engineering Console')),
+      appBar: AppBar(title: const Text('Mobile Worker Inspection')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Center(
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 600),
-            child: CalamityDashboardCard(
-              model: _alert,
-              OnResolveSubmitted: _resolveAlert,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Inspection Artifact: ${bytModel.imageId}', style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 8),
+            const Text('Pinch or double-finger gesture to zoom image:'),
+            const SizedBox(height: 16),
+            Expanded(
+              child: Center(
+                child: ZoomableBytImage(model: bytModel),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );
