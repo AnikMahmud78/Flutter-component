@@ -1,61 +1,49 @@
 import 'package:flutter/material.dart';
-import 'models/bigquery_stream_model.dart';
-import 'widgets/bigquery_stream_card.dart';
+import 'models/commercial_analytics_model.dart';
+import 'widgets/commercial_analytics_card.dart';
 
 void main() {
-  runApp(const BigQueryStreamApp());
+  runApp(const CommercialAnalyticsApp());
 }
 
-class BigQueryStreamApp extends StatelessWidget {
-  const BigQueryStreamApp({Key? key}) : super(key: key);
+class CommercialAnalyticsApp extends StatelessWidget {
+  const CommercialAnalyticsApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BigQuery Streamer',
+      title: 'Commercial Analytics App',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const BigQueryStreamScreen(),
+      home: const CommercialAnalyticsScreen(),
     );
   }
 }
 
-class BigQueryStreamScreen extends StatefulWidget {
-  const BigQueryStreamScreen({Key? key}) : super(key: key);
-
-  @override
-  State<BigQueryStreamScreen> createState() => _BigQueryStreamScreenState();
-}
-
-class _BigQueryStreamScreenState extends State<BigQueryStreamScreen> {
-  BigQueryStreamModel _model = const BigQueryStreamModel(
-    traceId: 'TRC-9862-BQ',
-    queuedEvents: 12,
-    streamLatencyMinutes: 1.2,
-  );
+class CommercialAnalyticsScreen extends StatelessWidget {
+  const CommercialAnalyticsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const commercialModel = CommercialAnalyticsModel(
+      walletSharePercentage: 34.2,
+      topSpendCategory: 'Childcare & Education',
+      refreshLatencyMinutes: 2.5,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('BigQuery Stream Monitor')),
+      appBar: AppBar(title: const Text('Commercial BI Dashboard')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BigQueryStreamCard(
-              model: _model,
-              onSimulateTileTap: () {
-                setState(() {
-                  _model = BigQueryStreamModel(
-                    traceId: _model.traceId,
-                    queuedEvents: _model.queuedEvents + 1,
-                    streamLatencyMinutes: 1.2,
-                  );
-                });
+            CommercialAnalyticsCard(
+              model: commercialModel,
+              onRefresh: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Impression Event Streamed to BigQuery')),
+                  const SnackBar(content: Text('Commercial BI Synced (<5m SLA)')),
                 );
               },
             ),
