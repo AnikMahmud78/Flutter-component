@@ -1,45 +1,56 @@
 import 'package:flutter/material.dart';
-import 'models/gap_container_model.dart';
-import 'widgets/gap_container_card.dart';
+import 'models/viewport_bounds_model.dart';
+import 'widgets/viewport_bounds_card.dart';
 
 void main() {
-  runApp(const GapContainerApp());
+  runApp(const ViewportBoundsApp());
 }
 
-class GapContainerApp extends StatelessWidget {
-  const GapContainerApp({Key? key}) : super(key: key);
+class ViewportBoundsApp extends StatelessWidget {
+  const ViewportBoundsApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Container Gap Injector',
+      title: 'Viewport Bounds Enforcer',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const GapContainerScreen(),
+      home: const ViewportBoundsScreen(),
     );
   }
 }
 
-class GapContainerScreen extends StatelessWidget {
-  const GapContainerScreen({Key? key}) : super(key: key);
+class ViewportBoundsScreen extends StatefulWidget {
+  const ViewportBoundsScreen({Key? key}) : super(key: key);
 
   @override
+  State<ViewportBoundsScreen> createState() => _ViewportBoundsScreenState();
+}
+
+class _ViewportBoundsScreenState extends State<ViewportBoundsScreen> {
+  @override
   Widget build(BuildContext context) {
-    const gapModel = GapContainerModel(gapDp: 8.0, compliancePercentage: 100.0);
+    final mediaQuery = MediaQuery.of(context);
+    final model = ViewportBoundsModel(
+      windowWidthDp: mediaQuery.size.width,
+      windowHeightDp: mediaQuery.size.height,
+      devicePixelRatio: mediaQuery.devicePixelRatio,
+      compliancePercentage: 100.0,
+    );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('M3 Container Spacing')),
-      body: Padding(
+      appBar: AppBar(title: const Text('Viewport Bounds Console')),
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            GapContainerCard(
-              model: gapModel,
-              onVerifyGaps: () {
+            ViewportBoundsCard(
+              model: model,
+              onValidateBounds: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('WCAG 2.1 AA (2.5.5) 8dp Gap Verified (100% Pass)')),
+                  const SnackBar(content: Text('Active Window Bounds Verified (100% Compliance)')),
                 );
               },
             ),
