@@ -1,128 +1,69 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
-import 'models/access_policy_model.dart';
-import 'widgets/access_policy_card.dart';
+import 'models/badge_config_model.dart';
+import 'widgets/badge_inspector_card.dart';
 
 void main() {
-  runApp(const AccessPolicyApp());
+  runApp(const BadgeConfigApp());
 }
 
-class AccessPolicyApp extends StatelessWidget {
-  const AccessPolicyApp({Key? key}) : super(key: key);
+class BadgeConfigApp extends StatelessWidget {
+  const BadgeConfigApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Context-Aware Access Console',
+      title: 'Inline Badge Configurator',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const PolicyDashboardScreen(),
+      home: const BadgeConfigScreen(),
     );
   }
 }
 
-class PolicyDashboardScreen extends StatefulWidget {
-  const PolicyDashboardScreen({Key? key}) : super(key: key);
+class BadgeConfigScreen extends StatefulWidget {
+  const BadgeConfigScreen({Key? key}) : super(key: key);
 
   @override
-  State<PolicyDashboardScreen> createState() => _PolicyDashboardScreenState();
+  State<BadgeConfigScreen> createState() => _BadgeConfigScreenState();
 }
 
-class _PolicyDashboardScreenState extends State<PolicyDashboardScreen> {
-  late AccessPolicyModel _currentPolicy;
-  Timer? _pollingTimer;
+class _BadgeConfigScreenState extends State<BadgeConfigScreen> {
+  late BadgeConfigModel _config;
 
   @override
   void initState() {
     super.initState();
-    _evaluatePolicy();
-    _pollingTimer = Timer.periodic(const Duration(seconds: 30), (_) {
-      _evaluatePolicy();
-    });
+    _config = BadgeConfigModel(
+      badgeHeight: 24.0,
+      touchTargetSize: 48.0,
+      statusText: 'SECURE',
+      validationResult: 'Pass',
+    );
   }
 
-  @override
-  void dispose() {
-    _pollingTimer?.cancel();
-    super.dispose();
-  }
-
-  void _evaluatePolicy() {
-    setState(() {
-      _currentPolicy = AccessPolicyModel(
-        tokenId: 'tok_corp_mob_99182',
-        clientIp: '198.51.100.45',
-        isCorporateEgress: true,
-        complianceRate: 100.0,
-        status: 'Pass',
-        timestamp: DateTime.now(),
-      );
-    });
+  void _onBadgeTapped() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Security Badge Touch Target Triggered (48x48dp)')),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Security & Access Governance'),
-      ),
-      body: LayoutBuilder(
-        builder: (context, constraints) {
-          final isDesktop = constraints.maxWidth >= 840;
-          return RefreshIndicator(
-            onRefresh: () async => _evaluatePolicy(),
-            child: SingleChildScrollView(
-              physics: const AlwaysScrollableScrollPhysics(),
-              padding: const EdgeInsets.all(16.0),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    maxWidth: isDesktop ? 1200 : 600,
-                  ),
-                  child: isDesktop
-                      ? Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              child: AccessPolicyCard(
-                                policyData: _currentPolicy,
-                                onRefresh: _evaluatePolicy,
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              child: Card(
-                                elevation: 2,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(16.0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'BigQuery Audit Pipeline',
-                                        style: Theme.of(context).textTheme.titleSmall,
-                                      ),
-                                      const SizedBox(height: 8),
-                                      const Text('Partitioning: event_date\nClustering: trace_id'),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )
-                      : AccessPolicyCard(
-                          policyData: _currentPolicy,
-                          onRefresh: _evaluatePolicy,
-                        ),
-                ),
-              ),
+      appBar: AppBar(title: const Text('Design System Token Audit')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 600),
+            child: BadgeInspectorCard(
+              config: _config,
+              onTrigger: _onBadgeTapped,
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }
