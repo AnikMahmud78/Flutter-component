@@ -1,49 +1,54 @@
 import 'package:flutter/material.dart';
-import 'models/calamity_gap_model.dart';
-import 'services/calamity_channel_service.dart';
-import 'widgets/calamity_alert_card.dart';
-import 'widgets/escalation_header.dart';
+import 'models/contrast_audit_model.dart';
+import 'services/wcag_contrast_calculator.dart';
+import 'widgets/contrast_card.dart';
+import 'widgets/accessibility_banner.dart';
 
 void main() {
-  runApp(const HABOTCalamityApp());
+  runApp(const HABOTContrastApp());
 }
 
-class HABOTCalamityApp extends StatelessWidget {
-  const HABOTCalamityApp({super.key});
+class HABOTContrastApp extends StatelessWidget {
+  const HABOTContrastApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10181GEN-01949 Calamity Channel',
+      title: '10192GEN-01960 WCAG Contrast',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFB3261E)),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF1D1B20),
+          brightness: Brightness.dark,
+        ),
       ),
-      home: const CalamityScreen(),
+      home: const ContrastScreen(),
     );
   }
 }
 
-class CalamityScreen extends StatefulWidget {
-  const CalamityScreen({super.key});
+class ContrastScreen extends StatefulWidget {
+  const ContrastScreen({super.key});
 
   @override
-  State<CalamityScreen> createState() => _CalamityScreenState();
+  State<ContrastScreen> createState() => _ContrastScreenState();
 }
 
-class _CalamityScreenState extends State<CalamityScreen> {
-  late CalamityGapModel _model;
+class _ContrastScreenState extends State<ContrastScreen> {
+  late ContrastAuditModel _model;
 
   @override
   void initState() {
     super.initState();
-    _loadGap();
+    _audit();
   }
 
-  void _loadGap() {
+  void _audit() {
     setState(() {
-      _model = CalamityChannelService.fetchActiveGap(
-        taskId: '10181GEN-01949',
+      _model = WcagContrastCalculator.auditInvertedState(
+        taskId: '10192GEN-01960',
+        foreground: Colors.white,
+        background: Colors.black,
         userId: 'USER-ANIK-8821',
       );
     });
@@ -52,14 +57,14 @@ class _CalamityScreenState extends State<CalamityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Calamity Channel Governance')),
+      appBar: AppBar(title: const Text('WCAG Contrast Evaluator')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            EscalationHeader(rate: _model.completionRate),
+            AccessibilityBanner(rate: _model.completionRate),
             const SizedBox(height: 16.0),
-            CalamityAlertCard(model: _model, onAcknowledge: _loadGap),
+            ContrastCard(model: _model, onReAudit: _audit),
           ],
         ),
       ),
