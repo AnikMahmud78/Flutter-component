@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
-import 'widgets/infinite_dashboard_list.dart';
+import 'widgets/dashboard_byt_component.dart';
+import 'models/package_commit_manifest.dart';
 
 void main() {
-  runApp(const InfiniteScrollApp());
+  runApp(const ComponentCommitApp());
 }
 
-class InfiniteScrollApp extends StatelessWidget {
-  const InfiniteScrollApp({Key? key}) : super(key: key);
+class ComponentCommitApp extends StatelessWidget {
+  const ComponentCommitApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final manifest = PackageCommitManifest(
+      componentName: 'Engineering Dashboard Byt',
+      libraryTarget: '@habot/shared-library/dashboard-byt',
+      versionTag: 'v2.15.0-RELEASE',
+      isCommitted: true,
+    );
+
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.cyan),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.green),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Infinite Scroll Dashboard Engine')),
-        body: const InfiniteDashboardList(),
+        appBar: AppBar(title: const Text('Design System Package Commit')),
+        body: Center(
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: DashboardBytComponent(manifest: manifest),
+          ),
+        ),
       ),
     );
   }
