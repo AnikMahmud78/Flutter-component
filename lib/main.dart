@@ -1,27 +1,24 @@
 import 'package:flutter/material.dart';
-import 'widgets/m3_bottom_sheet_modal.dart';
+import 'models/mto_item.dart';
+import 'widgets/split_screen_mto.dart';
 
-void main() => runApp(const ModalApp());
+void main() => runApp(const MtoApp());
 
-class ModalApp extends StatelessWidget {
-  const ModalApp({super.key});
+class MtoApp extends StatelessWidget {
+  const MtoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final sampleItems = [
+      const MtoItem(orderId: 'MTO-101', sku: 'SKU-A99', status: 'Pending', queueDetails: 'Material delay in section 4.'),
+      const MtoItem(orderId: 'MTO-102', sku: 'SKU-B12', status: 'Flagged', queueDetails: 'Assembly dimension tolerance error.'),
+    ];
+
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('M3 Bottom Sheet Demo')),
-        body: Center(
-          child: SizedBox(
-            height: 48,
-            child: ElevatedButton.icon(
-              onPressed: () => M3BottomSheetModal.show(context),
-              icon: const Icon(Icons.open_in_browser),
-              label: const Text('Open M3 Bottom Sheet'),
-            ),
-          ),
-        ),
+        appBar: AppBar(title: const Text('MTO Operational Interface')),
+        body: SplitScreenMtoWidget(items: sampleItems),
       ),
     );
   }
