@@ -1,50 +1,63 @@
 import 'package:flutter/material.dart';
-import 'models/bookmarked_providers_model.dart';
-import 'widgets/bookmarked_providers_card.dart';
+import 'models/age_verification_model.dart';
+import 'widgets/age_verification_gate_card.dart';
 
 void main() {
-  runApp(const BookmarkedProvidersApp());
+  runApp(const AgeVerificationApp());
 }
 
-class BookmarkedProvidersApp extends StatelessWidget {
-  const BookmarkedProvidersApp({Key? key}) : super(key: key);
+class AgeVerificationApp extends StatelessWidget {
+  const AgeVerificationApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Bookmarked Providers Report',
+      title: 'Age Verification Gate',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const BookmarkedProvidersScreen(),
+      home: const AgeVerificationScreen(),
     );
   }
 }
 
-class BookmarkedProvidersScreen extends StatelessWidget {
-  const BookmarkedProvidersScreen({Key? key}) : super(key: key);
+class AgeVerificationScreen extends StatefulWidget {
+  const AgeVerificationScreen({Key? key}) : super(key: key);
+
+  @override
+  State<AgeVerificationScreen> createState() => _AgeVerificationScreenState();
+}
+
+class _AgeVerificationScreenState extends State<AgeVerificationScreen> {
+  AgeVerificationModel _model = const AgeVerificationModel(
+    childAgeYears: 6,
+    providerMinAgeYears: 5,
+    providerMaxAgeYears: 12,
+    captureAccuracy: 0.999,
+  );
 
   @override
   Widget build(BuildContext context) {
-    const reportModel = BookmarkedProvidersModel(
-      providerName: 'Apex Childcare Services',
-      totalBookmarks: 1420,
-      persistenceReliabilityScore: 0.999,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Marketplace Analytics')),
+      appBar: AppBar(title: const Text('Service Age Gate')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            BookmarkedProvidersCard(
-              model: reportModel,
-              onVerifyPersistence: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('State Persistence Score: 100% (Pass)')),
-                );
+            AgeVerificationGateCard(
+              model: _model,
+              onAgeChanged: (newAge) {
+                if (newAge >= 0) {
+                  setState(() {
+                    _model = AgeVerificationModel(
+                      childAgeYears: newAge,
+                      providerMinAgeYears: 5,
+                      providerMaxAgeYears: 12,
+                      captureAccuracy: 0.999,
+                    );
+                  });
+                }
               },
             ),
           ],
