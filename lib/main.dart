@@ -1,55 +1,55 @@
 import 'package:flutter/material.dart';
-import 'models/triangular_check_model.dart';
-import 'widgets/triangular_check_card.dart';
+import 'models/form_lock_model.dart';
+import 'widgets/form_lock_card.dart';
 
 void main() {
-  runApp(const TriangularCheckApp());
+  runApp(const FormLockApp());
 }
 
-class TriangularCheckApp extends StatelessWidget {
-  const TriangularCheckApp({Key? key}) : super(key: key);
+class FormLockApp extends StatelessWidget {
+  const FormLockApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Triangular Check Gate',
+      title: 'Form Lock Verification',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const TriangularCheckScreen(),
+      home: const FormLockScreen(),
     );
   }
 }
 
-class TriangularCheckScreen extends StatefulWidget {
-  const TriangularCheckScreen({Key? key}) : super(key: key);
+class FormLockScreen extends StatefulWidget {
+  const FormLockScreen({Key? key}) : super(key: key);
 
   @override
-  State<TriangularCheckScreen> createState() => _TriangularCheckScreenState();
+  State<FormLockScreen> createState() => _FormLockScreenState();
 }
 
-class _TriangularCheckScreenState extends State<TriangularCheckScreen> {
-  TriangularCheckModel _model = const TriangularCheckModel(
-    sideA: 100.00,
-    sideB: 15.00,
-    totalC: 115.00,
-    accuracyScore: 99.99,
-  );
+class _FormLockScreenState extends State<FormLockScreen> {
+  FormLockModel _model = const FormLockModel(isFormValid: false, lockRatePercentage: 100.0);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pre-Submit Quality Gate')),
+      appBar: AppBar(title: const Text('Submit State Lock Verification')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TriangularCheckCard(
+            FormLockCard(
               model: _model,
-              onRunCheck: () {
+              onToggleValidity: (valid) {
+                setState(() {
+                  _model = FormLockModel(isFormValid: valid, lockRatePercentage: 100.0);
+                });
+              },
+              onSubmit: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Triangular Check Passed (100% Mathematical Balance)')),
+                  const SnackBar(content: Text('Form Submitted Successfully')),
                 );
               },
             ),
