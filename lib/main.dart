@@ -1,50 +1,74 @@
 import 'package:flutter/material.dart';
-import 'models/service_detail_model.dart';
-import 'widgets/service_detail_chassis.dart';
+import 'models/catalog_bi_metrics_model.dart';
+import 'widgets/catalog_bi_dashboard_card.dart';
 
 void main() {
-  runApp(const ServiceDetailApp());
+  runApp(const CatalogBiApp());
 }
 
-class ServiceDetailApp extends StatelessWidget {
-  const ServiceDetailApp({Key? key}) : super(key: key);
+class CatalogBiApp extends StatelessWidget {
+  const CatalogBiApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Service Detail Chassis',
+      title: 'HABOT Catalog BI',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const ServiceDetailScreen(),
+      home: const CatalogBiScreen(),
     );
   }
 }
 
-class ServiceDetailScreen extends StatelessWidget {
-  const ServiceDetailScreen({Key? key}) : super(key: key);
+class CatalogBiScreen extends StatefulWidget {
+  const CatalogBiScreen({Key? key}) : super(key: key);
+
+  @override
+  State<CatalogBiScreen> createState() => _CatalogBiScreenState();
+}
+
+class _CatalogBiScreenState extends State<CatalogBiScreen> {
+  late CatalogBiMetricsModel _metrics;
+
+  @override
+  void initState() {
+    super.initState();
+    _metrics = CatalogBiMetricsModel(
+      dashboardId: 'CAT-BI-9708',
+      bounceRatePercentage: 24.5,
+      avgTabDwellTimeSeconds: 42.8,
+      lastRefreshed: DateTime.now(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    const detailModel = ServiceDetailModel(
-      serviceId: 'SRV-9697-MASTER',
-      title: 'Premium Home Cleaning & Organization',
-      providerName: 'Elite Home Solutions',
-      hourlyRate: 45.0,
-      rating: 4.9,
-      iaTaskSuccessRate: 0.95,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Service Details')),
-      body: ServiceDetailChassis(
-        model: detailModel,
-        onBookNow: () {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Service Booking Initiated (IA Task Success: 95%)')),
-          );
-        },
+      appBar: AppBar(title: const Text('Catalog BI Dashboard')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            CatalogBiDashboardCard(
+              model: _metrics,
+              onRefresh: () {
+                setState(() {
+                  _metrics = CatalogBiMetricsModel(
+                    dashboardId: 'CAT-BI-9708',
+                    bounceRatePercentage: 22.1,
+                    avgTabDwellTimeSeconds: 45.3,
+                    lastRefreshed: DateTime.now(),
+                  );
+                });
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Catalog BI Telemetry Synced with BigQuery')),
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
