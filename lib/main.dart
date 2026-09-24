@@ -1,45 +1,46 @@
 import 'package:flutter/material.dart';
-import 'models/dropoff_analytics_model.dart';
-import 'widgets/dropoff_analytics_card.dart';
+import 'models/notification_prompt_model.dart';
+import 'widgets/notification_prompt_card.dart';
 
 void main() {
-  runApp(const DropoffAnalyticsApp());
+  runApp(const NotificationPromptApp());
 }
 
-class DropoffAnalyticsApp extends StatelessWidget {
-  const DropoffAnalyticsApp({Key? key}) : super(key: key);
+class NotificationPromptApp extends StatelessWidget {
+  const NotificationPromptApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Analytics App',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.purple)),
-      home: const DropoffAnalyticsScreen(),
+      title: 'HABOT Notification Preferences',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
+      home: const NotificationPromptScreen(),
     );
   }
 }
 
-class DropoffAnalyticsScreen extends StatelessWidget {
-  const DropoffAnalyticsScreen({Key? key}) : super(key: key);
+class NotificationPromptScreen extends StatelessWidget {
+  const NotificationPromptScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const analytics = DropoffAnalyticsModel(
-      stageName: 'Identity Verification Step 2',
-      dropoffRate: 0.03,
-    );
+    const promptModel = NotificationPromptModel(frequencySetting: 'Daily Digest', verificationScore: 0.95);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Operational Drop-off Dashboard')),
+      appBar: AppBar(title: const Text('Notification Prompts')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DropoffAnalyticsCard(
-              model: analytics,
-              onRefreshData: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('ISO/IEC/IEEE 42010 Telemetry Validated')),
+            NotificationPromptCard(
+              model: promptModel,
+              onOpenPreferences: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (ctx) => const Padding(
+                    padding: EdgeInsets.all(24.0),
+                    child: Text('M3 Notification Frequency Selection Sheet'),
+                  ),
                 );
               },
             ),
