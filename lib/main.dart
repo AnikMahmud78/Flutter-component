@@ -1,60 +1,51 @@
 import 'package:flutter/material.dart';
-import 'models/blocked_state_model.dart';
-import 'services/blocked_state_evaluator.dart';
-import 'widgets/action_blocked_card.dart';
-import 'widgets/step_rate_banner.dart';
+import 'models/adaptive_layout_model.dart';
+import 'services/layout_breakpoint_engine.dart';
+import 'widgets/adaptive_navigation_shell.dart';
+import 'widgets/completion_status_card.dart';
 
 void main() {
-  runApp(const HABOTBlockedApp());
+  runApp(const HABOTAdaptiveLayoutApp());
 }
 
-class HABOTBlockedApp extends StatelessWidget {
-  const HABOTBlockedApp({super.key});
+class HABOTAdaptiveLayoutApp extends StatelessWidget {
+  const HABOTAdaptiveLayoutApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10225GEN-01994 Action Blocked State',
+      title: '10236GEN-02005 Layout Router',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFFB3261E)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF6750A4)),
       ),
-      home: const BlockedScreen(),
+      home: const LayoutRouterScreen(),
     );
   }
 }
 
-class BlockedScreen extends StatefulWidget {
-  const BlockedScreen({super.key});
-
-  @override
-  State<BlockedScreen> createState() => _BlockedScreenState();
-}
-
-class _BlockedScreenState extends State<BlockedScreen> {
-  late BlockedStateModel _model;
-
-  @override
-  void initState() {
-    super.initState();
-    _model = BlockedStateEvaluator.generateState(
-      taskId: '10225GEN-01994',
-      userId: 'USER-ANIK-8821',
-    );
-  }
+class LayoutRouterScreen extends StatelessWidget {
+  const LayoutRouterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: const Text('Action Blocked UI State')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            StepRateBanner(rate: _model.completionRate),
-            const SizedBox(height: 16.0),
-            ActionBlockedCard(model: _model),
-          ],
+    final double width = MediaQuery.of(context).size.width;
+    final AdaptiveLayoutModel model = LayoutBreakpointEngine.evaluateWidth(
+      width,
+      '10236GEN-02005',
+      'USER-ANIK-8821',
+    );
+
+    return AdaptiveNavigationShell(
+      model: model,
+      child: Scaffold(
+        appBar: AppBar(title: const Text('Dynamic Component Mount/Unmount Router')),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: CompletionStatusCard(
+            rate: model.completionRate,
+            activeMode: model.currentMode.name.toUpperCase(),
+          ),
         ),
       ),
     );
