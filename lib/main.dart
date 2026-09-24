@@ -1,51 +1,51 @@
 import 'package:flutter/material.dart';
-import 'models/token_compiler_model.dart';
-import 'widgets/token_compiler_card.dart';
+import 'models/websocket_badge_model.dart';
+import 'widgets/websocket_badge_card.dart';
 
 void main() {
-  runApp(const TokenCompilerApp());
+  runApp(const WebSocketBadgeApp());
 }
 
-class TokenCompilerApp extends StatelessWidget {
-  const TokenCompilerApp({Key? key}) : super(key: key);
+class WebSocketBadgeApp extends StatelessWidget {
+  const WebSocketBadgeApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Design Token Compiler',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
-      home: const TokenCompilerScreen(),
+      title: 'WebSocket Badge App',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
+      home: const WebSocketBadgeScreen(),
     );
   }
 }
 
-class TokenCompilerScreen extends StatefulWidget {
-  const TokenCompilerScreen({Key? key}) : super(key: key);
+class WebSocketBadgeScreen extends StatefulWidget {
+  const WebSocketBadgeScreen({Key? key}) : super(key: key);
 
   @override
-  State<TokenCompilerScreen> createState() => _TokenCompilerScreenState();
+  State<WebSocketBadgeScreen> createState() => _WebSocketBadgeScreenState();
 }
 
-class _TokenCompilerScreenState extends State<TokenCompilerScreen> {
-  TokenCompilerModel _model = const TokenCompilerModel(
-    compilationJobId: 'JOB-W3C-9587',
-    successRate: 1.0,
-  );
+class _WebSocketBadgeScreenState extends State<WebSocketBadgeScreen> {
+  WebSocketBadgeModel _model = const WebSocketBadgeModel(unreadCount: 3, syncSuccessRate: 0.999);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Master Token Compiler')),
+      appBar: AppBar(title: const Text('WebSocket Badge Controller')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            TokenCompilerCard(
+            WebSocketBadgeCard(
               model: _model,
-              onCompile: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('CSS Tokens Compiled (100% W3C Pass)')),
-                );
+              onSimulateMessage: () {
+                setState(() {
+                  _model = WebSocketBadgeModel(
+                    unreadCount: _model.unreadCount + 1,
+                    syncSuccessRate: 0.999,
+                  );
+                });
               },
             ),
           ],
