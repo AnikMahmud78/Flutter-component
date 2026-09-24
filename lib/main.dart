@@ -1,66 +1,80 @@
 import 'package:flutter/material.dart';
-import 'models/badge_config_model.dart';
-import 'widgets/badge_inspector_card.dart';
+import 'models/circuit_breaker_model.dart';
+import 'widgets/circuit_status_card.dart';
 
 void main() {
-  runApp(const BadgeConfigApp());
+  runApp(const CircuitBreakerApp());
 }
 
-class BadgeConfigApp extends StatelessWidget {
-  const BadgeConfigApp({Key? key}) : super(key: key);
+class CircuitBreakerApp extends StatelessWidget {
+  const CircuitBreakerApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Inline Badge Configurator',
+      title: 'Circuit Breaker Automation',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
       ),
-      home: const BadgeConfigScreen(),
+      home: const CircuitDashboardScreen(),
     );
   }
 }
 
-class BadgeConfigScreen extends StatefulWidget {
-  const BadgeConfigScreen({Key? key}) : super(key: key);
+class CircuitDashboardScreen extends StatefulWidget {
+  const CircuitDashboardScreen({Key? key}) : super(key: key);
 
   @override
-  State<BadgeConfigScreen> createState() => _BadgeConfigScreenState();
+  State<CircuitDashboardScreen> createState() => _CircuitDashboardScreenState();
 }
 
-class _BadgeConfigScreenState extends State<BadgeConfigScreen> {
-  late BadgeConfigModel _config;
+class _CircuitDashboardScreenState extends State<CircuitDashboardScreen> {
+  late CircuitBreakerModel _model;
 
   @override
   void initState() {
     super.initState();
-    _config = BadgeConfigModel(
-      badgeHeight: 24.0,
-      touchTargetSize: 48.0,
-      statusText: 'SECURE',
-      validationResult: 'Pass',
-    );
+    _resetCircuit();
   }
 
-  void _onBadgeTapped() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(content: Text('Security Badge Touch Target Triggered (48x48dp)')),
-    );
+  void _resetCircuit() {
+    setState(() {
+      _model = CircuitBreakerModel(
+        errorRatePercentage: 0.45,
+        thresholdPercentage: 2.0,
+        windowMinutes: 5,
+        circuitState: 'CLOSED',
+        completionStatus: 'Complete',
+      );
+    });
+  }
+
+  void _triggerErrorSpike() {
+    setState(() {
+      _model = CircuitBreakerModel(
+        errorRatePercentage: 3.82,
+        thresholdPercentage: 2.0,
+        windowMinutes: 5,
+        circuitState: 'OPEN',
+        completionStatus: 'Complete',
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Design System Token Audit')),
+      appBar: AppBar(title: const Text('Automated Alert & Reliability Rules')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
-            child: BadgeInspectorCard(
-              config: _config,
-              onTrigger: _onBadgeTapped,
+            child: CircuitStatusCard(
+              model: _model,
+              onSimulateErrorSpike: _triggerErrorSpike,
+              onReset: _resetCircuit,
             ),
           ),
         ),
