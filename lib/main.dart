@@ -1,49 +1,48 @@
 import 'package:flutter/material.dart';
-import 'models/fcm_priority_model.dart';
-import 'widgets/fcm_priority_card.dart';
+import 'models/activity_log_package_model.dart';
+import 'widgets/activity_log_package_card.dart';
 
 void main() {
-  runApp(const FcmPriorityApp());
+  runApp(const ActivityLogPackageApp());
 }
 
-class FcmPriorityApp extends StatelessWidget {
-  const FcmPriorityApp({Key? key}) : super(key: key);
+class ActivityLogPackageApp extends StatelessWidget {
+  const ActivityLogPackageApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'FCM Priority Alert',
+      title: 'Activity Log Package',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
       ),
-      home: const FcmPriorityScreen(),
+      home: const ActivityLogPackageScreen(),
     );
   }
 }
 
-class FcmPriorityScreen extends StatelessWidget {
-  const FcmPriorityScreen({Key? key}) : super(key: key);
+class ActivityLogPackageScreen extends StatelessWidget {
+  const ActivityLogPackageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const fcmModel = FcmPriorityModel(
-      channelId: 'HABOT_CRITICAL_ALERTS',
-      isHighPriority: true,
-      mttdMinutes: 1,
+    const moduleModel = ActivityLogPackageModel(
+      moduleId: 'MOD-9840-ACT',
+      completenessScore: 0.999,
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('FCM Alert Configuration')),
+      appBar: AppBar(title: const Text('Activity Log Package Manager')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            FcmPriorityCard(
-              model: fcmModel,
-              onTestAlert: () {
+            ActivityLogPackageCard(
+              model: moduleModel,
+              onInspectModule: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Lock Screen High-Priority Alert Sent (MTTD <2m)')),
+                  const SnackBar(content: Text('Module Integrity Validated (ISO 25012)')),
                 );
               },
             ),
