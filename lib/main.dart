@@ -1,61 +1,49 @@
 import 'package:flutter/material.dart';
-import 'models/hesitation_monitor_model.dart';
-import 'widgets/hesitation_monitor_card.dart';
+import 'models/keyring_manager_model.dart';
+import 'widgets/keyring_manager_card.dart';
 
 void main() {
-  runApp(const HesitationMonitorApp());
+  runApp(const KeyringManagerApp());
 }
 
-class HesitationMonitorApp extends StatelessWidget {
-  const HesitationMonitorApp({Key? key}) : super(key: key);
+class KeyringManagerApp extends StatelessWidget {
+  const KeyringManagerApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hesitation Telemetry Logger',
+      title: 'OS Keyring Manager',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.amber),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
       ),
-      home: const HesitationMonitorScreen(),
+      home: const KeyringManagerScreen(),
     );
   }
 }
 
-class HesitationMonitorScreen extends StatefulWidget {
-  const HesitationMonitorScreen({Key? key}) : super(key: key);
-
-  @override
-  State<HesitationMonitorScreen> createState() => _HesitationMonitorScreenState();
-}
-
-class _HesitationMonitorScreenState extends State<HesitationMonitorScreen> {
-  HesitationMonitorModel _model = const HesitationMonitorModel(
-    thresholdSeconds: 5,
-    detectionAccuracy: 95.0,
-    isHesitationDetected: false,
-  );
+class KeyringManagerScreen extends StatelessWidget {
+  const KeyringManagerScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const keyringModel = KeyringManagerModel(
+      keyAlias: 'HABOT_SQLITE_KEY_V1',
+      isKeyBoundToHardware: true,
+      completionRate: 100.0,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Friction Telemetry Console')),
+      appBar: AppBar(title: const Text('Keyring Encryption Gate')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            HesitationMonitorCard(
-              model: _model,
-              onSimulateHesitation: () {
-                setState(() {
-                  _model = const HesitationMonitorModel(
-                    thresholdSeconds: 5,
-                    detectionAccuracy: 95.0,
-                    isHesitationDetected: true,
-                  );
-                });
+            KeyringManagerCard(
+              model: keyringModel,
+              onInitializeKey: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Hesitation Event Logged to BigQuery Stream')),
+                  const SnackBar(content: Text('OS Keyring Provisioned (Keychain/Keystore Secured)')),
                 );
               },
             ),
