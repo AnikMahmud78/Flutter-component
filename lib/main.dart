@@ -1,59 +1,65 @@
 import 'package:flutter/material.dart';
-import 'models/realtime_status_model.dart';
-import 'widgets/realtime_status_card.dart';
+import 'models/provider_latency_model.dart';
+import 'widgets/provider_latency_card.dart';
 
 void main() {
-  runApp(const RealTimeStatusApp());
+  runApp(const ProviderLatencyApp());
 }
 
-class RealTimeStatusApp extends StatelessWidget {
-  const RealTimeStatusApp({Key? key}) : super(key: key);
+class ProviderLatencyApp extends StatelessWidget {
+  const ProviderLatencyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Telemetry Dispatch',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),
-      home: const RealTimeStatusScreen(),
+      title: 'HABOT Communication Dashboard',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo)),
+      home: const ProviderLatencyScreen(),
     );
   }
 }
 
-class RealTimeStatusScreen extends StatefulWidget {
-  const RealTimeStatusScreen({Key? key}) : super(key: key);
+class ProviderLatencyScreen extends StatefulWidget {
+  const ProviderLatencyScreen({Key? key}) : super(key: key);
 
   @override
-  State<RealTimeStatusScreen> createState() => _RealTimeStatusScreenState();
+  State<ProviderLatencyScreen> createState() => _ProviderLatencyScreenState();
 }
 
-class _RealTimeStatusScreenState extends State<RealTimeStatusScreen> {
-  RealTimeStatusModel _currentModel = RealTimeStatusModel(
-    dispatchId: 'DSP-9510-01',
-    latencyMs: 142,
-    timestamp: DateTime.now(),
-  );
+class _ProviderLatencyScreenState extends State<ProviderLatencyScreen> {
+  late ProviderLatencyModel _model;
 
-  void _runDispatchTest() {
-    setState(() {
-      _currentModel = RealTimeStatusModel(
-        dispatchId: 'DSP-9510-\${DateTime.now().millisecondsSinceEpoch}',
-        latencyMs: 98,
-        timestamp: DateTime.now(),
-      );
-    });
+  @override
+  void initState() {
+    super.initState();
+    _model = ProviderLatencyModel(
+      providerId: 'PRV-9521',
+      responseSlaMinutes: 2.4,
+      engagementRate: 0.92,
+      lastRefreshed: DateTime.now(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Dispatch SLA Tester')),
+      appBar: AppBar(title: const Text('Provider Engagement Monitor')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            RealTimeStatusCard(
-              model: _currentModel,
-              onTriggerDispatch: _runDispatchTest,
+            ProviderLatencyCard(
+              model: _model,
+              onRefresh: () {
+                setState(() {
+                  _model = ProviderLatencyModel(
+                    providerId: 'PRV-9521',
+                    responseSlaMinutes: 2.1,
+                    engagementRate: 0.94,
+                    lastRefreshed: DateTime.now(),
+                  );
+                });
+              },
             ),
           ],
         ),
