@@ -1,69 +1,63 @@
 import 'package:flutter/material.dart';
-import 'models/catalog_bi_metrics_model.dart';
-import 'widgets/catalog_bi_dashboard_card.dart';
+import 'models/deep_link_handoff_model.dart';
+import 'widgets/deep_link_handoff_card.dart';
 
 void main() {
-  runApp(const CatalogBiApp());
+  runApp(const DeepLinkApp());
 }
 
-class CatalogBiApp extends StatelessWidget {
-  const CatalogBiApp({Key? key}) : super(key: key);
+class DeepLinkApp extends StatelessWidget {
+  const DeepLinkApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Catalog BI',
+      title: 'Deep Link Tester',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
       ),
-      home: const CatalogBiScreen(),
+      home: const DeepLinkScreen(),
     );
   }
 }
 
-class CatalogBiScreen extends StatefulWidget {
-  const CatalogBiScreen({Key? key}) : super(key: key);
+class DeepLinkScreen extends StatefulWidget {
+  const DeepLinkScreen({Key? key}) : super(key: key);
 
   @override
-  State<CatalogBiScreen> createState() => _CatalogBiScreenState();
+  State<DeepLinkScreen> createState() => _DeepLinkScreenState();
 }
 
-class _CatalogBiScreenState extends State<CatalogBiScreen> {
-  late CatalogBiMetricsModel _metrics;
-
-  @override
-  void initState() {
-    super.initState();
-    _metrics = CatalogBiMetricsModel(
-      dashboardId: 'CAT-BI-9708',
-      bounceRatePercentage: 24.5,
-      avgTabDwellTimeSeconds: 42.8,
-      lastRefreshed: DateTime.now(),
-    );
-  }
+class _DeepLinkScreenState extends State<DeepLinkScreen> {
+  DeepLinkHandoffModel _model = const DeepLinkHandoffModel(
+    linkUrl: 'https://habot.io/provider/9719',
+    targetPlatform: 'iOS / Android Dual Native',
+    handoffLatencyMs: 380.0,
+    pinAccuracyMeters: 8.5,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Catalog BI Dashboard')),
-      body: SingleChildScrollView(
+      appBar: AppBar(title: const Text('Native Handoff Validator')),
+      body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CatalogBiDashboardCard(
-              model: _metrics,
-              onRefresh: () {
+            DeepLinkHandoffCard(
+              model: _model,
+              onTestHandoff: () {
                 setState(() {
-                  _metrics = CatalogBiMetricsModel(
-                    dashboardId: 'CAT-BI-9708',
-                    bounceRatePercentage: 22.1,
-                    avgTabDwellTimeSeconds: 45.3,
-                    lastRefreshed: DateTime.now(),
+                  _model = const DeepLinkHandoffModel(
+                    linkUrl: 'https://habot.io/provider/9719',
+                    targetPlatform: 'iOS / Android Dual Native',
+                    handoffLatencyMs: 320.0,
+                    pinAccuracyMeters: 5.0,
                   );
                 });
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Catalog BI Telemetry Synced with BigQuery')),
+                  const SnackBar(content: Text('100% Native App Handoff Confirmed')),
                 );
               },
             ),
