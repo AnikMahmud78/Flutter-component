@@ -1,63 +1,63 @@
 import 'package:flutter/material.dart';
-import 'models/age_verification_model.dart';
-import 'widgets/age_verification_gate_card.dart';
+import 'models/add_on_selector_model.dart';
+import 'widgets/add_on_selector_card.dart';
 
 void main() {
-  runApp(const AgeVerificationApp());
+  runApp(const AddOnSelectorApp());
 }
 
-class AgeVerificationApp extends StatelessWidget {
-  const AgeVerificationApp({Key? key}) : super(key: key);
+class AddOnSelectorApp extends StatelessWidget {
+  const AddOnSelectorApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Age Verification Gate',
+      title: 'Checkout Add-On Package',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const AgeVerificationScreen(),
+      home: const AddOnSelectorScreen(),
     );
   }
 }
 
-class AgeVerificationScreen extends StatefulWidget {
-  const AgeVerificationScreen({Key? key}) : super(key: key);
+class AddOnSelectorScreen extends StatefulWidget {
+  const AddOnSelectorScreen({Key? key}) : super(key: key);
 
   @override
-  State<AgeVerificationScreen> createState() => _AgeVerificationScreenState();
+  State<AddOnSelectorScreen> createState() => _AddOnSelectorScreenState();
 }
 
-class _AgeVerificationScreenState extends State<AgeVerificationScreen> {
-  AgeVerificationModel _model = const AgeVerificationModel(
-    childAgeYears: 6,
-    providerMinAgeYears: 5,
-    providerMaxAgeYears: 12,
-    captureAccuracy: 0.999,
+class _AddOnSelectorScreenState extends State<AddOnSelectorScreen> {
+  AddOnSelectorModel _model = const AddOnSelectorModel(
+    addOnId: 'ADDON-9752-01',
+    addOnTitle: 'Priority Service Protection & Insurance',
+    price: 4.99,
+    isSelected: false,
+    attachRate: 0.28,
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Service Age Gate')),
+      appBar: AppBar(title: const Text('Checkout Add-On Module')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            AgeVerificationGateCard(
+            AddOnSelectorCard(
               model: _model,
-              onAgeChanged: (newAge) {
-                if (newAge >= 0) {
-                  setState(() {
-                    _model = AgeVerificationModel(
-                      childAgeYears: newAge,
-                      providerMinAgeYears: 5,
-                      providerMaxAgeYears: 12,
-                      captureAccuracy: 0.999,
-                    );
-                  });
-                }
+              onToggle: (selected) {
+                setState(() {
+                  _model = AddOnSelectorModel(
+                    addOnId: _model.addOnId,
+                    addOnTitle: _model.addOnTitle,
+                    price: _model.price,
+                    isSelected: selected,
+                    attachRate: _model.attachRate,
+                  );
+                });
               },
             ),
           ],
