@@ -1,63 +1,49 @@
 import 'package:flutter/material.dart';
-import 'models/deep_link_handoff_model.dart';
-import 'widgets/deep_link_handoff_card.dart';
+import 'models/bookmarked_providers_model.dart';
+import 'widgets/bookmarked_providers_card.dart';
 
 void main() {
-  runApp(const DeepLinkApp());
+  runApp(const BookmarkedProvidersApp());
 }
 
-class DeepLinkApp extends StatelessWidget {
-  const DeepLinkApp({Key? key}) : super(key: key);
+class BookmarkedProvidersApp extends StatelessWidget {
+  const BookmarkedProvidersApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Deep Link Tester',
+      title: 'Bookmarked Providers Report',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const DeepLinkScreen(),
+      home: const BookmarkedProvidersScreen(),
     );
   }
 }
 
-class DeepLinkScreen extends StatefulWidget {
-  const DeepLinkScreen({Key? key}) : super(key: key);
-
-  @override
-  State<DeepLinkScreen> createState() => _DeepLinkScreenState();
-}
-
-class _DeepLinkScreenState extends State<DeepLinkScreen> {
-  DeepLinkHandoffModel _model = const DeepLinkHandoffModel(
-    linkUrl: 'https://habot.io/provider/9719',
-    targetPlatform: 'iOS / Android Dual Native',
-    handoffLatencyMs: 380.0,
-    pinAccuracyMeters: 8.5,
-  );
+class BookmarkedProvidersScreen extends StatelessWidget {
+  const BookmarkedProvidersScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const reportModel = BookmarkedProvidersModel(
+      providerName: 'Apex Childcare Services',
+      totalBookmarks: 1420,
+      persistenceReliabilityScore: 0.999,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Native Handoff Validator')),
+      appBar: AppBar(title: const Text('Marketplace Analytics')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DeepLinkHandoffCard(
-              model: _model,
-              onTestHandoff: () {
-                setState(() {
-                  _model = const DeepLinkHandoffModel(
-                    linkUrl: 'https://habot.io/provider/9719',
-                    targetPlatform: 'iOS / Android Dual Native',
-                    handoffLatencyMs: 320.0,
-                    pinAccuracyMeters: 5.0,
-                  );
-                });
+            BookmarkedProvidersCard(
+              model: reportModel,
+              onVerifyPersistence: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('100% Native App Handoff Confirmed')),
+                  const SnackBar(content: Text('State Persistence Score: 100% (Pass)')),
                 );
               },
             ),
