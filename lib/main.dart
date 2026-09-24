@@ -1,45 +1,55 @@
 import 'package:flutter/material.dart';
-import 'models/category_grid_model.dart';
-import 'widgets/category_grid_card.dart';
+import 'models/price_range_model.dart';
+import 'widgets/price_range_slider_card.dart';
 
 void main() {
-  runApp(const CategoryGridApp());
+  runApp(const PriceSliderApp());
 }
 
-class CategoryGridApp extends StatelessWidget {
-  const CategoryGridApp({Key? key}) : super(key: key);
+class PriceSliderApp extends StatelessWidget {
+  const PriceSliderApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Category Grid',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal)),
-      home: const CategoryGridScreen(),
+      title: 'Price Range Filter',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.green)),
+      home: const PriceSliderScreen(),
     );
   }
 }
 
-class CategoryGridScreen extends StatelessWidget {
-  const CategoryGridScreen({Key? key}) : super(key: key);
+class PriceSliderScreen extends StatefulWidget {
+  const PriceSliderScreen({Key? key}) : super(key: key);
+
+  @override
+  State<PriceSliderScreen> createState() => _PriceSliderScreenState();
+}
+
+class _PriceSliderScreenState extends State<PriceSliderScreen> {
+  PriceRangeModel _model = const PriceRangeModel(minPrice: 50.0, maxPrice: 250.0, latencyMs: 120);
 
   @override
   Widget build(BuildContext context) {
-    const gridModel = CategoryGridModel(
-      categories: ['Childcare', 'Tutoring', 'Transportation', 'Healthcare'],
-      timeToFindSeconds: 2,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Marketplace Categories')),
+      appBar: AppBar(title: const Text('Filter Controls')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: CategoryGridCard(
-          model: gridModel,
-          onCategoryTap: (cat) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Selected category: \$cat')),
-            );
-          },
+        child: Column(
+          children: [
+            PriceRangeSliderCard(
+              model: _model,
+              RangeChanged: (newValues) {
+                setState(() {
+                  _model = PriceRangeModel(
+                    minPrice: newValues.start,
+                    maxPrice: newValues.end,
+                    latencyMs: 110,
+                  );
+                });
+              },
+            ),
+          ],
         ),
       ),
     );
