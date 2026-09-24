@@ -1,48 +1,54 @@
 import 'package:flutter/material.dart';
-import 'models/dispute_ticket_model.dart';
-import 'widgets/dispute_validation_card.dart';
+import 'models/launch_benchmark_model.dart';
+import 'widgets/dashboard_launch_card.dart';
 
 void main() {
-  runApp(const DisputeApp());
+  runApp(const LaunchBenchmarkApp());
 }
 
-class DisputeApp extends StatelessWidget {
-  const DisputeApp({Key? key}) : super(key: key);
+class LaunchBenchmarkApp extends StatelessWidget {
+  const LaunchBenchmarkApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Dispute Ticket SLA App',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
-      home: const DisputeScreen(),
+      title: 'HABOT Launch Benchmark',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey)),
+      home: const LaunchBenchmarkScreen(),
     );
   }
 }
 
-class DisputeScreen extends StatelessWidget {
-  const DisputeScreen({Key? key}) : super(key: key);
+class LaunchBenchmarkScreen extends StatefulWidget {
+  const LaunchBenchmarkScreen({Key? key}) : super(key: key);
+
+  @override
+  State<LaunchBenchmarkScreen> createState() => _LaunchBenchmarkScreenState();
+}
+
+class _LaunchBenchmarkScreenState extends State<LaunchBenchmarkScreen> {
+  LaunchBenchmarkModel _benchmark = LaunchBenchmarkModel(
+    renderTimeMs: 84,
+    benchmarkTime: DateTime.now(),
+  );
 
   @override
   Widget build(BuildContext context) {
-    const ticket = DisputeTicketModel(
-      disputeId: 'DISP-9543-12',
-      ticketNumber: 'TK-2026-9543',
-      isSlaTimerActive: true,
-      cycleTimeHours: 36,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('ODR Dispute Tracker')),
+      appBar: AppBar(title: const Text('Performance Profiler')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            DisputeValidationCard(
-              model: ticket,
-              onValidateSubmission: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('100% Ticket & Active Timer Validation Passed')),
-                );
+            DashboardLaunchCard(
+              model: _benchmark,
+              onRunBenchmark: () {
+                setState(() {
+                  _benchmark = LaunchBenchmarkModel(
+                    renderTimeMs: 76,
+                    benchmarkTime: DateTime.now(),
+                  );
+                });
               },
             ),
           ],
