@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
+import 'widgets/m3_focus_ring_wrapper.dart';
 
 void main() {
-  runApp(const LinterGuardApp());
+  runApp(const FocusRingApp());
 }
 
-class LinterGuardApp extends StatelessWidget {
-  const LinterGuardApp({Key? key}) : super(key: key);
+class FocusRingApp extends StatelessWidget {
+  const FocusRingApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.green),
+      theme: ThemeData(useMaterial3: true, colorSchemeSeed: Colors.deepPurple),
       home: Scaffold(
-        appBar: AppBar(title: const Text('Linter Token Guard Audit')),
-        body: const Center(
-          child: Text(
-            'Linter Inspection Completed.\nFiles Scanned: 142\nViolations: 0 (0.0%)\nStatus: 100% PASSED',
-            textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+        appBar: AppBar(title: const Text('M3 Focus Ring Console')),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Center(
+            child: M3FocusRingWrapper(
+              onTap: () {},
+              child: ElevatedButton(
+                onPressed: () {},
+                child: const Text('FOCUSABLE INTERACTIVE CONTROL'),
+              ),
+            ),
           ),
         ),
       ),
