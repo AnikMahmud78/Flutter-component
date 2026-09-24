@@ -1,49 +1,54 @@
 import 'package:flutter/material.dart';
-import 'models/gcp_infra_repo_model.dart';
-import 'widgets/gcp_infra_repo_card.dart';
+import 'models/task_time_gate_model.dart';
+import 'widgets/task_time_gate_card.dart';
 
 void main() {
-  runApp(const GcpInfraRepoApp());
+  runApp(const TaskTimeGateApp());
 }
 
-class GcpInfraRepoApp extends StatelessWidget {
-  const GcpInfraRepoApp({Key? key}) : super(key: key);
+class TaskTimeGateApp extends StatelessWidget {
+  const TaskTimeGateApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'GCP Infra Repository Manager',
+      title: 'Task Time Gate',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
       ),
-      home: const GcpInfraRepoScreen(),
+      home: const TaskTimeGateScreen(),
     );
   }
 }
 
-class GcpInfraRepoScreen extends StatelessWidget {
-  const GcpInfraRepoScreen({Key? key}) : super(key: key);
+class TaskTimeGateScreen extends StatefulWidget {
+  const TaskTimeGateScreen({Key? key}) : super(key: key);
+
+  @override
+  State<TaskTimeGateScreen> createState() => _TaskTimeGateScreenState();
+}
+
+class _TaskTimeGateScreenState extends State<TaskTimeGateScreen> {
+  TaskTimeGateModel _model = const TaskTimeGateModel(
+    maxTaskSeconds: 300,
+    elapsedSeconds: 120,
+    prRejectionRate: 99.5,
+  );
 
   @override
   Widget build(BuildContext context) {
-    const repoModel = GcpInfraRepoModel(
-      repoPath: 'git.habot.internal/gcp-infrastructure.git',
-      commitHash: 'a8f921b7c014',
-      completionRate: 100.0,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('GCP Infrastructure Sync')),
+      appBar: AppBar(title: const Text('Physical Time Boundary Gate')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            GcpInfraRepoCard(
-              model: repoModel,
-              onVerifyRepo: () {
+            TaskTimeGateCard(
+              model: _model,
+              onCheckTimer: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('GCP Infrastructure Configuration Verified (100% Sync)')),
+                  const SnackBar(content: Text('Time Cap Enforced (Within 300s Limit)')),
                 );
               },
             ),
