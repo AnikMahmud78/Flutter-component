@@ -1,49 +1,53 @@
 import 'package:flutter/material.dart';
-import 'models/keyring_manager_model.dart';
-import 'widgets/keyring_manager_card.dart';
+import 'models/scroll_fps_model.dart';
+import 'widgets/scroll_fps_card.dart';
 
 void main() {
-  runApp(const KeyringManagerApp());
+  runApp(const ScrollFpsApp());
 }
 
-class KeyringManagerApp extends StatelessWidget {
-  const KeyringManagerApp({Key? key}) : super(key: key);
+class ScrollFpsApp extends StatelessWidget {
+  const ScrollFpsApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'OS Keyring Manager',
+      title: 'Scroll FPS Profiler',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const KeyringManagerScreen(),
+      home: const ScrollFpsScreen(),
     );
   }
 }
 
-class KeyringManagerScreen extends StatelessWidget {
-  const KeyringManagerScreen({Key? key}) : super(key: key);
+class ScrollFpsScreen extends StatefulWidget {
+  const ScrollFpsScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ScrollFpsScreen> createState() => _ScrollFpsScreenState();
+}
+
+class _ScrollFpsScreenState extends State<ScrollFpsScreen> {
+  ScrollFpsModel _model = const ScrollFpsModel(currentFps: 60.0, droppedFrames: 0, completionRate: 100.0);
 
   @override
   Widget build(BuildContext context) {
-    const keyringModel = KeyringManagerModel(
-      keyAlias: 'HABOT_SQLITE_KEY_V1',
-      isKeyBoundToHardware: true,
-      completionRate: 100.0,
-    );
-
     return Scaffold(
-      appBar: AppBar(title: const Text('Keyring Encryption Gate')),
+      appBar: AppBar(title: const Text('Frame Rate Telemetry')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            KeyringManagerCard(
-              model: keyringModel,
-              onInitializeKey: () {
+            ScrollFpsCard(
+              model: _model,
+              onTestScroll: () {
+                setState(() {
+                  _model = const ScrollFpsModel(currentFps: 59.8, droppedFrames: 0, completionRate: 100.0);
+                });
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('OS Keyring Provisioned (Keychain/Keystore Secured)')),
+                  const SnackBar(content: Text('60 FPS Render Speed Verified')),
                 );
               },
             ),
