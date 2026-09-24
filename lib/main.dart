@@ -1,47 +1,47 @@
 import 'package:flutter/material.dart';
-import 'models/mobile_funnel_model.dart';
-import 'widgets/mobile_funnel_card.dart';
+import 'models/gesture_event_model.dart';
+import 'widgets/gesture_tracker_card.dart';
 
 void main() {
-  runApp(const MobileFunnelApp());
+  runApp(const GestureTrackerApp());
 }
 
-class MobileFunnelApp extends StatelessWidget {
-  const MobileFunnelApp({Key? key}) : super(key: key);
+class GestureTrackerApp extends StatelessWidget {
+  const GestureTrackerApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Mobile Funnel',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
-      home: const MobileFunnelScreen(),
+      title: 'Gesture Telemetry App',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
+      home: const GestureTrackerScreen(),
     );
   }
 }
 
-class MobileFunnelScreen extends StatefulWidget {
-  const MobileFunnelScreen({Key? key}) : super(key: key);
+class GestureTrackerScreen extends StatefulWidget {
+  const GestureTrackerScreen({Key? key}) : super(key: key);
 
   @override
-  State<MobileFunnelScreen> createState() => _MobileFunnelScreenState();
+  State<GestureTrackerScreen> createState() => _GestureTrackerScreenState();
 }
 
-class _MobileFunnelScreenState extends State<MobileFunnelScreen> {
-  MobileFunnelModel _model = const MobileFunnelModel(funnelStage: 'Vendor Profile Setup', completionRate: 0.82);
+class _GestureTrackerScreenState extends State<GestureTrackerScreen> {
+  GestureEventModel _model = const GestureEventModel(lastGesture: 'None', detectionAccuracy: 0.96);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Marketplace Onboarding Funnel')),
+      appBar: AppBar(title: const Text('Gesture Capture Console')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            MobileFunnelCard(
+            GestureTrackerCard(
               model: _model,
-              onProceedNextStep: () {
+              onGestureCaptured: (gestureName) {
                 setState(() {
-                  _model = const MobileFunnelModel(funnelStage: 'Identity Verification', completionRate: 0.88);
+                  _model = GestureEventModel(lastGesture: gestureName, detectionAccuracy: 0.96);
                 });
               },
             ),
