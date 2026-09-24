@@ -1,49 +1,49 @@
 import 'package:flutter/material.dart';
-import 'models/npm_publisher_model.dart';
-import 'widgets/npm_publisher_card.dart';
+import 'models/gcp_infra_repo_model.dart';
+import 'widgets/gcp_infra_repo_card.dart';
 
 void main() {
-  runApp(const NpmpublisherApp());
+  runApp(const GcpInfraRepoApp());
 }
 
-class NpmpublisherApp extends StatelessWidget {
-  const NpmpublisherApp({Key? key}) : super(key: key);
+class GcpInfraRepoApp extends StatelessWidget {
+  const GcpInfraRepoApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Artifactory Package Publisher',
+      title: 'GCP Infra Repository Manager',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
       ),
-      home: const NpmpublisherScreen(),
+      home: const GcpInfraRepoScreen(),
     );
   }
 }
 
-class NpmpublisherScreen extends StatelessWidget {
-  const NpmpublisherScreen({Key? key}) : super(key: key);
+class GcpInfraRepoScreen extends StatelessWidget {
+  const GcpInfraRepoScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const publisherModel = NpmpublisherModel(
-      packageName: '@habot/shared-library',
-      semverVersion: '2.4.0',
-      coveragePercentage: 100.0,
+    const repoModel = GcpInfraRepoModel(
+      repoPath: 'git.habot.internal/gcp-infrastructure.git',
+      commitHash: 'a8f921b7c014',
+      completionRate: 100.0,
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Private Registry Management')),
+      appBar: AppBar(title: const Text('GCP Infrastructure Sync')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            NpmpublisherCard(
-              model: publisherModel,
-              onPublishPackage: () {
+            GcpInfraRepoCard(
+              model: repoModel,
+              onVerifyRepo: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Package Published to Private Artifactory (v2.4.0)')),
+                  const SnackBar(content: Text('GCP Infrastructure Configuration Verified (100% Sync)')),
                 );
               },
             ),
