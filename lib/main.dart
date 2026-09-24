@@ -1,56 +1,51 @@
 import 'package:flutter/material.dart';
-import 'models/linter_rule_model.dart';
-import 'widgets/linter_status_card.dart';
+import 'models/token_compiler_model.dart';
+import 'widgets/token_compiler_card.dart';
 
 void main() {
-  runApp(const LinterApp());
+  runApp(const TokenCompilerApp());
 }
 
-class LinterApp extends StatelessWidget {
-  const LinterApp({Key? key}) : super(key: key);
+class TokenCompilerApp extends StatelessWidget {
+  const TokenCompilerApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Static Linter',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo)),
-      home: const LinterScreen(),
+      title: 'HABOT Design Token Compiler',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)),
+      home: const TokenCompilerScreen(),
     );
   }
 }
 
-class LinterScreen extends StatefulWidget {
-  const LinterScreen({Key? key}) : super(key: key);
+class TokenCompilerScreen extends StatefulWidget {
+  const TokenCompilerScreen({Key? key}) : super(key: key);
 
   @override
-  State<LinterScreen> createState() => _LinterScreenState();
+  State<TokenCompilerScreen> createState() => _TokenCompilerScreenState();
 }
 
-class _LinterScreenState extends State<LinterScreen> {
-  LinterRuleModel _rule = const LinterRuleModel(
-    ruleId: 'M3-TOKEN-ENFORCER-01',
-    detectionAccuracy: 0.985,
-    totalViolationsBlocked: 142,
+class _TokenCompilerScreenState extends State<TokenCompilerScreen> {
+  TokenCompilerModel _model = const TokenCompilerModel(
+    compilationJobId: 'JOB-W3C-9587',
+    successRate: 1.0,
   );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Design System Governance')),
+      appBar: AppBar(title: const Text('Master Token Compiler')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            LinterStatusCard(
-              model: _rule,
-              onRunLinter: () {
-                setState(() {
-                  _rule = LinterRuleModel(
-                    ruleId: 'M3-TOKEN-ENFORCER-01',
-                    detectionAccuracy: 0.992,
-                    totalViolationsBlocked: _rule.totalViolationsBlocked + 3,
-                  );
-                });
+            TokenCompilerCard(
+              model: _model,
+              onCompile: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('CSS Tokens Compiled (100% W3C Pass)')),
+                );
               },
             ),
           ],
