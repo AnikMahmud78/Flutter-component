@@ -1,96 +1,73 @@
 import 'package:flutter/material.dart';
-import 'models/ui_acknowledgement_model.dart';
-import 'services/ack_verification_service.dart';
-import 'widgets/confirmation_dialog_widget.dart';
-import 'widgets/audit_completion_banner.dart';
+import 'models/npm_token_config.dart';
+import 'services/npm_token_service.dart';
+import 'widgets/token_execution_card.dart';
 
 void main() {
-  runApp(const HABOTAckApp());
+  runApp(const NpmTokenApp());
 }
 
-class HABOTAckApp extends StatelessWidget {
-  const HABOTAckApp({super.key});
+class NpmTokenApp extends StatelessWidget {
+  const NpmTokenApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10357GEN-02129 MD3 Confirmation',
+      title: 'NPM Token Execution',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0061A4)),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const AckScreen(),
+      home: const NpmTokenScreen(),
     );
   }
 }
 
-class AckScreen extends StatefulWidget {
-  const AckScreen({super.key});
+class NpmTokenScreen extends StatefulWidget {
+  const NpmTokenScreen({super.key});
 
   @override
-  State<AckScreen> createState() => _AckScreenState();
+  State<NpmTokenScreen> createState() => _NpmTokenScreenState();
 }
 
-class _AckScreenState extends State<AckScreen> {
-  late UiAcknowledgementModel _model;
+class _NpmTokenScreenState extends State<NpmTokenScreen> {
+  final NpmTokenService _service = NpmTokenService();
+  late Future<NpmTokenConfig> _configFuture;
 
   @override
   void initState() {
     super.initState();
-    _model = AckVerificationService.generateAckRecord(
-      taskId: '10357GEN-02129',
-      confirmed: true,
-      userId: 'USER-ANIK-8821',
-    );
+    _loadConfig();
   }
 
-  void _showConfirmModal() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: const Text('Confirm Critical Action'),
-        content: const Text('Are you sure you want to finalize and commit the audit record to the runbook?'),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: const Text('Cancel'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              setState(() {
-                _model = AckVerificationService.generateAckRecord(
-                  taskId: '10357GEN-02129',
-                  confirmed: true,
-                  userId: 'USER-ANIK-8821',
-                );
-              });
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Action confirmed and logged to BigQuery audit stream.')),
-              );
-            },
-            child: const Text('Confirm & Execute'),
-          ),
-        ],
-      ),
-    );
+  void _loadConfig() {
+    setState(() {
+      _configFuture = _service.fetchTokenStatus();
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MD3 Confirmation & Acknowledgement')),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            AuditCompletionBanner(rate: _model.auditVerificationRate),
-            const SizedBox(height: 16.0),
-            ConfirmationDialogWidget(
-              model: _model,
-              onTriggerConfirm: _showConfirmModal,
-            ),
-          ],
+      appBar: AppBar(title: const Text('NPM Token Execution Console')),
+      body: RefreshIndicator(
+        onRefresh: () async => _loadConfig(),
+        child: SingleChildScrollView(
+          physics: const AlwaysScrollableScrollPhysics(),
+          padding: const EdgeInsets.all(16.0),
+          child: FutureBuilder<NpmTokenConfig>(
+            future: _configFuture,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (snapshot.hasError) {
+                return Center(child: Text('Error loading tokens: ${snapshot.error}'));
+              }
+              final config = snapshot.data!;
+              return TokenExecutionCard(config: config, onRefresh: _loadConfig);
+            },
+          ),
         ),
       ),
     );
