@@ -1,80 +1,79 @@
 import 'package:flutter/material.dart';
-import 'models/circuit_breaker_model.dart';
-import 'widgets/circuit_status_card.dart';
+import 'models/prompt_style_model.dart';
+import 'widgets/monospace_prompt_block.dart';
 
 void main() {
-  runApp(const CircuitBreakerApp());
+  runApp(const PromptStyleApp());
 }
 
-class CircuitBreakerApp extends StatelessWidget {
-  const CircuitBreakerApp({Key? key}) : super(key: key);
+class PromptStyleApp extends StatelessWidget {
+  const PromptStyleApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Circuit Breaker Automation',
+      title: 'Monospace Text Component',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.red),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueGrey),
       ),
-      home: const CircuitDashboardScreen(),
+      home: const PromptStyleScreen(),
     );
   }
 }
 
-class CircuitDashboardScreen extends StatefulWidget {
-  const CircuitDashboardScreen({Key? key}) : super(key: key);
+class PromptStyleScreen extends StatefulWidget {
+  const PromptStyleScreen({Key? key}) : super(key: key);
 
   @override
-  State<CircuitDashboardScreen> createState() => _CircuitDashboardScreenState();
+  State<PromptStyleScreen> createState() => _PromptStyleScreenState();
 }
 
-class _CircuitDashboardScreenState extends State<CircuitDashboardScreen> {
-  late CircuitBreakerModel _model;
+class _PromptStyleScreenState extends State<PromptStyleScreen> {
+  late PromptStyleModel _model;
 
   @override
   void initState() {
     super.initState();
-    _resetCircuit();
-  }
-
-  void _resetCircuit() {
-    setState(() {
-      _model = CircuitBreakerModel(
-        errorRatePercentage: 0.45,
-        thresholdPercentage: 2.0,
-        windowMinutes: 5,
-        circuitState: 'CLOSED',
-        completionStatus: 'Complete',
-      );
-    });
-  }
-
-  void _triggerErrorSpike() {
-    setState(() {
-      _model = CircuitBreakerModel(
-        errorRatePercentage: 3.82,
-        thresholdPercentage: 2.0,
-        windowMinutes: 5,
-        circuitState: 'OPEN',
-        completionStatus: 'Complete',
-      );
-    });
+    _model = PromptStyleModel(
+      rawPromptText: 'SYSTEM PROMPT: Enforce corporate mobile egress IP security tokens on all API requests.',
+      fontFamily: 'monospace',
+      consistencyScore: 100.0,
+      qualityRating: 'Good',
+    );
   }
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      appBar: AppBar(title: const Text('Automated Alert & Reliability Rules')),
+      appBar: AppBar(title: const Text('Design System Monospace Audit')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Center(
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
-            child: CircuitStatusCard(
-              model: _model,
-              onSimulateErrorSpike: _triggerErrorSpike,
-              onReset: _resetCircuit,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Prompt Block Preview', style: theme.textTheme.titleMedium),
+                const SizedBox(height: 12),
+                MonospacePromptBlock(promptText: _model.rawPromptText),
+                const SizedBox(height: 16),
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('Font Family: ${_model.fontFamily}'),
+                        Text('Consistency Score: ${_model.consistencyScore}%'),
+                        Text('Quality Rating: ${_model.qualityRating}'),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),
