@@ -1,49 +1,49 @@
 import 'package:flutter/material.dart';
-import 'models/commercial_analytics_model.dart';
-import 'widgets/commercial_analytics_card.dart';
+import 'models/devops_metrics_model.dart';
+import 'widgets/devops_metrics_card.dart';
 
 void main() {
-  runApp(const CommercialAnalyticsApp());
+  runApp(const DevOpsMetricsApp());
 }
 
-class CommercialAnalyticsApp extends StatelessWidget {
-  const CommercialAnalyticsApp({Key? key}) : super(key: key);
+class DevOpsMetricsApp extends StatelessWidget {
+  const DevOpsMetricsApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Commercial Analytics App',
+      title: 'DevOps Build Health',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.teal),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
       ),
-      home: const CommercialAnalyticsScreen(),
+      home: const DevOpsMetricsScreen(),
     );
   }
 }
 
-class CommercialAnalyticsScreen extends StatelessWidget {
-  const CommercialAnalyticsScreen({Key? key}) : super(key: key);
+class DevOpsMetricsScreen extends StatelessWidget {
+  const DevOpsMetricsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    const commercialModel = CommercialAnalyticsModel(
-      walletSharePercentage: 34.2,
-      topSpendCategory: 'Childcare & Education',
-      refreshLatencyMinutes: 2.5,
+    const devOpsModel = DevOpsMetricsModel(
+      buildPassRate: 1.0,
+      complianceScore: 0.99,
+      refreshLatencyMinutes: 1.5,
     );
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Commercial BI Dashboard')),
+      appBar: AppBar(title: const Text('DevOps Health Console')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            CommercialAnalyticsCard(
-              model: commercialModel,
+            DevOpsMetricsCard(
+              model: devOpsModel,
               onRefresh: () {
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Commercial BI Synced (<5m SLA)')),
+                  const SnackBar(content: Text('CI/CD Health Telemetry Synced (<5m SLA)')),
                 );
               },
             ),
