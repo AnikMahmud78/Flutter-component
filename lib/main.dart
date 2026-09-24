@@ -1,50 +1,47 @@
 import 'package:flutter/material.dart';
-import 'models/websocket_badge_model.dart';
-import 'widgets/websocket_badge_card.dart';
+import 'models/mobile_funnel_model.dart';
+import 'widgets/mobile_funnel_card.dart';
 
 void main() {
-  runApp(const WebSocketBadgeApp());
+  runApp(const MobileFunnelApp());
 }
 
-class WebSocketBadgeApp extends StatelessWidget {
-  const WebSocketBadgeApp({Key? key}) : super(key: key);
+class MobileFunnelApp extends StatelessWidget {
+  const MobileFunnelApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'WebSocket Badge App',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue)),
-      home: const WebSocketBadgeScreen(),
+      title: 'HABOT Mobile Funnel',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange)),
+      home: const MobileFunnelScreen(),
     );
   }
 }
 
-class WebSocketBadgeScreen extends StatefulWidget {
-  const WebSocketBadgeScreen({Key? key}) : super(key: key);
+class MobileFunnelScreen extends StatefulWidget {
+  const MobileFunnelScreen({Key? key}) : super(key: key);
 
   @override
-  State<WebSocketBadgeScreen> createState() => _WebSocketBadgeScreenState();
+  State<MobileFunnelScreen> createState() => _MobileFunnelScreenState();
 }
 
-class _WebSocketBadgeScreenState extends State<WebSocketBadgeScreen> {
-  WebSocketBadgeModel _model = const WebSocketBadgeModel(unreadCount: 3, syncSuccessRate: 0.999);
+class _MobileFunnelScreenState extends State<MobileFunnelScreen> {
+  MobileFunnelModel _model = const MobileFunnelModel(funnelStage: 'Vendor Profile Setup', completionRate: 0.82);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('WebSocket Badge Controller')),
+      appBar: AppBar(title: const Text('Marketplace Onboarding Funnel')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            WebSocketBadgeCard(
+            MobileFunnelCard(
               model: _model,
-              onSimulateMessage: () {
+              onProceedNextStep: () {
                 setState(() {
-                  _model = WebSocketBadgeModel(
-                    unreadCount: _model.unreadCount + 1,
-                    syncSuccessRate: 0.999,
-                  );
+                  _model = const MobileFunnelModel(funnelStage: 'Identity Verification', completionRate: 0.88);
                 });
               },
             ),
