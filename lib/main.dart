@@ -1,87 +1,71 @@
 import 'package:flutter/material.dart';
-import 'models/mathematical_validation_model.dart';
-import 'services/math_check_engine.dart';
-import 'widgets/math_validation_card.dart';
-import 'widgets/execution_status_banner.dart';
+import 'models/sop_video_compliance_model.dart';
+import 'services/sop_media_validator.dart';
+import 'widgets/video_format_card.dart';
+import 'widgets/pr_rejection_banner.dart';
 
 void main() {
-  runApp(const HABOTMathCheckApp());
+  runApp(const HABOTSopMediaApp());
 }
 
-class HABOTMathCheckApp extends StatelessWidget {
-  const HABOTMathCheckApp({super.key});
+class HABOTSopMediaApp extends StatelessWidget {
+  const HABOTSopMediaApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10148GEN-01916 Math Validation',
+      title: '10159GEN-01927 SOP Media Compression',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF0061A4)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF006874)),
       ),
-      home: const MathCheckScreen(),
+      home: const SopMediaScreen(),
     );
   }
 }
 
-class MathCheckScreen extends StatefulWidget {
-  const MathCheckScreen({super.key});
+class SopMediaScreen extends StatefulWidget {
+  const SopMediaScreen({super.key});
 
   @override
-  State<MathCheckScreen> createState() => _MathCheckScreenState();
+  State<SopMediaScreen> createState() => _SopMediaScreenState();
 }
 
-class _MathCheckScreenState extends State<MathCheckScreen> {
-  late MathematicalValidationModel _currentValidation;
+class _SopMediaScreenState extends State<SopMediaScreen> {
+  late SopVideoComplianceModel _model;
 
   @override
   void initState() {
     super.initState();
-    _recalculate();
+    _checkFile();
   }
 
-  void _recalculate() {
+  void _checkFile() {
     setState(() {
-      _currentValidation = MathCheckEngine.executeCheck(
-        taskId: '10148GEN-01916',
-        traceId: 'TRACE-01916-2026',
-        valueA: 1500.25,
-        valueB: 1500.25,
-        userId: 'USER-ANIK-8821',
+      _model = SopMediaValidator.validateSopVideo(
+        taskId: '10159GEN-01927',
+        sopId: 'SOP-MOBILE-1092',
+        fileExtension: 'mp4',
+        inspectorId: 'USER-ANIK-8821',
       );
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final bool isPassing = _currentValidation.validationAccuracy >= 99.5;
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Math Check (A - B = 0) Engine'),
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          _recalculate();
-        },
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(),
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              ExecutionStatusBanner(
-                statusText: isPassing
-                    ? 'PASSED: Mathematical Balance Accuracy is ${_currentValidation.validationAccuracy}% (Floor: 99.5%)'
-                    : 'FAILED: Threshold violation detected',
-                isPass: isPassing,
-              ),
-              const SizedBox(height: 16.0),
-              MathValidationCard(
-                model: _currentValidation,
-                onRefresh: _recalculate,
-              ),
-            ],
-          ),
+      appBar: AppBar(title: const Text('SOP Video Format Enforcer')),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            PrRejectionBanner(prRejectionRate: _model.prRejectionRate),
+            const SizedBox(height: 16.0),
+            VideoFormatCard(
+              model: _model,
+              onValidateNewFile: _checkFile,
+            ),
+          ],
         ),
       ),
     );
