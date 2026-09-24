@@ -1,59 +1,86 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'models/citation_model.dart';
-import 'widgets/citation_chip.dart';
+import 'models/countdown_model.dart';
+import 'widgets/countdown_clock_widget.dart';
 
 void main() {
-  runApp(const CitationApp());
+  runApp(const CountdownClockApp());
 }
 
-class CitationApp extends StatelessWidget {
-  const CitationApp({Key? key}) : super(key: key);
+class CountdownClockApp extends StatelessWidget {
+  const CountdownClockApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'M3 Citation Chips',
+      title: 'Task Countdown Timer',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
       ),
-      home: const CitationScreen(),
+      home: const CountdownScreen(),
     );
   }
 }
 
-class CitationScreen extends StatefulWidget {
-  const CitationScreen({Key? key}) : super(key: key);
+class CountdownScreen extends StatefulWidget {
+  const CountdownScreen({Key? key}) : super(key: key);
 
   @override
-  State<CitationScreen> createState() => _CitationScreenState();
+  State<CountdownScreen> createState() => _CountdownScreenState();
 }
 
-class _CitationScreenState extends State<CitationScreen> {
-  final List<CitationModel> _citations = [
-    CitationModel(id: 'c1', sourceTitle: 'NIST 800-207 Zero Trust', url: 'https://nist.gov', index: 1),
-    CitationModel(id: 'c2', sourceTitle: 'ISO/IEC 27001 Security', url: 'https://iso.org', index: 2),
-    CitationModel(id: 'c3', sourceTitle: 'M3 Design Guidelines', url: 'https://m3.material.io', index: 3),
-  ];
+class _CountdownScreenState extends State<CountdownScreen> {
+  static const int _initialSeconds = 300;
+  int _secondsLeft = _initialSeconds;
+  Timer? _timer;
 
-  void _onCitationTap(CitationModel citation) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Opening Citation [${citation.index}]: ${citation.url}')),
-    );
+  @override
+  void initState() {
+    super.initState();
+    _startTimer();
+  }
+
+  void _startTimer() {
+    _timer?.cancel();
+    _secondsLeft = _initialSeconds;
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_secondsLeft > 0) {
+        setState(() => _secondsLeft--);
+      } else {
+        _timer?.cancel();
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final model = CountdownModel(
+      totalSeconds: _initialSeconds,
+      remainingSeconds: _secondsLeft,
+      isExpired: _secondsLeft == 0,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('M3 Citation Input Chips')),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Wrap(
-          spacing: 8.0,
-          runSpacing: 8.0,
-          children: _citations
-              .map((c) => CitationChip(citation: c, OnSelected: _onCitationTap))
-              .toList(),
+      appBar: AppBar(
+        title: const Text('Task Session Window'),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16.0),
+            child: CountdownClockWidget(model: model),
+          ),
+        ],
+      ),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: _startTimer,
+          child: const Text('Reset 5-Minute Window'),
         ),
       ),
     );
