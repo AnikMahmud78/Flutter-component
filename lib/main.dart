@@ -1,50 +1,52 @@
 import 'package:flutter/material.dart';
-import 'models/uri_context_model.dart';
-import 'services/uri_parser_engine.dart';
-import 'widgets/uri_context_card.dart';
-import 'widgets/routing_banner.dart';
+import 'models/liveness_health_model.dart';
+import 'services/liveness_evaluator_engine.dart';
+import 'widgets/health_criteria_card.dart';
+import 'widgets/liveness_status_banner.dart';
 
 void main() {
-  runApp(const HABOTUriApp());
+  runApp(const HABOTLivenessApp());
 }
 
-class HABOTUriApp extends StatelessWidget {
-  const HABOTUriApp({super.key});
+class HABOTLivenessApp extends StatelessWidget {
+  const HABOTLivenessApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10313GEN-02084 URI Context',
+      title: '10324GEN-02095 Liveness Handshake',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF535D7E)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00687A)),
       ),
-      home: const UriScreen(),
+      home: const LivenessScreen(),
     );
   }
 }
 
-class UriScreen extends StatefulWidget {
-  const UriScreen({super.key});
+class LivenessScreen extends StatefulWidget {
+  const LivenessScreen({super.key});
 
   @override
-  State<UriScreen> createState() => _UriScreenState();
+  State<LivenessScreen> createState() => _LivenessScreenState();
 }
 
-class _UriScreenState extends State<UriScreen> {
-  late UriContextModel _model;
+class _LivenessScreenState extends State<LivenessScreen> {
+  late LivenessHealthModel _model;
 
   @override
   void initState() {
     super.initState();
-    _parse();
+    _probe();
   }
 
-  void _parse() {
+  void _probe() {
     setState(() {
-      _model = UriParserEngine.parseUri(
-        'habot://console/execution?task_id=10313GEN-02084&trace_id=TRACE-992-2026',
-        'USER-ANIK-8821',
+      _model = LivenessEvaluatorEngine.evaluateResponse(
+        taskId: '10324GEN-02095',
+        statusCode: 200,
+        latencyMs: 42.0,
+        userId: 'USER-ANIK-8821',
       );
     });
   }
@@ -52,14 +54,14 @@ class _UriScreenState extends State<UriScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('URI Context Deep-Link Engine')),
+      appBar: AppBar(title: const Text('Liveness Criteria Verifier')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            RoutingBanner(rate: _model.completionRate),
+            LivenessStatusBanner(rate: _model.stepCompletionRate),
             const SizedBox(height: 16.0),
-            UriContextCard(model: _model, onParseNewUri: _parse),
+            HealthCriteriaCard(model: _model, onPing: _probe),
           ],
         ),
       ),
