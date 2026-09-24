@@ -1,36 +1,43 @@
 import 'package:flutter/material.dart';
-import 'models/workday_payload.dart';
-import 'services/workday_payload_mapper.dart';
+import 'services/payroll_validator.dart';
 
-void main() => runApp(const WorkdayMapperApp());
+void main() => runApp(const PayrollAutoApp());
 
-class WorkdayMapperApp extends StatelessWidget {
-  const WorkdayMapperApp({super.key});
+class PayrollAutoApp extends StatelessWidget {
+  const PayrollAutoApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final mapper = WorkdayPayloadMapper();
-    final payload = mapper.buildPayload(
-      rawId: 'APP-9910',
-      rawSsn: '000-11-2222',
-      selectedPackage: 'STD_BG_CHECK',
-    );
-    final isValid = mapper.validateMapping(payload);
+    final validator = PayrollValidator();
+    final entry = validator.processEntry('EMP-4401', 'GB82WEST12345698765432', 4500.00);
 
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: const Text('Workday Payload Mapping')),
-        body: Center(
+        appBar: AppBar(title: const Text('Zero Manual Payroll Automation')),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Applicant ID: ${payload.applicantId}'),
-              Text('Package Code: ${payload.packageCode}'),
-              const SizedBox(height: 12),
-              Chip(
-                label: Text(isValid ? 'Mapping Valid' : 'Mapping Failed'),
-                backgroundColor: isValid ? Colors.green.shade100 : Colors.red.shade100,
-              )
+              Text('Employee: \${entry.employeeId}'),
+              Text('IBAN: \${entry.iban}'),
+              Text('Amount: \\$\${entry.amount}'),
+              const SizedBox(height: 16),
+              Card(
+                color: entry.isAutoProcessed ? Colors.green.shade50 : Colors.red.shade50,
+                child: ListTile(
+                  leading: Icon(
+                    entry.isAutoProcessed ? Icons.autorenew : Icons.warning,
+                    color: entry.isAutoProcessed ? Colors.green : Colors.red,
+                  ),
+                  title: Text('Automated Validation Status'),
+                  subtitle: Text(
+                    entry.isAutoProcessed
+                        ? '100% Automated - 0% Manual Intervention Required'
+                        : 'Validation Failure - Intervention Needed',
+                  ),
+                ),
+              ),
             ],
           ),
         ),
