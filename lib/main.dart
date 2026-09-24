@@ -1,22 +1,28 @@
 import 'package:flutter/material.dart';
-import 'widgets/m3_date_picker_field.dart';
+import 'services/strict_compliance_checker.dart';
 
-void main() => runApp(const DatePickerApp());
+void main() => runApp(const BooleanComplianceApp());
 
-class DatePickerApp extends StatelessWidget {
-  const DatePickerApp({super.key});
+class BooleanComplianceApp extends StatelessWidget {
+  const BooleanComplianceApp({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final checker = StrictComplianceChecker();
+    final bool isCompliant = checker.checkSoxCompliance({'isApproved': true, 'hasAuditTrail': true});
+
     return MaterialApp(
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo)),
       home: Scaffold(
-        appBar: AppBar(title: const Text('M3 DatePicker Integration')),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: M3DatePickerField(
-            labelText: 'Effective Audit Date',
-            onDateSelected: (date) {},
+        appBar: AppBar(title: const Text('Strict Boolean Compliance Evaluator')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Compliance Status: \${isCompliant ? "TRUE" : "FALSE"}',
+                style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              ),
+            ],
           ),
         ),
       ),
