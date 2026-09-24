@@ -1,51 +1,50 @@
 import 'package:flutter/material.dart';
-import 'models/swipe_progression_model.dart';
-import 'widgets/swipe_progression_card.dart';
+import 'models/npm_publisher_model.dart';
+import 'widgets/npm_publisher_card.dart';
 
 void main() {
-  runApp(const SwipeProgressionApp());
+  runApp(const NpmpublisherApp());
 }
 
-class SwipeProgressionApp extends StatelessWidget {
-  const SwipeProgressionApp({Key? key}) : super(key: key);
+class NpmpublisherApp extends StatelessWidget {
+  const NpmpublisherApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Swipe Progression Gate',
+      title: 'Artifactory Package Publisher',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const SwipeProgressionScreen(),
+      home: const NpmpublisherScreen(),
     );
   }
 }
 
-class SwipeProgressionScreen extends StatefulWidget {
-  const SwipeProgressionScreen({Key? key}) : super(key: key);
-
-  @override
-  State<SwipeProgressionScreen> createState() => _SwipeProgressionScreenState();
-}
-
-class _SwipeProgressionScreenState extends State<SwipeProgressionScreen> {
-  SwipeProgressionModel _model = const SwipeProgressionModel(isSingleActionValid: false, lockRatePercentage: 100.0);
+class NpmpublisherScreen extends StatelessWidget {
+  const NpmpublisherScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    const publisherModel = NpmpublisherModel(
+      packageName: '@habot/shared-library',
+      semverVersion: '2.4.0',
+      coveragePercentage: 100.0,
+    );
+
     return Scaffold(
-      appBar: AppBar(title: const Text('Swipe Progression Gate')),
+      appBar: AppBar(title: const Text('Private Registry Management')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            SwipeProgressionCard(
-              model: _model,
-              onToggleActionState: (valid) {
-                setState(() {
-                  _model = SwipeProgressionModel(isSingleActionValid: valid, lockRatePercentage: 100.0);
-                });
+            NpmpublisherCard(
+              model: publisherModel,
+              onPublishPackage: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text('Package Published to Private Artifactory (v2.4.0)')),
+                );
               },
             ),
           ],
