@@ -1,47 +1,55 @@
 import 'package:flutter/material.dart';
-import 'models/chart_benchmark_model.dart';
-import 'widgets/chart_benchmark_card.dart';
+import 'models/linter_rule_model.dart';
+import 'widgets/linter_status_card.dart';
 
 void main() {
-  runApp(const ChartBenchmarkApp());
+  runApp(const LinterApp());
 }
 
-class ChartBenchmarkApp extends StatelessWidget {
-  const ChartBenchmarkApp({Key? key}) : super(key: key);
+class LinterApp extends StatelessWidget {
+  const LinterApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'HABOT Chart Benchmark',
-      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.cyan)),
-      home: const ChartBenchmarkScreen(),
+      title: 'HABOT Static Linter',
+      theme: ThemeData(useMaterial3: true, colorScheme: ColorScheme.fromSeed(seedColor: Colors.indigo)),
+      home: const LinterScreen(),
     );
   }
 }
 
-class ChartBenchmarkScreen extends StatefulWidget {
-  const ChartBenchmarkScreen({Key? key}) : super(key: key);
+class LinterScreen extends StatefulWidget {
+  const LinterScreen({Key? key}) : super(key: key);
 
   @override
-  State<ChartBenchmarkScreen> createState() => _ChartBenchmarkScreenState();
+  State<LinterScreen> createState() => _LinterScreenState();
 }
 
-class _ChartBenchmarkScreenState extends State<ChartBenchmarkScreen> {
-  ChartBenchmarkModel _model = const ChartBenchmarkModel(accuracyScore: 0.995, loadTimeMs: 165);
+class _LinterScreenState extends State<LinterScreen> {
+  LinterRuleModel _rule = const LinterRuleModel(
+    ruleId: 'M3-TOKEN-ENFORCER-01',
+    detectionAccuracy: 0.985,
+    totalViolationsBlocked: 142,
+  );
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Chart Telemetry Profiler')),
+      appBar: AppBar(title: const Text('Design System Governance')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            ChartBenchmarkCard(
-              model: _model,
-              onBenchmarkChart: () {
+            LinterStatusCard(
+              model: _rule,
+              onRunLinter: () {
                 setState(() {
-                  _model = const ChartBenchmarkModel(accuracyScore: 0.998, loadTimeMs: 140);
+                  _rule = LinterRuleModel(
+                    ruleId: 'M3-TOKEN-ENFORCER-01',
+                    detectionAccuracy: 0.992,
+                    totalViolationsBlocked: _rule.totalViolationsBlocked + 3,
+                  );
                 });
               },
             ),
