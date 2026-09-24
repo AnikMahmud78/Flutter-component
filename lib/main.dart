@@ -1,59 +1,65 @@
 import 'package:flutter/material.dart';
-import 'models/achievement_badge_model.dart';
-import 'services/badge_award_engine.dart';
-import 'widgets/achievement_badge_widget.dart';
-import 'widgets/gamified_banner.dart';
+import 'models/local_execution_model.dart';
+import 'services/local_state_evaluator.dart';
+import 'widgets/local_logic_card.dart';
+import 'widgets/client_state_banner.dart';
 
 void main() {
-  runApp(const HABOTGamifiedApp());
+  runApp(const HABOTLocalApp());
 }
 
-class HABOTGamifiedApp extends StatelessWidget {
-  const HABOTGamifiedApp({super.key});
+class HABOTLocalApp extends StatelessWidget {
+  const HABOTLocalApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: '10335GEN-02106 MD3 Gamified Badges',
+      title: '10346GEN-02118 Local JS/Dart Logic',
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF7B5300)),
+        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF00639A)),
       ),
-      home: const GamifiedScreen(),
+      home: const LocalScreen(),
     );
   }
 }
 
-class GamifiedScreen extends StatefulWidget {
-  const GamifiedScreen({super.key});
+class LocalScreen extends StatefulWidget {
+  const LocalScreen({super.key});
 
   @override
-  State<GamifiedScreen> createState() => _GamifiedScreenState();
+  State<LocalScreen> createState() => _LocalScreenState();
 }
 
-class _GamifiedScreenState extends State<GamifiedScreen> {
-  late AchievementBadgeModel _model;
+class _LocalScreenState extends State<LocalScreen> {
+  late LocalExecutionModel _model;
 
   @override
   void initState() {
     super.initState();
-    _model = BadgeAwardEngine.fetchUserBadge(
-      taskId: '10335GEN-02106',
-      userId: 'USER-ANIK-8821',
-    );
+    _run();
+  }
+
+  void _run() {
+    setState(() {
+      _model = LocalStateEvaluator.runLocalLogic(
+        taskId: '10346GEN-02118',
+        userId: 'USER-ANIK-8821',
+      );
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('MD3 Gamified Achievement Badges')),
+      appBar: AppBar(title: const Text('Local In-Memory Logic Engine')),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            GamifiedBanner(rate: _model.completionRate),
+            ClientStateBanner(rate: _model.completionRate),
             const SizedBox(height: 16.0),
-            AchievementBadgeWidget(model: _model),
+            LocalLogicCard(model: _model, onExecute: _run),
           ],
         ),
       ),
